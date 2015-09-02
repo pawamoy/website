@@ -1,5 +1,6 @@
 # Site settings
-title: Pawamoy? What does that mean?
+title: Pawablog -- Programming stuff
+
 email: timothee.mazzucotelli@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Well, this is just a blog. There could be interesting things in here though.
