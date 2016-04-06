@@ -2,9 +2,9 @@
 title: Pawablog -- Programming stuff
 email: timothee.mazzucotelli@gmail.com
 description: "Well, this is just a blog. There could be interesting things in here though."
-baseurl: "/blog/"
+baseurl: ""
 url: "http://pawamoy.github.io"
-github_username:  Pawamoy
+github_username: Pawamoy
 
 # Build settings
 markdown: kramdown
