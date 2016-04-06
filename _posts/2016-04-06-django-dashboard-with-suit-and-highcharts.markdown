@@ -138,7 +138,7 @@ urlpatterns = [
 
 That's it, go check your new empty dashboard!
 
-![Empty dashboard]({{ site.url }}/_images/empty-dashboard.png)
+![Empty dashboard]({{ site.github.url }}/_images/empty-dashboard.png)
 
 # Step 3: Highcharts!
 
