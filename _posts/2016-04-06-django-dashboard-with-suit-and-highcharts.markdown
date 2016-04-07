@@ -22,7 +22,7 @@ I had then all I needed to start a proof of concept.
 
 First, create a new app within your Django project:
 
-{% highlight bash %}
+{% highlight console %}
 ./manage.py startapp dashboard
 {% endhighlight %}
 
