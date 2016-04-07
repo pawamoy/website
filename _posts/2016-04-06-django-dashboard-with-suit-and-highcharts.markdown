@@ -81,7 +81,7 @@ class DashboardMainView(TemplateView):
 
 And finally, create the template `main.html` (thanks brunocascio):
 
-{% highlight html+django %}{% raw %}
+{% highlight liquid %}{% raw %}
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
 
@@ -176,7 +176,7 @@ class DashboardMainView(TemplateView):
 Then in your template, add links to Highchart, and use the previous data
 to create, for example, a pie chart:
 
-{% highlight html+django %}{% raw %}
+{% highlight html %}{% raw %}
 {% block content %}
   <script src="http://code.highcharts.com/highcharts.js"></script>
   <script src="http://code.highcharts.com/highcharts-more.js"></script>
