@@ -344,3 +344,17 @@ a:visited { color: #205caa; }
     margin: 0 0 15px; }
 
 }
+
+/* Center images on the screen */
+img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, 0);
+  max-width: 1200px;
+}
+
+p {
+  text-align: justify;
+}

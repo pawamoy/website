@@ -2,6 +2,7 @@
 layout: post
 title: "Django admin dashboard with Suit and Highcharts"
 date: 2016-04-06 15:22:40
+tags: django admin dashboard suit highcharts
 ---
 
 One day my boss said "I want to see some statistical data about the users".
@@ -13,12 +14,15 @@ so I searched for a way to add a custom view within Suit. Looking at the
 by [rouxxx][] and linking to this [post about django dashboard][].
 I had then all I needed to start a proof of concept.
 
-* [Step 1: set up the files](#step-1-set-up-the-files)
-* [Step 2: activate your brand new dashboard](#step-2-activate-your-brand-new-dashboard)
-* [Step 3: Highcharts!](#step-3-highcharts)
-* [More customization](#more-customization)
+#### Contents
+
+- [Step 1: set up the files](#step-1-set-up-the-files)
+- [Step 2: activate your brand new dashboard](#step-2-activate-your-brand-new-dashboard)
+- [Step 3: Highcharts!](#step-3-highcharts)
+- [More customization](#more-customization)
 
 ## Step 1: set up the files
+[Back to the top](#contents)
 
 First, create a new app within your Django project:
 
@@ -100,6 +104,7 @@ And finally, create the template `main.html` (thanks brunocascio):
 {% endraw %}{% endhighlight %}
 
 ## Step 2: activate your brand new dashboard
+[Back to the top](#contents)
 
 Add your `dashboard` app in your
 `settings.INSTALLED_APPS`, but also replace `django.contrib.admin` by
@@ -141,6 +146,7 @@ That's it, go check your new empty dashboard!
 ![Empty dashboard](/images/empty-dashboard.png)
 
 ## Step 3: Highcharts!
+[Back to the top](#contents)
 
 I was already familiar with [Highcharts][] since I use it in my project, so
 it made sense to use it in the admin dashboard too.
@@ -181,9 +187,12 @@ to create, for example, a pie chart:
   <script src="http://code.highcharts.com/highcharts.js"></script>
   <script src="http://code.highcharts.com/highcharts-more.js"></script>
   <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
   <div id="highchart-0"></div>
+
   <script type='text/javascript'>
     var dataset;
+
     dataset = {
       "chart": {
         "type": "pie",
@@ -191,30 +200,45 @@ to create, for example, a pie chart:
         "plotBorderWidth": null,
         "plotShadow": false
       },
-      "title": {"text": "{% trans "Number of patients per country" %}" },
+
+      "title": {
+        "text": "{% trans "Number of patients per country" %}"
+      },
+
       "series": [{
+        "name": "Countries",
         "colorByPoint": true,
         "data": [
           {% for tuple in nb_patients_per_country %}
             { "name": "{{ tuple.country }}", "y": {{ tuple.patients }} },
           {% endfor %}
-        ],
-        "name": "Countries"
+        ]
       }],
-      "tooltip": {"formatter": function() { return this.y + '/' + this.total + ' (' + Highcharts.numberFormat(this.percentage, 1) + '%)'; } },
+
+      "tooltip": {
+        "formatter": function() {
+          return this.y + '/' + this.total + ' (' + Highcharts.numberFormat(this.percentage, 1) + '%)';
+        }
+      },
+
       "plotOptions": {
         "pie": {
+          "showInLegend": true,
+          "allowPointSelect": true,
           "cursor": "pointer",
           "dataLabels": {
-            "style": {"color": function() { return (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black' } },
             "enabled": true,
             "format": "<b>{point.name}</b>: {point.percentage:.1f} %"
-          },
-          "showInLegend": true,
-          "allowPointSelect": true
+            "style": {
+              "color": function() {
+                return (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+              }
+            }
+          }
         }
       }
     };
+
     $('#highchart-0').highcharts(dataset);
   </script>
 {% endblock %}
@@ -228,8 +252,16 @@ For other types of chart, go check the Highcharts [demos][] and their excellent
 [API documentation][]!
 
 ## More customization
+[Back to the top](#contents)
+
+#### Customizable contents
+
+- [Work with columns](#columns)
+- [Add more pages to your dashboard](#more-dashboard-pages)
 
 ### Columns
+[Back to the top](#contents)
+[Back to custom section](#more-customization)
 
 If like me you would like to use columns in the dashboard, you will be
 disappointed since we cannot use Bootstrap's column classes (`col-md` and
@@ -301,6 +333,8 @@ But this tweak is very limited because you can't have columns with different
 sizes on the same row...
 
 ### More dashboard pages
+[Back to the top](#contents)
+[Back to custom section](#more-customization)
 
 Just add your additional URLs in `dashboard.sites.AdminMixin` (they should
 maybe be added at the end of the original URLs:
