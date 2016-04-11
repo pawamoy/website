@@ -22,7 +22,6 @@ I had then all I needed to start a proof of concept.
 - [More customization](#more-customization)
 
 ## Step 1: set up the files
-[Back to the top](#contents)
 
 First, create a new app within your Django project:
 
@@ -104,7 +103,6 @@ And finally, create the template `main.html` (thanks brunocascio):
 {% endraw %}{% endhighlight %}
 
 ## Step 2: activate your brand new dashboard
-[Back to the top](#contents)
 
 Add your `dashboard` app in your
 `settings.INSTALLED_APPS`, but also replace `django.contrib.admin` by
@@ -146,7 +144,6 @@ That's it, go check your new empty dashboard!
 ![Empty dashboard](/images/empty-dashboard.png)
 
 ## Step 3: Highcharts!
-[Back to the top](#contents)
 
 I was already familiar with [Highcharts][] since I use it in my project, so
 it made sense to use it in the admin dashboard too.
@@ -252,7 +249,6 @@ For other types of chart, go check the Highcharts [demos][] and their excellent
 [API documentation][]!
 
 ## More customization
-[Back to the top](#contents)
 
 #### Customizable contents
 
@@ -260,8 +256,6 @@ For other types of chart, go check the Highcharts [demos][] and their excellent
 - [Add more pages to your dashboard](#more-dashboard-pages)
 
 ### Columns
-[Back to the top](#contents)
-[Back to custom section](#more-customization)
 
 If like me you would like to use columns in the dashboard, you will be
 disappointed since we cannot use Bootstrap's column classes (`col-md` and
@@ -333,8 +327,6 @@ But this tweak is very limited because you can't have columns with different
 sizes on the same row...
 
 ### More dashboard pages
-[Back to the top](#contents)
-[Back to custom section](#more-customization)
 
 Just add your additional URLs in `dashboard.sites.AdminMixin` (they should
 maybe be added at the end of the original URLs:
