@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  if (!$("#contents").length)
+    return true;
+    
   $("h2, h3").each(function(i) {
     $(this).after("<a href=#contents>Back to the top</a>").next()
      .css("font-size", "0.8em")
