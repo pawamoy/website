@@ -131,6 +131,16 @@ admin.site = DashboardSite()
 admin.autodiscover()
 {% endhighlight %}
 
+**EDIT:** with Django 1.9.5, you will need one more line:  
+(See [Gustavo's comment](#comment-2643754439) at the bottom.)
+
+{% highlight python %}
+admin.site = DashboardSite()
+admin.sites.site = admin.site
+admin.autodiscover()
+{% endhighlight %}
+
+
 Your `urlpatterns` should not be subject to change:
 
 {% highlight python %}
