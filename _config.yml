@@ -1,12 +1,11 @@
 # Site settings
 title: Pawablog -- Programming stuff
-
 email: timothee.mazzucotelli@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Well, this is just a blog. There could be interesting things in here though.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://pawamoy.github.io" # the base hostname & protocol for your site
+description: "Well, this is just a blog. There could be interesting things in here though."
+baseurl: ""
+url: "http://pawamoy.github.io"
 github_username: Pawamoy
 
 # Build settings
 markdown: kramdown
+permalink: pretty
