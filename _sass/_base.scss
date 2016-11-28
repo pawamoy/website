@@ -43,8 +43,15 @@ ul, ol, dl, figure,
  * Images
  */
 img {
-    max-width: 100%;
-    vertical-align: middle;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 1200px;
+}
+
+p {
+  text-align: justify;
 }
 
 
@@ -132,7 +139,7 @@ code {
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    // background-color: #eef;
 }
 
 code {
@@ -144,6 +151,7 @@ pre {
     overflow-x: auto;
 
     > code {
+        color: white;
         border: 0;
         padding-right: 0;
         padding-left: 0;
