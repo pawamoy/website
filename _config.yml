@@ -16,4 +16,6 @@ github_username:  Pawamoy
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
 permalink: pretty

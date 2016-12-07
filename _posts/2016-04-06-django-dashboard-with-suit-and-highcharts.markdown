@@ -21,6 +21,7 @@ I had then all I needed to start a proof of concept.
 - [Step 2: activate your brand new dashboard](#step-2-activate-your-brand-new-dashboard)
 - [Step 3: Highcharts!](#step-3-highcharts)
 - [More customization](#more-customization)
+- [The app I wrote using this](#django-suit-dashboard)
 
 ## Step 1: set up the files
 
@@ -345,6 +346,11 @@ maybe be added at the end of the original URLs:
 templates and it's done.
 
 
+### Django Suit Dashboard
+I wrote a Django app to do this: [django-suit-dashboard][]. Go take a look!
+(and please keep in mind it's just a beta and it could/will be improved).
+
+
 [django-suit]: https://github.com/darklow/django-suit
 [issue]: https://github.com/darklow/django-suit/issues/409
 [comment]: https://github.com/darklow/django-suit/issues/409#issuecomment-132355444
@@ -354,3 +360,4 @@ templates and it's done.
 [Highcharts]: http://www.highcharts.com/
 [demos]: http://www.highcharts.com/demo
 [API documentation]: http://api.highcharts.com/highcharts
+[django-suit-dashboard]: https://github.com/Pawamoy/django-suit-dashboard
