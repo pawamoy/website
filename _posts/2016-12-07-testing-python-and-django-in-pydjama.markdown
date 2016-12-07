@@ -13,7 +13,6 @@ If you are inteterested in the testing and maintaining flow it talks about, plea
 the [pydjama][] cookiecutter (yes, that explains this post's title). See here what is
 [cookiecutter][].<!--more-->
 
-#### Contents
 
 - [Introduction](#introduction)
 - [Project structure](#project-structure)
