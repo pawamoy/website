@@ -18,4 +18,5 @@ github_username:  Pawamoy
 markdown: kramdown
 kramdown:
   input: GFM
+  hard_wrap: false
 permalink: pretty
