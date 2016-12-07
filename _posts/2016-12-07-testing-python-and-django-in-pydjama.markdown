@@ -6,7 +6,7 @@ tags: python package django app testing maintaining cookiecutter pydjama
 comments: true
 ---
 
-# /!\ Work in progress /!\
+### /!\ Work in progress /!\
 This post is about testing and maintaining Python packages and Django apps.
 
 If you are inteterested in the testing and maintaining flow it talks about, please check
@@ -52,7 +52,7 @@ the [pydjama][] cookiecutter (yes, that explains this post's title). See here wh
     - [Updating template]
 
 
-# Introduction
+## Introduction
 Python community is great because of the vast multitude of tools and services
 you can use in your projects. This post is a big summary of the tools and
 services I use to develop Python packages and Django apps.
@@ -66,7 +66,7 @@ of these apps. Testing, CI, releasing, documenting... all these tasks should
 be easy to achieve. To avoid a maintaining hell, I use the same project
 template for each one of them, using a cookiecutter.
 
-# Project structure
+## Project structure
 General files and configuration files are at the root of the repository.
 Actual source code (the python package) is in a `src` directory.
 
@@ -111,14 +111,14 @@ Actual source code (the python package) is in a `src` directory.
 
 ```
 
-## General files
+### General files
 - **AUTHORS.rst**: The list of authors who contributed to the project.
 - **CHANGELOG.rst**: The list of modifications over time, ordered by release date.
 - **CONTRIBUTING.rst**: Guide lines for whoever wants to contribute.
 - **LICENSE**: The project's license.
 - **README.rst**: The important thing everyone should read.
 
-## Configuration files
+### Configuration files
 - **.bumpversion.cfg**: Configuration for bumpversion tool
   (see [bumpversion section](#bumpversion)).
 - **.cookiecutterrc**: Cookiecutter values used to generate this project.
@@ -139,13 +139,13 @@ Actual source code (the python package) is in a `src` directory.
 - **setup.py**: Python installation script.
 - **tox.ini**: Configuration for tox (see [tox section](#tox)).
 
-## Sources directory
+### Sources directory
 
-## Tests directory
+### Tests directory
 
-## Requirements
+### Requirements
 
-## Scripts
+### Scripts
 - **update.sh**: A script to get last updates
   from the cookiecutter used to generate the project
   (see [updating section](#updating-template)).
@@ -155,62 +155,62 @@ Actual source code (the python package) is in a `src` directory.
   before actually running the tests
   (see [running django tests section](#running-django-tests)).
 
-# Testing
+## Testing
 When the ground is well prepared, tests are really fun to write!
 
-## Testing tools
+### Testing tools
 
-### tox
+#### tox
 
-### detox
+#### detox
 
-### check-manifest
+#### check-manifest
 
-### coverage
+#### coverage
 
-### prospector
+#### prospector
 
-### flake8
+#### flake8
 
-### isort
+#### isort
 
-### py.test
+#### py.test
 
-## Testing services
+### Testing services
 
-### Travis
+#### Travis
 
-### Landscape
+#### Landscape
 
-### Codecov
+#### Codecov
 
-## Testing scripts
+### Testing scripts
 
-### Running Django tests
+#### Running Django tests
 
-# Maintaining
+## Maintaining
 
-## Maintaining tools
+### Maintaining tools
 
-### bumpversion
+#### bumpversion
 
-### sphinx
+#### sphinx
 
-## Maintaining services
+### Maintaining services
 
-### PyPI
+#### PyPI
 
-### PyUp
+#### PyUp
 
-### Gitter
+#### Gitter
 
-### ReadTheDocs
+#### ReadTheDocs
 
-## Maintaining scripts
+### Maintaining scripts
 
-### Releasing
+#### Releasing
 
-### Updating template
+#### Updating template
 
 
 
