@@ -11,7 +11,7 @@ This post is about testing and maintaining Python packages and Django apps.
 
 If you are inteterested in the testing and maintaining flow it talks about, please check
 the [pydjama][] cookiecutter (yes, that explains this post's title). See here what is
-[cookiecutter][].
+[cookiecutter][].<!--more-->
 
 #### Contents
 

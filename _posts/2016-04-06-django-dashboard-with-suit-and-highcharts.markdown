@@ -13,7 +13,7 @@ of creating a new view with admin restriction. I was already using
 so I searched for a way to add a custom view within Suit. Looking at the
 [issue][] from [brunocascio][] on the repo, I found the [comment][] written
 by [rouxxx][] and linking to this [post about django dashboard][].
-I had then all I needed to start a proof of concept.
+I had then all I needed to start a proof of concept.<!--more-->
 
 #### Contents
 

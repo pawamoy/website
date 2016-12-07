@@ -14,7 +14,7 @@ I also always liked man pages, their search feature and their ability to scroll 
 and not leave any output in the console. But maintaining a man page is even more tedious than
 maintaining a help text.
 
-This is why I thought of using documentation in shell scripts. So I wrote [shellman][].
+This is why I thought of using documentation in shell scripts. So I wrote [shellman][].<!--more-->
 
 - [Writing doc](#writing-doc)
 - [Using shellman](#using-shellman)
