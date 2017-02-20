@@ -17,7 +17,7 @@ fresh installation.
 Except the fact that I had to boot live on BunsenLabs to manually delete the
 previous partitions so the installer could create an ext4 on my disk,
 everything went fine. The next step was to enable dual-screen, and therefore
-install Nvidia drivers. I eventually succeeded and it was a great adventure!
+install Nvidia drivers. I eventually succeeded and it was a great adventure!<!--more-->
 
 # Don't use the installer
 My first attempt was to get the drivers from the Nvidia website.
