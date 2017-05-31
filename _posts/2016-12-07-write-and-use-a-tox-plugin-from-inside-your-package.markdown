@@ -34,13 +34,12 @@ def tox_addoption(parser):
 
 ## Setup the entry points
 Tox has an automagic system that will see installed plugins and load them when you call it.
-Just add your new module in setup.py's `py_modules` and set the new `tox` entry point:
+Just set the new `tox` entry point:
 
 ```python
 # setup.py
 setup(
     ...
-    py_modules=['tox_your_module'],
     entry_points={
         'console_scripts': 'your_program = your_program.main:main',  # to be adapted
         'tox': ['your_module = your_program.tox_your_module']
