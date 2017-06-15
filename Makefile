@@ -1,7 +1,7 @@
-all: _build
+all: build
 
-_build: Makefile posts/*.rst conf.py images/*.png
-	sphinx-build -b html . _build
+build: Makefile posts/*.rst conf.py images/*.png
+	sphinx-build -b html . blog
 
 clean:
-	rm -R _build
+	rm -R blog
