@@ -1,0 +1,400 @@
+
+
+
+  
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Documentation in your shell scripts using shellman &mdash; ReadTheBlog</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/extra.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="ReadTheBlog" href="../index.html"/>
+        <link rel="next" title="Django dashboard with Suit and Highcharts" href="2016-04-06-django-dashboard-with-suit-and-highcharts.html"/>
+        <link rel="prev" title="Write and use a Tox plugin within your package" href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="banner">
+    <h1>ReadTheBlog</h1>
+  </div>
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ReadTheBlog
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search blog" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="2017-05-05-python-static-code-analysis-tools.html">Python static code analysis tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html">Write and use a Tox plugin within your package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation in your shell scripts using shellman</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#writing-doc">Writing doc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-shellman">Using shellman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#an-example">An example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-looks">How it looks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more">More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2016-04-06-django-dashboard-with-suit-and-highcharts.html">Django dashboard with Suit and Highcharts</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ReadTheBlog</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Home</a> &raquo;</li>
+        
+      <li>Documentation in your shell scripts using shellman</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        December 7th, 2016
+      
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="documentation-in-your-shell-scripts-using-shellman">
+<h1>Documentation in your shell scripts using shellman<a class="headerlink" href="#documentation-in-your-shell-scripts-using-shellman" title="Permalink to this headline">¶</a></h1>
+<p>When I write a script, I like to have a <code class="docutils literal"><span class="pre">-h,</span> <span class="pre">--help</span></code> option to help me
+remember what it does and how it works. But I was never delighted to
+write this help text. Besides, when your script’s options change, you
+have to update the help text.</p>
+<p>I also always liked man pages, their search feature and their ability to
+scroll up and down and not leave any output in the console. But
+maintaining a man page is even more tedious than maintaining a help
+text.</p>
+<p>This is why I thought of using documentation in shell scripts. So I
+wrote <a class="reference external" href="https://github.com/Pawamoy/shellman">shellman</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="#writing-doc">Writing doc</a></li>
+<li><a class="reference external" href="#using-shellman">Using shellman</a></li>
+<li><a class="reference external" href="#an-example">An example</a></li>
+<li><a class="reference external" href="#how-it-looks">How it looks</a></li>
+<li><a class="reference external" href="#text">Text</a></li>
+<li><a class="reference external" href="#man">Man</a></li>
+<li><a class="reference external" href="#markdown">Markdown</a></li>
+<li><a class="reference external" href="#more">More</a></li>
+</ul>
+<div class="section" id="writing-doc">
+<h2>Writing doc<a class="headerlink" href="#writing-doc" title="Permalink to this headline">¶</a></h2>
+<p>Shellman can read special comments in your file. These special comments
+are the documentation of your script or library. They simply begin with
+two sharps instead of one:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1"># A normal comment.</span>
+<span class="c1">## A documentation comment.</span>
+</pre></div>
+</div>
+<p>Also, to give a special meaning to your documentation, each
+documentation line can be tagged, just like you would do in doxygen
+documentation:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="c1">## \brief A brief description.</span>
+<span class="c1">## \desc A long description.</span>
+<span class="c1">## You can write many lines in this tag.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-shellman">
+<h2>Using shellman<a class="headerlink" href="#using-shellman" title="Permalink to this headline">¶</a></h2>
+<p>After reading and loading all the documentation written in a file,
+shellman will then be able to output it on stdout (on in another file)
+in different formats, such as text, man page or markdown.</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">shellman</span> <span class="n">my_script</span><span class="o">.</span><span class="n">sh</span>  <span class="c1"># text output by default</span>
+<span class="n">man</span> <span class="o">&lt;</span><span class="p">(</span><span class="n">shellman</span> <span class="o">--</span><span class="nb">format</span> <span class="n">man</span> <span class="n">my_script</span><span class="o">.</span><span class="n">sh</span><span class="p">)</span>
+<span class="c1"># Available formats for -f, --format option: text, man, markdown</span>
+</pre></div>
+</div>
+<p>Shellman also has a <code class="docutils literal"><span class="pre">--check</span></code> option that will not output anything,
+but instead check for written documentation in a file. A simple
+<code class="docutils literal"><span class="pre">--check</span></code> option will return 0 or 1, but display no warnings. Add a
+<code class="docutils literal"><span class="pre">--warn</span></code> option to print warnings on stderr. It will help you fix your
+documentation, or even do some linting and continuous integration on
+your scripts’ documentation.</p>
+</div>
+<div class="section" id="an-example">
+<h2>An example<a class="headerlink" href="#an-example" title="Permalink to this headline">¶</a></h2>
+<p>Here is an example of how I write documentation in my scripts now:</p>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span>#!/bin/bash
+
+## \brief shell script debugger
+
+## \desc Run a script in path with the -x bash option (and more).
+## You should set the PS4 variable for better output.
+
+## \env PS4
+## Debugger prompt. This is the prefix that bash prepends
+## to the current instruction when using -x option.
+
+main() {
+  case &quot;$1&quot; in
+
+    ## \option -t, --test
+    ## Read the script and warn for encountered syntax errors.
+    ## Do not actually run the script.
+    -t|--test) FLAGS=-n; shift ;;
+
+    ## \option -v, --verbose
+    ## Run the script with verbose option.
+    -v|--verbose) FLAGS=-xv; shift ;;
+
+    ## \option -n, --dry-run
+    ## Options test and verbose combined. Validate the syntax
+    ## and print the script to stdout.
+    -n|--dry-run) FLAGS=-xvn; shift ;;
+
+    ## \option -h, --help
+    ## Print this help and exit.
+    -h|--help) shellman &quot;$0&quot;; exit 0 ;;  # Here is the black magic!
+
+    *) FLAGS=-x ;;
+
+  esac
+  SCRIPT=$1
+  shift
+
+  /bin/bash &quot;${FLAGS}&quot; &quot;${SCRIPT}&quot; &quot;$@&quot;
+}
+
+## \usage dbg [-tvn] SCRIPT
+main &quot;$@&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-it-looks">
+<h2>How it looks<a class="headerlink" href="#how-it-looks" title="Permalink to this headline">¶</a></h2>
+<p>The different outputs would be like the following.</p>
+<div class="section" id="text">
+<h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">dbg</span> <span class="p">[</span><span class="o">-</span><span class="n">tvn</span><span class="p">]</span> <span class="n">SCRIPT</span>
+
+<span class="n">Run</span> <span class="n">a</span> <span class="n">script</span> <span class="ow">in</span> <span class="n">path</span> <span class="k">with</span> <span class="n">the</span> <span class="o">-</span><span class="n">x</span> <span class="n">bash</span> <span class="n">option</span> <span class="p">(</span><span class="ow">and</span> <span class="n">more</span><span class="p">)</span><span class="o">.</span>
+<span class="n">You</span> <span class="n">should</span> <span class="nb">set</span> <span class="n">the</span> <span class="n">PS4</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">better</span> <span class="n">output</span><span class="o">.</span>
+
+<span class="n">Options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="o">--</span><span class="n">test</span>
+    <span class="n">Read</span> <span class="n">the</span> <span class="n">script</span> <span class="ow">and</span> <span class="n">warn</span> <span class="k">for</span> <span class="n">encountered</span> <span class="n">syntax</span> <span class="n">errors</span><span class="o">.</span>
+    <span class="n">Do</span> <span class="ow">not</span> <span class="n">actually</span> <span class="n">run</span> <span class="n">the</span> <span class="n">script</span><span class="o">.</span>
+
+  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">verbose</span>
+    <span class="n">Run</span> <span class="n">the</span> <span class="n">script</span> <span class="k">with</span> <span class="n">verbose</span> <span class="n">option</span><span class="o">.</span>
+
+  <span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="o">--</span><span class="n">dry</span><span class="o">-</span><span class="n">run</span>
+    <span class="n">Options</span> <span class="n">test</span> <span class="ow">and</span> <span class="n">verbose</span> <span class="n">combined</span><span class="o">.</span> <span class="n">Validate</span> <span class="n">the</span> <span class="n">syntax</span>
+    <span class="ow">and</span> <span class="nb">print</span> <span class="n">the</span> <span class="n">script</span> <span class="n">to</span> <span class="n">stdout</span><span class="o">.</span>
+
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>
+    <span class="n">Prints</span> <span class="n">this</span> <span class="n">help</span> <span class="ow">and</span> <span class="n">exit</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="man">
+<h3>Man<a class="headerlink" href="#man" title="Permalink to this headline">¶</a></h3>
+<div class="figure">
+<img alt="man output" src="../_images/man-output.png" />
+</div>
+</div>
+<div class="section" id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h3>
+<p>… which would look like:</p>
+<div class="figure">
+<img alt="markdown output" src="../_images/markdown-output.png" />
+</div>
+</div>
+</div>
+<div class="section" id="more">
+<h2>More<a class="headerlink" href="#more" title="Permalink to this headline">¶</a></h2>
+<p>Shellman supports more tags, in particular: function tags. See its
+<a class="reference external" href="https://github.com/Pawamoy/shellman/wiki">documentation</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="2016-04-06-django-dashboard-with-suit-and-highcharts.html" class="btn btn-neutral float-right" title="Django dashboard with Suit and Highcharts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html" class="btn btn-neutral" title="Write and use a Tox plugin within your package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/Pawamoy/sphinx_rtb_theme">theme</a> forked from <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx RTD Theme</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+   
+
+</body>
+</html>
