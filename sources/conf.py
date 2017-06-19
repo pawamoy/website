@@ -17,7 +17,7 @@ html_theme_path = [sphinx_rtb_theme.get_html_theme_path()]
 html_theme_options = {
     'navigation_depth': 2,
     'blog_url': 'https://pawamoy.github.io',
-    'disqus_comments': False,
+    'disqus_comments': True,
     'disqus_username': 'pawamoy'
 }
 
