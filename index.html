@@ -161,11 +161,30 @@
             
   <div class="toctree-wrapper compound">
 </div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget vehicula tortor. Integer ac rhoncus turpis. Ut blandit, augue sit amet ullamcorper suscipit, tellus lorem scelerisque eros, sit amet tincidunt odio risus non leo. Maecenas porttitor molestie nisi, non egestas diam placerat ut. Vivamus pretium vitae lorem in bibendum. Phasellus a maximus libero. Nam vitae finibus tellus, sed ultrices quam. Fusce ut turpis ac velit consequat pellentesque quis vitae sem. Sed eleifend quam eu ligula porttitor luctus. Sed nunc ligula, pharetra varius sodales nec, consequat nec ante. Maecenas ullamcorper dui lobortis, vehicula nulla at, efficitur massa. Vivamus vitae nunc rhoncus, fermentum libero sit amet, rhoncus dolor. Sed mi nisi, congue nec sagittis at, viverra eget purus. Proin sit amet malesuada tortor, non pharetra velit.</p>
-<p>Fusce diam ipsum, sagittis eget magna a, efficitur vestibulum metus. Proin risus augue, faucibus nec elit tristique, porttitor pulvinar nisl. Phasellus eget accumsan ipsum. Integer mattis commodo turpis, hendrerit euismod sapien finibus eu. Nam maximus posuere porttitor. Nunc eu dolor non mi malesuada lacinia vitae id purus. Maecenas diam elit, vulputate vitae orci ut, congue pharetra purus.</p>
-<p>Donec id elit libero. Integer aliquet justo dignissim tortor fermentum, sit amet feugiat neque ullamcorper. Fusce in mi vehicula, pulvinar purus et, vehicula ex. Ut malesuada, elit a tincidunt mollis, ipsum metus efficitur odio, cursus interdum quam nunc ac ante. Sed libero risus, lacinia id tellus pretium, ultricies tempus augue. Sed lacinia cursus orci, bibendum semper urna mollis eleifend. Sed in nisl risus. Quisque elementum justo ut mi aliquet, eu auctor diam imperdiet. Proin hendrerit, urna vel efficitur consequat, elit felis venenatis libero, sit amet pharetra nunc tellus id sapien. Proin suscipit odio sit amet enim feugiat, eu tincidunt sapien rhoncus. Fusce lobortis odio maximus odio tempor dictum. Fusce dapibus eros ac orci gravida, eget sagittis augue facilisis. Vestibulum commodo porta mauris sed fringilla.</p>
-<p>Nam rhoncus posuere felis at maximus. Nunc sit amet libero at orci imperdiet luctus. Pellentesque at ullamcorper metus. In vulputate massa eu tellus lobortis, et pharetra leo venenatis. Sed accumsan diam sed lorem porttitor, ut euismod enim aliquet. Praesent commodo, turpis at laoreet interdum, felis justo ultricies nibh, mattis rutrum neque magna id quam. Duis euismod tellus finibus, aliquet ligula sed, tempor diam. Mauris vitae felis nec sem auctor hendrerit id vel quam. Nam quam ipsum, faucibus at rhoncus at, accumsan in nisi. Vestibulum ac auctor sem. Donec rutrum sed nisi quis condimentum. Quisque fermentum elementum purus sit amet sagittis. Nulla fermentum ipsum sed ante pharetra, et elementum lacus ultrices. Donec id neque id risus dapibus molestie et a nisi.</p>
-<p>Maecenas at aliquet est. Integer varius, lacus sed lacinia gravida, sapien orci semper ipsum, a finibus felis felis vel est. Nam sit amet pharetra neque, eget fermentum lacus. Fusce aliquet magna tellus, vel pretium neque rhoncus id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer at venenatis sem, ac feugiat urna. Fusce accumsan sapien vitae congue sollicitudin. Duis porta magna in lectus ultricies, commodo volutpat libero commodo. Sed et est eu nibh gravida rhoncus. Curabitur nisl leo, cursus pharetra placerat at, ornare nec tortor. Aenean tincidunt convallis nisl ut blandit. Donec ut tortor a lectus egestas consectetur et id urna. Vestibulum finibus vel arcu eu efficitur.</p>
+<div class="section" id="hi">
+<h1>Hi!<a class="headerlink" href="#hi" title="Permalink to this headline">¶</a></h1>
+<p>My name is Timothée Mazzucotelli and you are here in the humble place where I write some thoughts and discoveries.
+I live in France and currently work as a software engineer at IGBMC.
+You can find me on GitHub under the username <a class="reference external" href="https://github.com/Pawamoy">Pawamoy</a>.
+I write my posts in reStructuredText and use Sphinx to generate the HTML pages. The pages are served by GitHub.
+The theme is a fork of ReadTheDocs theme for Sphinx, more adapted for blogs (I guess?).</p>
+<hr class="docutils" />
+<p>The list of posts is always accessible on the left sidebar, but here it is again:</p>
+<div class="section" id="id1">
+<h2>2017<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="posts/2017-05-05-python-static-code-analysis-tools.html"><span class="doc">Python static code analysis tools</span></a></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2016<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="posts/2016-12-07-write-and-use-a-tox-plugin-within-your-package.html"><span class="doc">Write and use a Tox plugin within your package</span></a></li>
+<li><a class="reference internal" href="posts/2016-12-07-documentation-in-your-shell-scripts-using-shellman.html"><span class="doc">Documentation in your shell scripts using shellman</span></a></li>
+<li><a class="reference internal" href="posts/2016-04-06-django-dashboard-with-suit-and-highcharts.html"><span class="doc">Django dashboard with Suit and Highcharts</span></a></li>
+</ul>
+</div>
+</div>
 
 
            </div>
@@ -173,6 +192,8 @@
             
            </div>
           </div>
+          
+            <div id="disqus_thread"></div>
           
           <footer>
   
@@ -235,6 +256,25 @@
       });
   </script>
   
+
+  
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href.replace(/\?.*/, '');
+        this.page.identifier = "About";
+        this.page.title = "About";
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//pawamoy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
    
 

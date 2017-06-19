@@ -237,6 +237,8 @@ story.</p>
            </div>
           </div>
           
+            <div id="disqus_thread"></div>
+          
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -300,6 +302,25 @@ story.</p>
       });
   </script>
   
+
+  
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href.replace(/\?.*/, '');
+        this.page.identifier = "Write and use a Tox plugin within your package";
+        this.page.title = "Write and use a Tox plugin within your package";
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//pawamoy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
    
 

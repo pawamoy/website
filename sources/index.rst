@@ -9,13 +9,27 @@
     posts/2016-04-06-django-dashboard-with-suit-and-highcharts
 
 
+Hi!
+===
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget vehicula tortor. Integer ac rhoncus turpis. Ut blandit, augue sit amet ullamcorper suscipit, tellus lorem scelerisque eros, sit amet tincidunt odio risus non leo. Maecenas porttitor molestie nisi, non egestas diam placerat ut. Vivamus pretium vitae lorem in bibendum. Phasellus a maximus libero. Nam vitae finibus tellus, sed ultrices quam. Fusce ut turpis ac velit consequat pellentesque quis vitae sem. Sed eleifend quam eu ligula porttitor luctus. Sed nunc ligula, pharetra varius sodales nec, consequat nec ante. Maecenas ullamcorper dui lobortis, vehicula nulla at, efficitur massa. Vivamus vitae nunc rhoncus, fermentum libero sit amet, rhoncus dolor. Sed mi nisi, congue nec sagittis at, viverra eget purus. Proin sit amet malesuada tortor, non pharetra velit.
+My name is Timothée Mazzucotelli and you are here in the humble place where I write some thoughts and discoveries.
+I live in France and currently work as a software engineer at IGBMC.
+You can find me on GitHub under the username `Pawamoy <https://github.com/Pawamoy>`_.
+I write my posts in reStructuredText and use Sphinx to generate the HTML pages. The pages are served by GitHub.
+The theme is a fork of ReadTheDocs theme for Sphinx, more adapted for blogs (I guess?).
 
-Fusce diam ipsum, sagittis eget magna a, efficitur vestibulum metus. Proin risus augue, faucibus nec elit tristique, porttitor pulvinar nisl. Phasellus eget accumsan ipsum. Integer mattis commodo turpis, hendrerit euismod sapien finibus eu. Nam maximus posuere porttitor. Nunc eu dolor non mi malesuada lacinia vitae id purus. Maecenas diam elit, vulputate vitae orci ut, congue pharetra purus.
+------
 
-Donec id elit libero. Integer aliquet justo dignissim tortor fermentum, sit amet feugiat neque ullamcorper. Fusce in mi vehicula, pulvinar purus et, vehicula ex. Ut malesuada, elit a tincidunt mollis, ipsum metus efficitur odio, cursus interdum quam nunc ac ante. Sed libero risus, lacinia id tellus pretium, ultricies tempus augue. Sed lacinia cursus orci, bibendum semper urna mollis eleifend. Sed in nisl risus. Quisque elementum justo ut mi aliquet, eu auctor diam imperdiet. Proin hendrerit, urna vel efficitur consequat, elit felis venenatis libero, sit amet pharetra nunc tellus id sapien. Proin suscipit odio sit amet enim feugiat, eu tincidunt sapien rhoncus. Fusce lobortis odio maximus odio tempor dictum. Fusce dapibus eros ac orci gravida, eget sagittis augue facilisis. Vestibulum commodo porta mauris sed fringilla.
+The list of posts is always accessible on the left sidebar, but here it is again:
 
-Nam rhoncus posuere felis at maximus. Nunc sit amet libero at orci imperdiet luctus. Pellentesque at ullamcorper metus. In vulputate massa eu tellus lobortis, et pharetra leo venenatis. Sed accumsan diam sed lorem porttitor, ut euismod enim aliquet. Praesent commodo, turpis at laoreet interdum, felis justo ultricies nibh, mattis rutrum neque magna id quam. Duis euismod tellus finibus, aliquet ligula sed, tempor diam. Mauris vitae felis nec sem auctor hendrerit id vel quam. Nam quam ipsum, faucibus at rhoncus at, accumsan in nisi. Vestibulum ac auctor sem. Donec rutrum sed nisi quis condimentum. Quisque fermentum elementum purus sit amet sagittis. Nulla fermentum ipsum sed ante pharetra, et elementum lacus ultrices. Donec id neque id risus dapibus molestie et a nisi.
+2017
+----
 
-Maecenas at aliquet est. Integer varius, lacus sed lacinia gravida, sapien orci semper ipsum, a finibus felis felis vel est. Nam sit amet pharetra neque, eget fermentum lacus. Fusce aliquet magna tellus, vel pretium neque rhoncus id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer at venenatis sem, ac feugiat urna. Fusce accumsan sapien vitae congue sollicitudin. Duis porta magna in lectus ultricies, commodo volutpat libero commodo. Sed et est eu nibh gravida rhoncus. Curabitur nisl leo, cursus pharetra placerat at, ornare nec tortor. Aenean tincidunt convallis nisl ut blandit. Donec ut tortor a lectus egestas consectetur et id urna. Vestibulum finibus vel arcu eu efficitur.
+- :doc:`posts/2017-05-05-python-static-code-analysis-tools`
+
+2016
+----
+
+- :doc:`posts/2016-12-07-write-and-use-a-tox-plugin-within-your-package`
+- :doc:`posts/2016-12-07-documentation-in-your-shell-scripts-using-shellman`
+- :doc:`posts/2016-04-06-django-dashboard-with-suit-and-highcharts`
