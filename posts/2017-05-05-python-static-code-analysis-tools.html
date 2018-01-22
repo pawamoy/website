@@ -1,0 +1,408 @@
+
+
+
+  
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python static code analysis tools &mdash; ReadTheBlog</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/extra.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="ReadTheBlog" href="../index.html"/>
+        <link rel="next" title="Write and use a Tox plugin within your package" href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html"/>
+        <link rel="prev" title="Hi!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="banner">
+    <h1>ReadTheBlog</h1>
+  </div>
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ReadTheBlog
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search blog" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python static code analysis tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-aggregator-tools">The “aggregator” tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-do-one-thing-but-do-it-well-tools">The “do-one-thing-but-do-it-well” tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#also-worth-noticing">Also worth noticing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html">Write and use a Tox plugin within your package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2016-12-07-documentation-in-your-shell-scripts-using-shellman.html">Documentation in your shell scripts using shellman</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2016-04-06-django-dashboard-with-suit-and-highcharts.html">Django dashboard with Suit and Highcharts</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ReadTheBlog</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Home</a> &raquo;</li>
+        
+      <li>Python static code analysis tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        May 5th, 2017
+      
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-static-code-analysis-tools">
+<h1>Python static code analysis tools<a class="headerlink" href="#python-static-code-analysis-tools" title="Permalink to this headline">¶</a></h1>
+<p>Python static code analysis is often used in Continuous Integration. I
+use it in every Python or Django package I develop, into a
+<a class="reference external" href="https://github.com/tox-dev/tox">Tox</a> configuration. The difficult
+part is to choose the right tools, because there are many, and to
+configure them correctly.</p>
+<p>Thankfully, there also are tools using other tools to reduce the amount
+of configuration we have to do. This ends up in a big mix of tools,
+which is represented in the following chart.</p>
+<div class="figure">
+<img alt="Chart" src="../_images/python-static-code-analysis-tools.png" />
+</div>
+<p>In this post, we will see the advantages and disadvantages of these
+tools, and compare them a bit.</p>
+<p><em>Chart realized with Draw.io.</em></p>
+<div class="section" id="the-aggregator-tools">
+<h2>The “aggregator” tools<a class="headerlink" href="#the-aggregator-tools" title="Permalink to this headline">¶</a></h2>
+<p>Some tools have a unique purpose, while others aim at doing more. This
+is the case of <a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a>, <a class="reference external" href="https://github.com/klen/pylama">Pylama</a>, <a class="reference external" href="https://github.com/PyCQA/pylint">Pylint</a> and <a class="reference external" href="https://github.com/PyCQA/flake8">Flake8</a>.</p>
+<p>I see two types of aggregators here:</p>
+<ol class="arabic simple">
+<li>the ones that do everything themselves (mostly): <a class="reference external" href="https://github.com/PyCQA/pylint">Pylint</a>,</li>
+<li>and the ones that combine the result of many smaller tools:
+<a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a>, <a class="reference external" href="https://github.com/klen/pylama">Pylama</a> and <a class="reference external" href="https://github.com/PyCQA/flake8">Flake8</a>.</li>
+</ol>
+<p>What is funny here is that both
+<a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> and <a class="reference external" href="https://github.com/klen/pylama">Pylama</a> use not only tools used by <a class="reference external" href="https://github.com/PyCQA/pylint">Pylint</a>, but
+<a class="reference external" href="https://github.com/PyCQA/pylint">Pylint</a> as well! There is a bit of overlap here.</p>
+<div class="section" id="pylint">
+<h3>Pylint<a class="headerlink" href="#pylint" title="Permalink to this headline">¶</a></h3>
+<p>What I like in <a class="reference external" href="https://github.com/PyCQA/pylint">Pylint</a> is its
+ability to rate your code, and keep a record of its evolution, telling
+you if it has improved or regressed between each run. I also love it’s
+<strong>Similar</strong> tool, a one of its kind, used to output the similarities in
+your code. You can run it with
+<code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pylint.checkers.similar</span> <span class="pre">FILES</span></code>. It’s very fast, but will
+start to take some time with a lot of files.</p>
+</div>
+<div class="section" id="pylama">
+<h3>Pylama<a class="headerlink" href="#pylama" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/klen/pylama">Pylama</a> seems not to have much
+activity since last year and has unresolved issues and open pull
+requests. At the time of writing, it’s
+<a class="reference external" href="https://github.com/PyCQA/pydocstyle">Pydocstyle</a> integration is
+broken. I also tried using it from Python because I wanted to count the
+number of issues in some code, and was unsuccessful to do so. Still, I
+used <a class="reference external" href="https://github.com/klen/pylama">Pylama</a> for some time because I
+liked a lot how it can be configured, directly in <code class="docutils literal"><span class="pre">setup.cfg</span></code>. Its
+options are simple to use and simple to configure. I find ignoring
+warnings in <a class="reference external" href="https://github.com/klen/pylama">Pylama</a> much more easier
+than in <a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a>, as
+they are all ignored on the same line, and are consistent between them
+(only names composed of a letter and a code).
+<a class="reference external" href="https://github.com/klen/pylama">Pylama</a> can also be deactivated in
+specific locations of your code with comments like
+<code class="docutils literal"><span class="pre">#</span> <span class="pre">pylama:ignore=D105,D106</span></code>, and recognizes <code class="docutils literal"><span class="pre">#</span> <span class="pre">noqa</span></code> comments.</p>
+</div>
+<div class="section" id="prospector">
+<h3>Prospector<a class="headerlink" href="#prospector" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> is my favorite here: I used it for quite some time before switching to
+<a class="reference external" href="https://github.com/klen/pylama">Pylama</a>, and I’m back with it now. I was afraid that it was deperishing,
+because maintainers did not seem to
+answer pull requests and fix broken integration, but many fixes have
+been pushed now. I think it’s a great project and it deserves more
+activity!</p>
+<p>What I like about
+<a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> is that it uses many tools to check many things,
+and it does it well: as I said earlier, there is some overlap between tools;
+<a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> handles that by keeping a record of similar warnings
+and only keep one of each to
+avoid redundancy in its reports! This is not done by default in
+<a class="reference external" href="https://github.com/klen/pylama">Pylama</a>, so you have to manually
+ignore redundant warnings in its configuration.</p>
+<p><a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> also helped
+me discover tools I never heard of before, like
+<a class="reference external" href="https://github.com/landscapeio/dodgy">Dodgy</a>, <a class="reference external" href="https://github.com/jendrikseipp/vulture">Vulture</a>, <a class="reference external" href="https://github.com/regebro/pyroma">Pyroma</a> and <a class="reference external" href="https://github.com/timothycrosley/frosted">Frosted</a>. I would like to
+see integrations for <a class="reference external" href="https://github.com/rubik/radon">Radon</a> (used by <a class="reference external" href="https://github.com/klen/pylama">Pylama</a>) as it offers the same thing
+as <a class="reference external" href="https://github.com/PyCQA/mccabe">McCabe</a> plus other stuff, as well as for <a class="reference external" href="https://github.com/openstack/bandit">Bandit</a> which is a
+Python code security checker.</p>
+<p>What I miss in <a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> is the ability to configure it
+directly in <code class="docutils literal"><span class="pre">setup.cfg</span></code>, which I enjoyed a lot with <a class="reference external" href="https://github.com/klen/pylama">Pylama</a>.</p>
+<p><em>This is another story but I am trying hard to reduce the number of
+configuration files in my projects. I think tools should be able to find
+their configuration files into a specific location of your project, not
+only in the root directory, where configuration files pile up. I would
+be very happy to see some sort of standard for configuration files
+location rising, just as what EditorConfig is doing. Maybe a
+ConfigConfig standard? With a .configconfig file at the root of the
+repository telling where to find the configuraton files, and tools being
+able to read it, or by default search at the root or in the “config“
+folder?</em></p>
+</div>
+<div class="section" id="flake8">
+<h3>Flake8<a class="headerlink" href="#flake8" title="Permalink to this headline">¶</a></h3>
+<p>I don’t have much to say about <a class="reference external" href="https://github.com/PyCQA/flake8">Flake8</a> here. I did try it some
+time ago, but since <a class="reference external" href="https://github.com/landscapeio/prospector">Prospector</a> does what it
+does, I won’t use it. But it’s only my personal choice and it can be a
+really good choice for others if they don’t need to run all the possible
+code analysis tools in the world (unlike me :D).</p>
+</div>
+</div>
+<div class="section" id="the-do-one-thing-but-do-it-well-tools">
+<h2>The “do-one-thing-but-do-it-well” tools<a class="headerlink" href="#the-do-one-thing-but-do-it-well-tools" title="Permalink to this headline">¶</a></h2>
+<p>Work in progress, coming soon!</p>
+<p>Meanwhile, please share your thoughts! Did I say something wrong? Did I
+forget great tools? Did I write <em>“tools”</em> to much? I will gladly update
+the post with your sharings!</p>
+</div>
+<div class="section" id="also-worth-noticing">
+<h2>Also worth noticing<a class="headerlink" href="#also-worth-noticing" title="Permalink to this headline">¶</a></h2>
+<p>Go check <a class="reference external" href="https://github.com/pyupio/safety">Safety</a> from <a class="reference external" href="https://pyup.io/">PyUp.io</a>, which check your requirements
+(dependencies) for known-vulnerabilities! Also <a class="reference external" href="https://github.com/python-security/pyt">Pyt</a> for which I didn’t take
+enough time to understand what it does and how it works, and great <em>Code
+Quality</em> web-services like <a class="reference external" href="https://landscape.io/">Landscape.io</a> and <a class="reference external" href="https://www.codacy.com/">Codacy</a>!</p>
+<hr class="docutils" />
+<div class="section" id="links">
+<h3>Links:<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bandit: <a class="reference external" href="https://github.com/openstack/bandit">https://github.com/openstack/bandit</a></li>
+<li>Codacy: <a class="reference external" href="https://www.codacy.com/">https://www.codacy.com/</a></li>
+<li>Dodgy: <a class="reference external" href="https://github.com/landscapeio/dodgy">https://github.com/landscapeio/dodgy</a></li>
+<li>Draw.io: <a class="reference external" href="https://www.draw.io/">https://www.draw.io/</a></li>
+<li>Flake8: <a class="reference external" href="https://github.com/PyCQA/flake8">https://github.com/PyCQA/flake8</a></li>
+<li>Frosted: <a class="reference external" href="https://github.com/timothycrosley/frosted">https://github.com/timothycrosley/frosted</a></li>
+<li>Landscape.io: <a class="reference external" href="https://landscape.io/">https://landscape.io/</a></li>
+<li>McCabe: <a class="reference external" href="https://github.com/PyCQA/mccabe">https://github.com/PyCQA/mccabe</a></li>
+<li>Prospector: <a class="reference external" href="https://github.com/landscapeio/prospector">https://github.com/landscapeio/prospector</a></li>
+<li>Pydocstyle: <a class="reference external" href="https://github.com/PyCQA/pydocstyle">https://github.com/PyCQA/pydocstyle</a></li>
+<li>Pylama: <a class="reference external" href="https://github.com/klen/pylama">https://github.com/klen/pylama</a></li>
+<li>Pylint: <a class="reference external" href="https://github.com/PyCQA/pylint">https://github.com/PyCQA/pylint</a></li>
+<li>Pyroma: <a class="reference external" href="https://github.com/regebro/pyroma">https://github.com/regebro/pyroma</a></li>
+<li>Pyt: <a class="reference external" href="https://github.com/python-security/pyt">https://github.com/python-security/pyt</a></li>
+<li>PyUp.io: <a class="reference external" href="https://pyup.io/">https://pyup.io/</a></li>
+<li>Radon: <a class="reference external" href="https://github.com/rubik/radon">https://github.com/rubik/radon</a></li>
+<li>Safety: <a class="reference external" href="https://github.com/pyupio/safety">https://github.com/pyupio/safety</a></li>
+<li>Tox: <a class="reference external" href="https://github.com/tox-dev/tox">https://github.com/tox-dev/tox</a></li>
+<li>Vulture: <a class="reference external" href="https://github.com/jendrikseipp/vulture">https://github.com/jendrikseipp/vulture</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          
+            <div id="disqus_thread"></div>
+          
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html" class="btn btn-neutral float-right" title="Write and use a Tox plugin within your package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Hi!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/Pawamoy/sphinx_rtb_theme">theme</a> forked from <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx RTD Theme</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+  
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href.replace(/\?.*/, '');
+        this.page.identifier = "Python static code analysis tools";
+        this.page.title = "Python static code analysis tools";
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//pawamoy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+   
+
+</body>
+</html>

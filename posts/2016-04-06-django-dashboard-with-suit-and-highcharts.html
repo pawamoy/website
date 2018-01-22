@@ -1,0 +1,570 @@
+
+
+
+  
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Django dashboard with Suit and Highcharts &mdash; ReadTheBlog</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/extra.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="ReadTheBlog" href="../index.html"/>
+        <link rel="prev" title="Documentation in your shell scripts using shellman" href="2016-12-07-documentation-in-your-shell-scripts-using-shellman.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="banner">
+    <h1>ReadTheBlog</h1>
+  </div>
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ReadTheBlog
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search blog" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="2017-05-05-python-static-code-analysis-tools.html">Python static code analysis tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2016-12-07-write-and-use-a-tox-plugin-within-your-package.html">Write and use a Tox plugin within your package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2016-12-07-documentation-in-your-shell-scripts-using-shellman.html">Documentation in your shell scripts using shellman</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Django dashboard with Suit and Highcharts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-set-up-the-files">Step 1: set up the files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-activate-your-brand-new-dashboard">Step 2: activate your brand new dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-highcharts">Step 3: Highcharts!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-customization">More customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#django-suit-dashboard">Django Suit Dashboard</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ReadTheBlog</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Home</a> &raquo;</li>
+        
+      <li>Django dashboard with Suit and Highcharts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        April 6th, 2016
+      
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="django-dashboard-with-suit-and-highcharts">
+<h1>Django dashboard with Suit and Highcharts<a class="headerlink" href="#django-dashboard-with-suit-and-highcharts" title="Permalink to this headline">¶</a></h1>
+<p>One day my boss said “I want to see some statistical data about the
+users”. I immediately thought about adding a custom page in the admin
+panel instead of creating a new view with admin restriction. I was
+already using <a class="reference external" href="https://github.com/darklow/django-suit">django-suit</a>
+which is a great theme (and more) for the Django admin panel, so I
+searched for a way to add a custom view within Suit. Looking at the
+<a class="reference external" href="https://github.com/darklow/django-suit/issues/409">issue</a> from
+<a class="reference external" href="https://github.com/brunocascio">brunocascio</a> on the repo, I found
+the
+<a class="reference external" href="https://github.com/darklow/django-suit/issues/409#issuecomment-132355444">comment</a>
+written by <a class="reference external" href="https://github.com/rouxxx">rouxxx</a> and linking to this
+<a class="reference external" href="https://coderwall.com/p/ieh-sg/django-custom-dashboard-easy">post about django
+dashboard</a>.
+I had then all I needed to start a proof of concept.</p>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#step-1-set-up-the-files">Step 1: set up the files</a></li>
+<li><a class="reference external" href="#step-2-activate-your-brand-new-dashboard">Step 2: activate your brand new
+dashboard</a></li>
+<li><a class="reference external" href="#step-3-highcharts">Step 3: Highcharts!</a></li>
+<li><a class="reference external" href="#more-customization">More customization</a></li>
+<li><a class="reference external" href="#django-suit-dashboard">The app I wrote using this</a></li>
+</ul>
+</div>
+<div class="section" id="step-1-set-up-the-files">
+<h2>Step 1: set up the files<a class="headerlink" href="#step-1-set-up-the-files" title="Permalink to this headline">¶</a></h2>
+<p>First, create a new app within your Django project:</p>
+<blockquote>
+<div>./manage.py startapp dashboard</div></blockquote>
+<p>Then create the additional <code class="docutils literal"><span class="pre">sites.py</span></code> module in the new <code class="docutils literal"><span class="pre">dashboard</span></code>
+app.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="o">**</span><span class="n">future</span><span class="o">**</span> <span class="kn">import</span> <span class="nn">unicode_literals</span> <span class="kn">from</span> <span class="nn">django.contrib.admin.sites</span>
+<span class="k">import</span> <span class="n">AdminSite</span> <span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="k">import</span> <span class="n">url</span> <span class="kn">from</span> <span class="nn">dashboard.views</span>
+<span class="k">import</span> <span class="n">DashboardMainView</span>
+
+<span class="k">class</span> <span class="nc">AdminMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mixin for AdminSite to allow custom dashboard views.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add dashboard view to admin urlconf.&quot;&quot;&quot;</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">AdminMixin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_urls</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">custom_url</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^$&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">admin_view</span><span class="p">(</span><span class="n">DashboardMainView</span><span class="o">.</span><span class="n">as_view</span><span class="p">()),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">custom_url</span> <span class="o">+</span> <span class="n">urls</span>
+
+<span class="k">class</span> <span class="nc">DashboardSite</span><span class="p">(</span><span class="n">AdminMixin</span><span class="p">,</span> <span class="n">AdminSite</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Django AdminSite with the AdminMixin to allow registering custom dashboard view.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Next, update the contents of <code class="docutils literal"><span class="pre">views.py</span></code>:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="o">**</span><span class="n">future</span><span class="o">**</span> <span class="kn">import</span> <span class="nn">unicode_literals</span> <span class="kn">from</span> <span class="nn">django.views.generic</span>
+<span class="k">import</span> <span class="n">TemplateView</span>
+
+<span class="k">class</span> <span class="nc">DashboardMainView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;dashboard/main.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And finally, create the template <code class="docutils literal"><span class="pre">main.html</span></code> (thanks brunocascio):</p>
+<div class="code html+django highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">extends</span> <span class="s2">&quot;admin/base_site.html&quot;</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">load</span> <span class="n">i18n</span> <span class="n">admin_static</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">title</span> <span class="o">%</span><span class="p">}</span> <span class="n">My</span> <span class="n">title</span> <span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">breadcrumbs</span> <span class="o">%</span><span class="p">}{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="c1">#{% block sidebar %}{% endblock %}#}</span>
+<span class="p">{</span><span class="c1">#{% block header_time %}{% endblock %}#}</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">content</span> <span class="o">%</span><span class="p">}</span>
+  <span class="n">My</span> <span class="n">content</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-activate-your-brand-new-dashboard">
+<h2>Step 2: activate your brand new dashboard<a class="headerlink" href="#step-2-activate-your-brand-new-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>Add your <code class="docutils literal"><span class="pre">dashboard</span></code> app in your <code class="docutils literal"><span class="pre">settings.INSTALLED_APPS</span></code>, but also
+replace <code class="docutils literal"><span class="pre">django.contrib.admin</span></code> by
+<code class="docutils literal"><span class="pre">django.contrib.admin.apps.SimpleAdminConfig</span></code> (thanks rouxxx):</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="s1">&#39;suit&#39;</span><span class="p">,</span> <span class="c1"># Beautiful admin interface</span>
+  <span class="c1"># Replace &#39;django.contrib.admin&#39; for dashboard</span>
+  <span class="c1"># &#39;django.contrib.admin&#39;,</span>
+  <span class="s1">&#39;django.contrib.admin.apps.SimpleAdminConfig&#39;</span><span class="p">,</span>
+  <span class="c1"># ...</span>
+  <span class="s1">&#39;dashboard&#39;</span><span class="p">,</span>
+  <span class="c1"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In your main <code class="docutils literal"><span class="pre">urls.py</span></code>, you can now use your custom AdminSite:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dashboard.sites</span> <span class="k">import</span> <span class="n">DashboardSite</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">DashboardSite</span><span class="p">()</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>EDIT:</strong> with Django 1.9.5, you will need one more line:
+(See <a class="reference external" href="#comment-2643754439">Gustavo’s comment</a> at the bottom.)</p>
+<div class="code python last highlight-default"><div class="highlight"><pre><span></span><span class="n">admin</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">DashboardSite</span><span class="p">()</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">sites</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Your <code class="docutils literal"><span class="pre">urlpatterns</span></code> should not be subject to change:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="c1">#...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>That’s it, go check your new empty dashboard!</p>
+<div class="figure">
+<img alt="Empty dashboard" src="../_images/empty-dashboard.png" />
+</div>
+</div>
+<div class="section" id="step-3-highcharts">
+<h2>Step 3: Highcharts!<a class="headerlink" href="#step-3-highcharts" title="Permalink to this headline">¶</a></h2>
+<p>I was already familiar with <a class="reference external" href="http://www.highcharts.com/">Highcharts</a>
+since I use it in my project, so it made sense to use it in the admin
+dashboard too.</p>
+<p>Somewhere in your project, you will have functions that compute or
+retrieve data from your database(s) or else. Add these data in the
+<code class="docutils literal"><span class="pre">context</span></code> dictionary of the <code class="docutils literal"><span class="pre">DashboardMainView</span></code> in
+<code class="docutils literal"><span class="pre">dashboard/views.py</span></code>.</p>
+<p>Example:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">core.data</span> <span class="k">import</span> <span class="n">get_country_name_by_code</span>
+<span class="kn">from</span> <span class="nn">statistics.sitewide</span> <span class="k">import</span> <span class="n">nb_patients_per_country</span>
+
+<span class="k">class</span> <span class="nc">DashboardMainView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;dashboard/main.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;nb_patients_per_country&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="p">[{</span><span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">get_country_name_by_code</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="s1">&#39;patients&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">}</span>
+             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nb_patients_per_country</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;patients&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># I filtered the 0 values out, and used get_country_name_by_code to</span>
+        <span class="c1"># have the countries names translated!</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then in your template, add links to Highchart, and use the previous data
+to create, for example, a pie chart:</p>
+<div class="code html+django highlight-default"><div class="highlight"><pre><span></span>{% block content %}
+
+   &lt;script src=&quot;http://code.highcharts.com/highcharts.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;http://code.highcharts.com/highcharts-more.js&quot;&gt;&lt;/script&gt;
+   &lt;script src=&quot;http://code.highcharts.com/modules/exporting.js&quot;&gt;&lt;/script&gt;
+
+   &lt;div id=&quot;highchart-0&quot;&gt;&lt;/div&gt;
+
+   &lt;script type=&#39;text/javascript&#39;&gt;
+       var dataset;
+
+       dataset = {
+         &quot;chart&quot;: {
+           &quot;type&quot;: &quot;pie&quot;,
+           &quot;plotBackgroundColor&quot;: null,
+           &quot;plotBorderWidth&quot;: null,
+           &quot;plotShadow&quot;: false
+         },
+
+         &quot;title&quot;: {
+           &quot;text&quot;: &quot;{% trans &quot;Number of patients per country&quot; %}&quot;
+         },
+
+         &quot;series&quot;: [{
+           &quot;name&quot;: &quot;Countries&quot;,
+           &quot;colorByPoint&quot;: true,
+           &quot;data&quot;: [
+             {% for tuple in nb_patients_per_country %}
+               { &quot;name&quot;: &quot;{{ tuple.country }}&quot;, &quot;y&quot;: {{ tuple.patients }} },
+             {% endfor %}
+           ]
+         }],
+
+         &quot;tooltip&quot;: {
+           &quot;formatter&quot;: function() {
+             return this.y + &#39;/&#39; + this.total + &#39; (&#39; + Highcharts.numberFormat(this.percentage, 1) + &#39;%)&#39;;
+           }
+         },
+
+         &quot;plotOptions&quot;: {
+           &quot;pie&quot;: {
+             &quot;showInLegend&quot;: true,
+             &quot;allowPointSelect&quot;: true,
+             &quot;cursor&quot;: &quot;pointer&quot;,
+             &quot;dataLabels&quot;: {
+               &quot;enabled&quot;: true,
+               &quot;format&quot;: &quot;&lt;b&gt;{point.name}&lt;/b&gt;: {point.percentage:.1f} %&quot;
+               &quot;style&quot;: {
+                 &quot;color&quot;: function() {
+                   return (Highcharts.theme &amp;&amp; Highcharts.theme.contrastTextColor) || &#39;black&#39;
+                 }
+               }
+             }
+           }
+         }
+       };
+
+       $(&#39;#highchart-0&#39;).highcharts(dataset);
+     &lt;/script&gt;
+
+{% endblock %}
+</pre></div>
+</div>
+<p>Here is the result:</p>
+<div class="figure">
+<img alt="Pie chart" src="../_images/pie-chart.png" />
+</div>
+<p>For other types of chart, go check the Highcharts
+<a class="reference external" href="http://www.highcharts.com/demo">demos</a> and their excellent <a class="reference external" href="http://api.highcharts.com/highcharts">API
+documentation</a>!</p>
+</div>
+<div class="section" id="more-customization">
+<h2>More customization<a class="headerlink" href="#more-customization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="customizable-contents">
+<h3>Customizable contents<a class="headerlink" href="#customizable-contents" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="#columns">Work with columns</a></li>
+<li><a class="reference external" href="#more-dashboard-pages">Add more pages to your dashboard</a></li>
+</ul>
+<div class="section" id="columns">
+<h4>Columns<a class="headerlink" href="#columns" title="Permalink to this headline">¶</a></h4>
+<p>If like me you would like to use columns in the dashboard, you will be
+disappointed since we cannot use Bootstrap’s column classes (<code class="docutils literal"><span class="pre">col-md</span></code>
+and stuff) for I don’t know what reason. Instead, Suit provides the
+<code class="docutils literal"><span class="pre">suit-column</span></code> class which lets you stack multiple columns on one row.
+But you can’t specify the width and they won’t have the same size. Here
+is a CSS starting point to poorly imitate Bootstrap’s columns:</p>
+<div class="code css highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mi">50</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mi">25</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mi">20</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">16.66</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">14.28</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">12.5</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">11.11</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mi">10</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">9.09</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="n">col</span> <span class="o">.</span><span class="n">suit</span><span class="o">-</span><span class="n">column</span> <span class="p">{</span> <span class="n">width</span><span class="p">:</span> <span class="mf">8.333</span><span class="o">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>…to use like this:</p>
+<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;suit-row suit-row-3-col&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;suit-column&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;suit-column&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;suit-column&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>…and which results like this:</p>
+<div class="figure">
+<img alt="Columns" src="../_images/columns.png" />
+</div>
+<p>But this tweak is very limited because you can’t have columns with
+different sizes on the same row…</p>
+</div>
+<div class="section" id="more-dashboard-pages">
+<h4>More dashboard pages<a class="headerlink" href="#more-dashboard-pages" title="Permalink to this headline">¶</a></h4>
+<p>Just add your additional URLs in <code class="docutils literal"><span class="pre">dashboard.sites.AdminMixin</span></code> (they
+should maybe be added at the end of the original URLs:
+<code class="docutils literal"><span class="pre">return</span> <span class="pre">custom_url</span> <span class="pre">+</span> <span class="pre">urls</span> <span class="pre">+</span> <span class="pre">additional_urls</span></code>), create the views and
+the templates and it’s done.</p>
+</div>
+</div>
+</div>
+<div class="section" id="django-suit-dashboard">
+<h2>Django Suit Dashboard<a class="headerlink" href="#django-suit-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>I wrote a Django app to do this:
+<a class="reference external" href="https://github.com/Pawamoy/django-suit-dashboard">django-suit-dashboard</a>.
+Go take a look! (and please keep in mind it’s just a beta and it
+could/will be improved).</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          
+            <div id="disqus_thread"></div>
+          
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="2016-12-07-documentation-in-your-shell-scripts-using-shellman.html" class="btn btn-neutral" title="Documentation in your shell scripts using shellman" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/Pawamoy/sphinx_rtb_theme">theme</a> forked from <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx RTD Theme</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+  
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = window.location.href.replace(/\?.*/, '');
+        this.page.identifier = "Django dashboard with Suit and Highcharts";
+        this.page.title = "Django dashboard with Suit and Highcharts";
+      };
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//pawamoy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+   
+
+</body>
+</html>
