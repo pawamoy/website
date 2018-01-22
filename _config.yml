@@ -29,7 +29,7 @@ minima:
 
 # Build settings
 markdown: kramdown
-theme: jekyll-readthedocs
+remote_theme: pawamoy/jekyll-readthedocs
 plugins:
   - jekyll-feed
 
