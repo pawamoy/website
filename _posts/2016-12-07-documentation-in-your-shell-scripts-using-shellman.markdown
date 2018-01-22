@@ -136,7 +136,7 @@ Options:
 ```
 
 #### Man
-![man output](/images/man-output.png)
+![man output]({{ "/assets/man-output.png" | absolute_url }})
 
 #### Markdown
 ```markdown
@@ -167,7 +167,7 @@ the current instruction when using -x option.
 
 ... which would look like:
 
-![markdown output](/images/markdown-output.png)
+![markdown output]({{ "/assets/markdown-output.png" | absolute_url }})
 
 ## More
 Shellman supports more tags, in particular: function tags.

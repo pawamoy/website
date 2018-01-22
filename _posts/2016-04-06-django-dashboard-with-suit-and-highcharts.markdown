@@ -153,7 +153,7 @@ urlpatterns = [
 
 That's it, go check your new empty dashboard!
 
-![Empty dashboard](/images/empty-dashboard.png)
+![Empty dashboard]({{ "/assets/empty-dashboard.png" | absolute_url }})
 
 ## Step 3: Highcharts!
 
@@ -255,7 +255,7 @@ to create, for example, a pie chart:
 
 Here is the result:
 
-![Pie chart](/images/pie-chart.png)
+![Pie chart]({{ "/assets/pie-chart.png" | absolute_url }})
 
 For other types of chart, go check the Highcharts [demos][] and their excellent
 [API documentation][]!
@@ -333,7 +333,7 @@ poorly imitate Bootstrap's columns:
 
 ...and which results like this:
 
-![Columns](/images/columns.png)
+![Columns]({{ "/assets/columns.png" | absolute_url }})
 
 But this tweak is very limited because you can't have columns with different
 sizes on the same row...

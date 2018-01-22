@@ -15,7 +15,7 @@ Thankfully, there also are tools using other tools to reduce the amount
 of configuration we have to do. This ends up in a big mix of tools, which
 is represented in the following chart.
 
-![Chart](/images/python-static-code-analysis-tools.png)
+![Chart]({{ "/assets/python-static-code-analysis-tools.png" | absolute_url }})
 
 In this post, we will see the advantages and disadvantages of these tools,
 and compare them a bit.
