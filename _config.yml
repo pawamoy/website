@@ -15,6 +15,9 @@ social_sites:
   #youtube: jekyll
   #googleplus: +jekyll
 
+disqus:
+  shortname: pawamoy
+
 rss: rss
 
 # Minima date format

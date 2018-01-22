@@ -3,7 +3,6 @@ layout: post
 title: "Django admin dashboard with Suit and Highcharts"
 date: 2016-04-06 15:22:40
 tags: django admin dashboard suit highcharts
-comments: true
 ---
 
 One day my boss said "I want to see some statistical data about the users".

@@ -3,7 +3,6 @@ layout: post
 title: "Write and use a tox plugin from inside your package"
 date: 2016-12-07 15:27:40
 tags: python package tox plugin
-comments: true
 ---
 
 So let's say you wrote a program that is using tox and you want to add
