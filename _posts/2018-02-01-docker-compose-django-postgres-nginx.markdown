@@ -548,7 +548,7 @@ settings.
       }
 
       location /static/ {
-        alias /opt/services/djangoapp/static/;
+          alias /opt/services/djangoapp/static/;
       }
 
       location /media/ {

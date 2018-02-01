@@ -3,6 +3,8 @@ author: Timothée Mazzucotelli
 email: timothee.mazzucotelli@gmail.com
 description: Findings, thoughts, tutorials, work. Pieces of my mind!
 
+use_excerpt: true
+
 social_sites:
   github: Pawamoy
   #twitter: jekyllrb
