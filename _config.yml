@@ -3,19 +3,9 @@ author: Timothée Mazzucotelli
 email: timothee.mazzucotelli@gmail.com
 description: Findings, thoughts, tutorials, work. Pieces of my mind!
 
-use_excerpt: true
+show_excerpt: true
 
-social_sites:
-  github: Pawamoy
-  #twitter: jekyllrb
-  #dribbble: jekyll
-  #facebook: jekyll
-  #flickr: jekyll
-  #instagram: jekyll
-  #linkedin: jekyll
-  #pinterest: jekyll
-  #youtube: jekyll
-  #googleplus: +jekyll
+github_username: Pawamoy
 
 disqus:
   shortname: pawamoy
