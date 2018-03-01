@@ -1,0 +1,37 @@
+I'm having a really hard-time figuring out how I am supposed to use `conventional-changelog` and its related submodules (esp. `conventional-recommended-bump`).
+
+I do not develop Node packages so I don't have and don't want a `package.json` file. Installing the CLI tools was easy enough:
+
+```bash
+sudo npm i -g conventional-changelog-cli
+sudo npm i -g conventional-recommended-bump
+sudo npm i -g commitizen
+sudo npm i -g cz-conventional-changelog
+echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+```
+
+Now, in a fresh repo (but already with a few commits), I run:
+
+```bash
+conventional-changelog -p angular -i CHANGELOG.md -s -r 0  # or similar, to update my changelog
+```
+
+Then commit this modification (following angular convention), and tag it with "0.1.0".
+
+Now, after a few angular commits, I would expect `conventional-changelog` to update the changelog based on the following things:
+
+- the last (newest) version added to the changelog
+- the range of commits from HEAD to the corresponding tag
+- these commits messages (type, scope, body, footer)
+
+It would then use the previous version and the parsed commits to compute the new recommended version, and use that computed version in the added section of the changelog. But it's not: the added section of the changelog has no "name". Is it because I don't have a version defined in a `package.json`?
+
+In short, I would like to manually do what `standard-version` is doing:
+> bumps the version in package.json/bower.json (based on your commit history)
+uses conventional-changelog to update CHANGELOG.md
+commits package.json (et al.) and CHANGELOG.md
+tags a new release
+
+...without the first step because the only bump I need is the git tag, which is done last.
+
+So I tried to use `conventional-recommended-bump` in the loop, but
