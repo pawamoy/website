@@ -3,6 +3,7 @@ layout: post
 title: "Documentation in your shell scripts using shellman"
 date: 2016-12-07 16:27:40
 tags: shell doc documentation man page markdown text auto help script library shellman
+permalink: /:categories/:year/:month/:day/:title:output_ext
 ---
 
 When I write a script, I like to have a `-h, --help` option to help me remember what it does
