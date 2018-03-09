@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to install NVidia drivers on BunsenLabs (Debian 8)"
+title: "How to install NVidia drivers on BunsenLabs/Debian 8 to setup dual screens"
 date: 2018-03-09 12:24:01
 tags: nvidia driver install bunsenlabs debian dual screen jessie xorg
 ---
