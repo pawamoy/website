@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Django application as an authentication / authorization server for Shiny"
-date: 2018-03-18 12:24:01
+date: 2018-03-10 12:24:01
 tags: django shiny server nginx auth request security reverse proxy app
 ---
 
@@ -9,7 +9,6 @@ As you may know, [Shiny Server][] comes in two versions: open-source and
 professional. The professional adds security and authentication features
 like *password protected applications*, and *controlled access via SSL and LDAP,
 Active Directory, Google OAuth, PAM, proxied authentication, or passwords*.
-
 If you need these authentication features but don't want or can't spend
 [$9,995 per year][] for the professional edition, then I got a solution for you!
 
@@ -55,7 +54,7 @@ page to NginX, which returns it to the client.
 
 The third picture shows each subsequent requests from the client to the server
 through a WebSocket, and how NginX is asking authorization to Django. When NginX
-receives the reques, it sends a sub-request to Django, asking for permission
+receives the request, it sends a sub-request to Django, asking for permission
 to proxy the request to Shiny and return the response to the client. If Django
 says yes (HTTP 200), NginX proxies the request to Shiny. If Django says no
 (HTTP 403 or any other error code), NginX rejects the request by returning
@@ -66,56 +65,235 @@ HTTP 403 as a response to the client.
 OK, let's try it! To begin, create a directory that we will use for this
 tutorial:
 
-```
+```bash
 mkdir django-shiny
 cd django-shiny
 ```
 
 ## The Shiny app
-Let's get a Shiny app example from [RStudio's gallery][]: the [Movie Explorer][].
+Let's get a Shiny app example from [RStudio's gallery][].
 The code is available on GitHub in [this repository][].
 
 [RStudio's gallery]: https://shiny.rstudio.com/gallery/
-[Movie Explorer]: https://shiny.rstudio.com/gallery/movie-explorer.html
-[this repository]: https://github.com/rstudio/shiny-examples/tree/master/051-movie-explorer
+[this repository]: https://github.com/rstudio/shiny-examples/tree/master/001-hello
 
 Clone it in a sub-directory called `shinyapp`:
 
-```
+```bash
 git clone --depth=1 https://github.com/rstudio/shiny-examples
-mv shiny-examples/051-movie-explorer shinyapp
+mv shiny-examples/001-hello shinyapp
 rm -rf shiny-examples
 ```
 
-We also need to install its dependencies. If you don't already have R installed,
-you can install it with `sudo apt-get install r-base`.
+We also need to install the Shiny R package. If you don't already have R
+installed, you can install it with `sudo apt-get install r-base`.
 
-Run this command to install the dependencies:
+Run this command to install Shiny:
 
-```
-sudo R -e "install.packages(c('shiny', 'ggvis', 'dplyr', 'RSQLite'))"
+```bash
+sudo R -e "install.packages('shiny', repos='https://cran.rstudio.com/')"
 ```
 
 To run the Shiny application on port 8100, use the following command:
 
-```
+```bash
 sudo R -e "shiny::runApp(appDir='shinyapp', port=8100)"
 ```
 
 Try to go to http://localhost:8100 to see if the app is running.
 
 ## The Django app
-We will create a new Django project called `djangoapp`. If you don't already have
-Django installed on your system, install it in a virtualenv with
+We will create a new Django project called `djangoapp`. If you don't already
+have Django installed on your system, install it in a virtualenv with
 `pip install Django`, or system-wide with `sudo pip install Django`.
 
 To create the project, run the following command:
 
-```
+```bash
 django-admin startproject djangoapp
 ```
 
+We need to initialize the SQLite database first.
+
+```bash
+python djangoapp/manage.py migrate
+```
+
+You can now run the Django application on port 8000 with the following command:
+
+```bash
+python djangoapp/manage.py runserver localhost:8000
+```
+
+And try to go http://localhost:8000 to see if the app is running.
+
 ## Wrapping the Shiny app into a Django-powered page
+At this point you should have the following tree:
+
+```tree
+.
+├── djangoapp
+│   ├── db.sqlite3
+│   ├── djangoapp
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── manage.py
+└── shinyapp
+    ├── app.R
+    ├── DESCRIPTION
+    └── Readme.md
+
+3 directories, 9 files
+```
+
+Let's create our wrapping view. First make sure you have listed `djangoapp`
+in the Django settings' `INSTALLED_APPS`:
+
+```python
+# settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'djangoapp'
+]
+```
+
+Then we can add the URL in `urls.py`:
+
+```python
+from django.contrib import admin
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.shiny, name='shiny'),
+    path('admin/', admin.site.urls),
+]
+```
+
+And now we create the view in a new `views.py` file:
+
+```bash
+touch djangoapp/djangoapp/views.py
+```
+
+```python
+from django.shortcuts import render, redirect
+
+def shiny(request):
+    return render(request, 'djangoapp/shiny.html')
+```
+
+Since we tell the view to render the `djangoapp/shiny.html` template, we need
+to create it:
+
+```bash
+mkdir -p djangoapp/djangoapp/templates/djangoapp
+touch djangoapp/djangoapp/templates/djangoapp/shiny.html
+# too much of djangoapp already, I know
+```
+
+And write its contents. We simply add a title, to know we are in the wrapping
+view, and then we add a script to retrieve the Shiny app contents:
+
+```html
+<h1>We are in the wrapping page!</h1>
+
+<div id="contents"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    $.getJSON('{% raw %}{% url "shiny_contents" %}{% endraw %}', function (data) {
+
+      var iframe = document.createElement("iframe");
+      $('#contents').append(iframe);
+
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(data.html_contents);
+      iframe.contentWindow.document.close();
+
+      // Attempt circumvention
+      if (iframe.contentWindow.WebSocket)
+          WebSocket = iframe.contentWindow.WebSocket;
+    });
+
+  });
+
+</script>
+```
+
+Several things happen here:
+- we declare a `div` of ID `contents` in which we will add an `iframe`,
+- we make use of JQuery's `$(document).ready` and `$.getJSON` methods to
+  load HTML contents from an URL returning JSON,
+- we create the `iframe`, add it in the document, then write the HTML contents
+  inside of it. We also reassign the `WebSocket` variable to the value of the
+  `iframe` one.
+
+As you maybe guessed, work is not finished. We need to add the `shiny_contents`
+URL and view in the Django app. The view must return the contents of the Shiny
+app initial page as JSON.
+
+Add the URL in `urls.py`:
+
+```python
+from django.contrib import admin
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.shiny, name='shiny'),
+    path('admin/', admin.site.urls),
+    path('shiny_contents/', views.shiny_contents, name='shiny_contents'),
+]
+```
+
+Add the view to `views.py`:
+
+```python
+from django.http import JsonResponse
+from django.shortcuts import render
+
+import requests
+
+from bs4 import BeautifulSoup
+
+
+def shiny(request):
+    return render(request, 'djangoapp/shiny.html')
+
+
+def shiny_contents(request):
+    response = requests.get('http://localhost:8100')
+    soup = BeautifulSoup(response.content, 'html.parser')
+    return JsonResponse({'html_contents': str(soup)})
+```
+
+We are using requests and BeautifulSoup to get the HTML contents and return
+it as text, dumped as JSON. If you know a better way, let me know in the
+comments!
+
+To install requests and BeautifulSoup: `pip install requests beautifulsoup4`.
+
+OK, let's try! Run both the Shiny application and the Django application, then
+go to http://localhost:8000/shiny to see how it goes!
+
+You should see something like the following image:
+
+![screenshot-django-shiny]({{ "/assets/screenshot-django-shiny.png" | absolute_url }})
 
 ## Proxying Shiny requests to the Shiny app
 
