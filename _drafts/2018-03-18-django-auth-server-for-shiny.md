@@ -32,6 +32,8 @@ It contains a Docker configuration so you can try it easily.
 - [Proxying Shiny requests to the Shiny app](#proxying-shiny-requests-to-the-shiny-app)
 - [Adding an authentication step for every Shiny request](#adding-an-authentication-step-for-every-shiny-request)
 
+---
+
 ## Overview
 Let's look at some pictures to see what we want to accomplish. The first picture
 shows our client-server architecture. The client can communicate with the server
@@ -67,6 +69,9 @@ tutorial:
 mkdir django-shiny
 cd django-shiny
 ```
+
+---
+
 ## Wrapping a Shiny app into a Django-powered page
 This first section will help you setup an example project to follow this
 tutorial, but the first two steps described are optional. You can immediately
@@ -84,6 +89,8 @@ as an external authentication / authorization backend.
 1. [Injecting the HTML contents in an Iframe](#injecting-the-html-contents-in-an-iframe)
 
 [Install Docker]: https://docs.docker.com/install/
+
+---
 
 ### The Shiny app
 Let's get a Shiny app example from [RStudio's gallery][].
@@ -117,6 +124,8 @@ sudo R -e "shiny::runApp(appDir='shinyapp', port=8100)"
 
 Try to go to `http://localhost:8100`      to see if the app is running.
 
+---
+
 ### The Django app
 We will create a new Django project called `djangoapp`. If you don't already
 have Django installed on your system, install it in a virtualenv with
@@ -141,6 +150,8 @@ python djangoapp/manage.py runserver localhost:8000
 ```
 
 And try to go to `http://localhost:8000` to see if the app is running.
+
+---
 
 ### Injecting the HTML contents in an Iframe
 At this point you should have the following tree:
@@ -176,6 +187,8 @@ We will proceed in three main steps:
     1. Dumping and returning it as JSON
 
 [BeautifulSoup]: https://www.crummy.com/software/BeautifulSoup/
+
+---
 
 #### Create the wrapping view
 Let's create our wrapping view. First make sure you have listed `djangoapp`
@@ -222,6 +235,8 @@ from django.shortcuts import render, redirect
 def shiny(request):
     return render(request, 'djangoapp/shiny.html')
 ```
+
+---
 
 #### Create the wrapping HTML page
 Since we tell the view to render the `djangoapp/shiny.html` template, we need
@@ -272,6 +287,8 @@ Several things happen here:
 - we create the `iframe`, add it in the document, then write the HTML contents
   inside of it. We also reassign the `WebSocket` variable to the value of the
   `iframe` one.
+
+  ---
 
 #### Create the JSON view
 As you maybe guessed, work is not finished. We need to add the `shiny_contents`
@@ -330,6 +347,10 @@ You should see something like the following image:
 This is it for the setup and the Django-wrapped Shiny page. For the rest of the
 tutorial, we will use pre-setup Docker configuration to try it out with NginX.
 
+---
+
 ## Proxying Shiny requests to the Shiny app
+
+---
 
 ## Adding an authentication step for every Shiny request

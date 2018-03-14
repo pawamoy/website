@@ -4,6 +4,14 @@
 
 @import "minima";
 
+hr {
+  border: 0;
+  height: 0;
+  border-bottom: 1px solid #e1e4e5;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 {% if site.highlight_theme == 'tango' %}
 /**
  * TANGO THEME
