@@ -29,6 +29,8 @@ permalink: pretty
 plugins:
   - jekyll-feed
 
+highlight_theme: tomorrow
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
