@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Django application as an authentication / authorization server for Shiny"
-date: 2018-03-10 12:24:01
+date: 2018-03-15 12:24:01
 tags: django shiny server nginx auth request security reverse proxy app
 ---
 
@@ -28,9 +28,19 @@ It contains a Docker configuration so you can try it easily.
 
 #### On the menu
 - [Overview](#overview)
-- [Wrapping a Shiny app into a Django-powered page](#wrapping-a-shiny-app-into-a-django-powered-page)
-- [Proxying Shiny requests to the Shiny app](#proxying-shiny-requests-to-the-shiny-app)
-- [Adding an authentication step for every Shiny request](#adding-an-authentication-step-for-every-shiny-request)
+- [Wrapping a Shiny app into a Django-powered page][wrapping]
+- [Proxying Shiny requests to the Shiny app][proxying]
+- [Adding an authentication step for every Shiny request][authstep]
+- [Try it with a Dockerized project][trywithdocker]
+
+What most of you will be interested in starting at section 2:
+[Proxying][proxying], though [Wrapping][wrapping] is interesting as well if you
+want to create an interface to access multiple Shiny apps.
+
+[wrapping]: #wrapping-a-shiny-app-into-a-django-powered-page
+[proxying]: #proxying-shiny-requests-to-the-shiny-app
+[authstep]: #adding-an-authentication-step-for-every-shiny-request
+[trywithdocker]: #try-it-with-a-dockerized-project
 
 ---
 
@@ -75,7 +85,7 @@ cd django-shiny
 ## Wrapping a Shiny app into a Django-powered page
 This first section will help you setup an example project to follow this
 tutorial, but the first two steps described are optional. You can immediately
-jump to the [Proxying Shiny requests](#proxying-shiny-requests-to-the-shiny-app)
+jump to the [Proxying Shiny requests][proxying]
 section where we will a use pre-setup example project using Docker. You will
 need to install Docker if you don't already have it. See [Install Docker][] for
 installation instructions.
@@ -108,7 +118,15 @@ rm -rf shiny-examples
 ```
 
 We also need to install the Shiny R package. If you don't already have R
-installed, you can install it with `sudo apt-get install r-base`.
+installed, you can install a recent version with the following commands:
+
+```
+sudo add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo add-apt-repository ppa:marutter/rdev
+sudo apt-get update
+sudo apt-get install -y r-base
+```
 
 Run this command to install Shiny:
 
@@ -218,8 +236,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.shiny, name='shiny'),
     path('admin/', admin.site.urls),
+    path('shiny/', views.shiny, name='shiny'),
 ]
 ```
 
@@ -304,8 +322,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.shiny, name='shiny'),
     path('admin/', admin.site.urls),
+    path('shiny/', views.shiny, name='shiny'),
     path('shiny_contents/', views.shiny_contents, name='shiny_contents'),
 ]
 ```
@@ -344,13 +362,196 @@ You should see something like the following image:
 
 ![screenshot-django-shiny]({{ "/assets/screenshot-django-shiny.png" | absolute_url }})
 
+But since Shiny requests are not proxied, they are simply lost in-between, and
+your Shiny app will not respond, nor get a nice look because the static assets
+will not be loaded. We will fix this in the next section:
+[Proxying Shiny requests][proxying].
+
 This is it for the setup and the Django-wrapped Shiny page. For the rest of the
-tutorial, we will use pre-setup Docker configuration to try it out with NginX.
+tutorial, I will explain how to configure NginX and Django to act as proxy
+and authorization servers. The result is available for you to try in this
+repository: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny.
+See the [Try it out][trywithdocker] section.
 
 ---
 
 ## Proxying Shiny requests to the Shiny app
+This is time for NginX to come on stage. We need to create our new,
+project-specific configuration file in `/etc/nginx/sites-available/djangoshiny`.
+
+We will tell NginX to proxy every request with an URL like `shiny/*` to our
+Shiny app. All other requests will be proxied to the Django app.
+
+```nginx
+# declare your Django app
+upstream djangoapp_server {
+    server localhost:8000;
+}
+
+# declare your Shiny app
+upstream shinyapp_server {
+    server localhost:8100;
+}
+
+# required for WebSockets
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+
+server {
+
+    listen 80;
+    server_name localhost;
+
+    client_max_body_size 100M;
+
+    # normal requests go to Django
+    location / {
+        proxy_pass http://djangoapp_server;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+        if (!-f $request_filename) {
+            proxy_pass http://djangoapp_server;
+            break;
+        }
+    }
+
+    # "shiny" requests go to Shiny
+    location ~ /shiny/.+ {
+
+        rewrite ^/shiny/(.*)$ /$1 break;
+
+        proxy_pass http://shinyapp_server;
+        proxy_redirect http://shinyapp_server/ $scheme://$host/shiny/;
+
+        # required for WebSockets
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        proxy_read_timeout 20d;
+        proxy_buffering off;
+    }
+
+}
+```
+
+Once you're ready, enable this configuration by linking it like this:
+
+```
+sudo ln -s /etc/nginx/sites-available/djangoshiny /etc/nginx/sites-enabled/djangoshiny
+```
+
+Now reload NginX, and that's it! If you launch both Django on port 8000, and
+Shiny on port 8100, you should be able to connect to `http://localhost/shiny`
+and enjoy your Django-wrapped Shiny application functioning properly!
+
+There is still one thing we need to add: authentication and authorization.
+I won't show how to create sign-in / sign-up / sign-out views: you can
+find all the documentation to enable Django authentication system online.
+What I will show you is how to make Django act as an authorization server
+for Shiny.
 
 ---
 
 ## Adding an authentication step for every Shiny request
+We want all requests proxied to Shiny to be authorized by Django. For this we
+are gonna use the [auth-request][] module. This module is not compiled in
+NginX by default on distributions like Ubuntu / Debian. If you want to recompile
+NginX with auth-request enabled, check how I do it in [this Dockerfile][].
+
+[this Dockerfile]: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny/tree/master/Dockerfile.nginx
+
+An easier solution is to use the Docker setup from the same repository, with
+the official NginX image which already supports auth-request.
+
+So, once your NginX is ready, add this authorization step in the configuration
+file:
+
+```nginx
+
+    location ~ /shiny/.+ {
+
+        # we tell nginx to call that location for each request
+        auth_request /auth;
+
+        rewrite ^/shiny/(.*)$ /$1 break;
+
+        proxy_pass http://shinyapp_server;
+        proxy_redirect http://shinyapp_server/ $scheme://$host/shiny/;
+
+        # this part is needed for WebSockets to work
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        proxy_read_timeout 20d;
+        proxy_buffering off;
+    }
+
+    # the /auth location will send a subrequest to django, URL shiny_auth/
+    location = /auth {
+        internal;
+
+        proxy_pass http://localhost:8000/shiny_auth/;
+
+        proxy_pass_request_body off;
+        proxy_set_header Content-Length "";
+        proxy_set_header X-Original-URI $request_uri;
+    }
+
+}
+```
+
+Of course, we also need to write the view called by the `shiny_auth/` URL.
+It's a very simple one. First add the URL in `urls.py`:
+
+```python
+from django.contrib import admin
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('shiny/', views.shiny, name='shiny'),
+    path('shiny_contents/', views.shiny_contents, name='shiny_contents'),
+    path('shiny_auth/', views.shiny_auth),
+]
+```
+
+And then the view in `views.py`:
+
+```python
+from django.http import HttpResponse
+
+def shiny_auth(request):
+    if request.user.is_authenticated:
+        return HttpResponse(status=200)
+    return HttpResponse(status=403)
+```
+
+Et voilà! If the user is authenticated, Django will say "OK". If the user is
+not authenticated, Django will say "No". But you could implement any logic
+you need instead of just checking if the user is authenticated or not. You
+could have several Shiny apps served on different URLs, powered by Django
+(in wrapping pages, as we saw earlier), and grant access to users with a
+permission system, etc..
+
+## Try it with a Dockerized project
+Clone the repository and build the images with the following commands:
+
+```
+git clone https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny docker-django-shiny
+cd docker-django-shiny
+sudo make all
+```
+
+This first build should take quite some time. It will build Shiny and Django
+images, get static assets, create the database, create a super user, and then
+run the application. You will then be able to go to `http://localhost:8000`
+to see it in action.
+
+To print the available `make` commands, simply run `make`.
