@@ -143,6 +143,11 @@ sudo nvidia-settings  # update your config and save it
   packages, but it is **not safe to purge `xserver-xorg-*` ones**.
   Except the specific `xserver-xorg-video-nvidia`.
   Or if you like the Linux (re)installation process.
+- **After an update/upgrade**: if you upgraded your system with
+  `apt update; apt upgrade` and your X server does not start anymore, it might
+  be because your Linux headers have not been updated. Remember to
+  always update your Linux headers after the kernel has been upgraded!
+  `sudo apt install linux-headers-$(uname -r)`
 
 ## Appendix
 Example of `/etc/X11/xorg.conf` for dual screen setup:
