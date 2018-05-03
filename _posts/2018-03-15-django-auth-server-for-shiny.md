@@ -33,7 +33,7 @@ It contains a Docker configuration so you can try it easily.
 - [Adding an authentication step for every Shiny request][authstep]
 - [Try it with a Dockerized project][trywithdocker]
 
-What most of you will be interested in starting at section 2:
+What most of you will be interested in is starting at section 2:
 [Proxying][proxying], though [Wrapping][wrapping] is interesting as well if you
 want to create an interface to access multiple Shiny apps.
 
@@ -370,7 +370,7 @@ will not be loaded. We will fix this in the next section:
 This is it for the setup and the Django-wrapped Shiny page. For the rest of the
 tutorial, I will explain how to configure NginX and Django to act as proxy
 and authorization servers. The result is available for you to try in this
-repository: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny.
+repository: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny-example.
 See the [Try it out][trywithdocker] section.
 
 ---
@@ -462,7 +462,7 @@ are gonna use the [auth-request][] module. This module is not compiled in
 NginX by default on distributions like Ubuntu / Debian. If you want to recompile
 NginX with auth-request enabled, check how I do it in [this Dockerfile][].
 
-[this Dockerfile]: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny/tree/master/Dockerfile.nginx
+[this Dockerfile]: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny-example/blob/master/Dockerfile.nginx
 
 An easier solution is to use the Docker setup from the same repository, with
 the official NginX image which already supports auth-request.
@@ -501,8 +501,6 @@ file:
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $request_uri;
     }
-
-}
 ```
 
 Of course, we also need to write the view called by the `shiny_auth/` URL.
@@ -544,7 +542,7 @@ permission system, etc..
 Clone the repository and build the images with the following commands:
 
 ```
-git clone https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny docker-django-shiny
+git clone https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny-example docker-django-shiny
 cd docker-django-shiny
 sudo make all
 ```
