@@ -274,6 +274,8 @@ want to access our app at [http://localhost:8000](http://localhost:8000), and
 we want NginX to listen to the port 80 in the container, so we use
 `ports: - 8000:80`.
 
+Note: in a production environment, we would use `80:80` instead.
+
 We also bind a local directory to the `/etc/nginx/conf.d` container directory.
 Let's create it and see what's inside:
 
