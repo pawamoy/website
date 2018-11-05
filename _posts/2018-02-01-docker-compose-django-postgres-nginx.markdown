@@ -60,7 +60,7 @@ Once you know how to do it for two databases, it's very easy to add more.
 
 Now, this is enough for local development. But each time you restart your
 containers or services, the data in the Postgres databases will be lost. In
-production, we need these data to be permanent. If we keep the data in
+production, we need these data to be persistent. If we keep the data in
 production, let's keep them in local environment as well. To do this, we will
 use volumes, a feature of Docker:
 
@@ -501,10 +501,10 @@ our `docker-compose.yml` file.
   You should be able to understand everything here. However, we added two new
   things: the `database1: volumes:` directive, and the root `volumes:`
   directive. You need to declare your volumes in the root `volumes:` directive
-  if you want them to be kept permanently. Then, you can bind a volume to a
+  if you want them to be kept persistently. Then, you can bind a volume to a
   directory in the container. Here, we bind our declared `database1_volume` to
   the `database1` container's `/var/lib/postgresql/data` directory. Everything
-  added to this directory will be permanently stored in the volume called
+  added to this directory will be persistently stored in the volume called
   `database1_volume`. So each subsequent run of the container will have access
   to the previous data! It means you can stop and restart your service without
   losing the data.
