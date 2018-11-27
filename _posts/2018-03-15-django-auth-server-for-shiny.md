@@ -26,7 +26,8 @@ It contains a Docker configuration so you can try it easily.
 [auth-request]: https://nginx.org/en/docs/http/ngx_http_auth_request_module.html
 [repository on GitHub]: https://github.com/Pawamoy/docker-nginx-auth-request-django-shiny-example
 
-#### On the menu
+**On the menu**
+
 - [Overview](#overview)
 - [Wrapping a Shiny app into a Django-powered page][wrapping]
 - [Proxying Shiny requests to the Shiny app][proxying]

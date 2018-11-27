@@ -15,7 +15,7 @@ so I searched for a way to add a custom view within Suit. Looking at the
 by [rouxxx][] and linking to this [post about django dashboard][].
 I had then all I needed to start a proof of concept.<!--more-->
 
-#### Contents
+**Contents**
 
 - [Step 1: set up the files](#step-1-set-up-the-files)
 - [Step 2: activate your brand new dashboard](#step-2-activate-your-brand-new-dashboard)
