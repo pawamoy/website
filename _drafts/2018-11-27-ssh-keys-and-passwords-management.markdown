@@ -28,3 +28,6 @@ The goal was to deal with:
    others being present only on one specific remote server
 2. their associated passwords
 3. remote server accounts login and passwords
+
+[tomb]: https://github.com/dyne/Tomb
+[pass]: https://www.passwordstore.org/
