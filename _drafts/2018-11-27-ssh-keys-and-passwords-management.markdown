@@ -6,28 +6,33 @@ tags: password manager local ssh key tomb pass server web service
 excerpt_separator: <!--more-->
 ---
 
-During the last four years I worked in a lab and collaborated with
-engineers and researchers from another team. We worked on a few different projects,
-and each project had its own dedicated online server to run tests.
-
-Before that I had access to only two machines. My computer and my laptop.
-Then I had access to (and was responsible for) a bit more: computer at work,
-production and staging servers for the main project, staging servers for three
-other projects, and a GitLab instance.
-
-My SSH keys started to pile up, and I started to forget passwords.
-
-So I gave it a bit of thought and came up with an in-house solution
-using tomb and pass.
+When you are given access to a lot of remote servers,
+it's getting more and more complicated
+to remember the passwords for every SSH key and server account.
+In this post I will show you a method
+to organize your SSH keys and passwords
+in a secure manner.
 
 <!--more-->
 
-The goal was to deal with:
+The goal of this method is to deal with:
 
-1. SSH keys, some of them shared across several physical-access machines,
-   others being present only on one specific remote server
-2. their associated passwords
-3. remote server accounts login and passwords
+1. [SSH keys](#ssh-keys)
+2. [their associated passwords](#ssh-keys-passwords)
+3. [remote server accounts login and passwords](#remote-server-accounts)
+
+## SSH keys
+I will distinguish the different usages we make of SSH keys.
+
+1. *Personal machine to remote server SSH key:*
+  let's call it a **P-R key**, like `Personal-to-Remote`.
+  It's a key you use to connect to a server from your laptop
+  or from your work machine.
+2. *Remote server to remote server SSH key:* a **R-R key**, like `Remote-to-Remote`. It's a key present on a remote server,
+  used to connect to another remote server.
+3. *Remote server to remote server SSH key:* a **R-R key**, like `Remote-to-Remote`. It's a key present on a remote server,
+  used to connect to another remote server.
+
 
 [tomb]: https://github.com/dyne/Tomb
 [pass]: https://www.passwordstore.org/
