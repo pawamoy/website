@@ -1,11 +1,11 @@
 title: ReadTheBlog
 author: Timothée Mazzucotelli
-email: timothee.mazzucotelli@gmail.com
+email: timothee.mazzucotelli@pm.com
 description: Findings, thoughts, tutorials, work. Pieces of my mind!
 
 show_excerpts: true
 
-github_username: Pawamoy
+github_username: pawamoy
 
 disqus:
   shortname: pawamoy
@@ -19,7 +19,7 @@ minima:
 
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
-#header_pages:
+# header_pages:
 # - about.html
 
 # Build settings
