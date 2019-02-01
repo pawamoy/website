@@ -3,6 +3,7 @@ layout: post
 title: "Challenge: fill a 2D space with one continuous line doing 90° angle turns in the same direction (left/right)"
 date: 2019-02-01 16:00:00
 tags: draw drawing challenge art fun games
+image: /assets/fill-space-drawing.jpg
 excerpt_separator: <!--more-->
 ---
 
@@ -13,9 +14,9 @@ always in the same direction.
 Other people do this as well, right?
 
 Well, today I actually drawn it:
+<!--more-->
 
 ![fill-space-drawing]({{ "/assets/fill-space-drawing.jpg" | absolute_url }})
-<!--more-->
 
 I started top left, and finish bottom right. I turned right all the time.
 It took me about 20 minutes.
