@@ -28,6 +28,7 @@ remote_theme: pawamoy/jekyll-readthedocs
 permalink: pretty
 plugins:
   - jekyll-feed
+  - jemoji
 
 highlight_theme: tomorrow
 
