@@ -23,6 +23,7 @@ I had then all I needed to start a proof of concept.<!--more-->
 - [Step 3: Highcharts!](#step-3-highcharts)
 - [More customization](#more-customization)
 - [The app I wrote using this](#django-suit-dashboard)
+- [Comments](#comments)
 
 ## Step 1: set up the files
 
@@ -362,3 +363,5 @@ I wrote a Django app to do this: [django-suit-dashboard][]. Go take a look!
 [demos]: http://www.highcharts.com/demo
 [API documentation]: http://api.highcharts.com/highcharts
 [django-suit-dashboard]: https://github.com/Pawamoy/django-suit-dashboard
+
+## Comments

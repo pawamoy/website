@@ -34,6 +34,7 @@ It contains a Docker configuration so you can try it easily.
 - [Proxying Shiny requests to the Shiny app][proxying]
 - [Adding an authentication step for every Shiny request][authstep]
 - [Try it with a Dockerized project][trywithdocker]
+- [Comments](#comments)
 
 What most of you will be interested in is starting at section 2:
 [Proxying][proxying], though [Wrapping][wrapping] is interesting as well if you
@@ -555,3 +556,5 @@ run the application. You will then be able to go to `http://localhost:8000`
 to see it in action.
 
 To print the available `make` commands, simply run `make`.
+
+## Comments

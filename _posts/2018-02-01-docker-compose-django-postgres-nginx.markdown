@@ -29,6 +29,8 @@ Here is the plan:
 6. [Static files: collecting, storing and serving](#static-files-collecting-storing-and-serving)
 7. [Resources](#resources)
 
+[Go to comments](#comments)
+
 ## Overview: to get a better understanding of the whole thing
 So, let's start with some drawings in order to get a better idea of what we want
 to accomplish, and how everything will fit together.
@@ -660,3 +662,5 @@ And here is the
 that reflects this tutorial (with a few more things).
 
 Don't hesitate to share other interesting resources in the comment section!
+
+## Comments
