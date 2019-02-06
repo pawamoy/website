@@ -107,3 +107,7 @@ I want to say **thank you** to all these projects, companies, foundations, conso
 [![wireshark](https://www.vectorlogo.zone/logos/wireshark/wireshark-ar21.svg)](https://www.wireshark.org/?utm_source=vectorlogozone&utm_medium=referrer)
 [![yaml](https://www.vectorlogo.zone/logos/yaml/yaml-ar21.svg)](http://yaml.org/?utm_source=vectorlogozone&utm_medium=referrer)
 [![yarn](https://www.vectorlogo.zone/logos/yarnpkg/yarnpkg-ar21.svg)](https://yarnpkg.com/en/?utm_source=vectorlogozone&utm_medium=referrer)
+
+*This blog is graciously hosted by [GitHub](https://github.com),
+and was built with [Jekyll](https://jekyllrb.com) and the Jekyll theme
+called [Jekyll-ReadTheDocs](https://github.com/Pawamoy/jekyll-readthedocs).*
