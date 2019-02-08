@@ -528,11 +528,23 @@ the Django project, and create the environment file for each database in
 `config/db`.
 
 ## Static files: collecting, storing and serving
+**UPDATE**: a lot of us (including myself) seem to have trouble updating
+the static files in the designated Docker volume. In retrospect,
+collecting the static files in the Dockerfile might not be a good idea,
+because of the caching mechanisms of Docker. A simple and effective solution,
+mentioned by Isaac T Chikutukutu in the comments, is to remove this command
+from the Dockerfile and manually run it when needed:
+`docker-compose run djangoapp hello/manage.py collectstatic --no-input`
+
+I edited the rest of the post accordingly.
+
+**(End of update)**
+
 Let's not forget about the static files! In order for NginX to serve them,
 we will update the `config/nginx/conf.d/local.conf` file, as well as our
-Dockerfile and `docker-compose.yml` file. Static files will be stored in
-volumes. We also need to set the STATIC_ROOT variable in the Django project
-settings.
+`docker-compose.yml` file. Static files will be stored in volumes.
+We also need to set the `STATIC_ROOT` and `MEDIA_ROOT` variables
+in the Django project settings.
 
 - NginX configuration:
 
@@ -571,24 +583,6 @@ settings.
 
   # do the same for media files, it must match /opt/services/djangoapp/media/
   MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'media')
-  ```
-
-- Collect the static files in the Dockerfile:
-
-  ```dockerfile
-  FROM python:3.6
-
-  RUN mkdir -p /opt/services/djangoapp/src
-  WORKDIR /opt/services/djangoapp/src
-
-  COPY Pipfile Pipfile.lock /opt/services/djangoapp/src/
-  RUN pip install pipenv && pipenv install --system
-
-  COPY . /opt/services/djangoapp/src
-  RUN cd hello && python manage.py collectstatic --no-input  # <-- here
-
-  EXPOSE 8000
-  CMD ["gunicorn", "--chdir", "hello", "--bind", ":8000", "hello.wsgi:application"]
   ```
 
 - Volumes in `docker-compose.yml`:
@@ -644,7 +638,11 @@ settings.
     media_volume:  # <-- declare the media volume
   ```
 
-Now rebuild: `docker-compose build` and run: `docker-compose up`!
+- And finally, collect the static files each time you need to update them, by running:
+
+  ```bash
+  docker-compose run djangoapp hello/manage.py collectstatic --no-input
+  ```
 
 ## Resources
 Here are the resources I used to write this tutorial:
