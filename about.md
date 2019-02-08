@@ -87,24 +87,27 @@ TODO
 <p class="i2"></p>
 Act with more reserve. Talk less. This option overrides and disables `--chatty`.
 There is a high probability that `--over-thinking` will be switched on using
-`--introvert`. This option can be used to avoid awkward jokes during professional
+`--introvert`. This option can be used to avoid unnecessary jokes during professional
 interactions, but try not to use it too much as it will reduce enthusiasm
 and increase risk of switching `--shut` and `--silent` on.
 
 `--obsessive`
 
 <p class="i2"></p>
-TODO
+Assign all and maximum focus on one and only one thing. This option is great for sprints,
+however you do not always choose to activate it. It can also take more conscious effort
+than planned to deactivate it.
 
 `--open`
 
 <p class="i2"></p>
-TODO
+Stay open! Every thing you hear or see will be received with more curiosity and enthusiasm.
+Best used in combination with `learn` and `work` commands.
 
 `--over-thinking`
 
 <p class="i2"></p>
-TODO
+Spend more time thinking about things than actually doing them.
 
 `--perfectionist`
 
