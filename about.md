@@ -68,7 +68,8 @@ is used with option `--alcohol`. Default: false.
 `--enthusiast`
 
 <p class="i2"></p>
-TODO
+This option is always useful, especially when learning new things.
+Use it without caution!
 
 `--fast`
 
@@ -90,13 +91,6 @@ There is a high probability that `--over-thinking` will be switched on using
 `--introvert`. This option can be used to avoid unnecessary jokes during professional
 interactions, but try not to use it too much as it will reduce enthusiasm
 and increase risk of switching `--shut` and `--silent` on.
-
-`--obsessive`
-
-<p class="i2"></p>
-Assign all and maximum focus on one and only one thing. This option is great for sprints,
-however you do not always choose to activate it. It can also take more conscious effort
-than planned to deactivate it.
 
 `--open`
 
@@ -120,11 +114,6 @@ TODO
 TODO
 
 `--safe`
-
-<p class="i2"></p>
-TODO
-
-`--shut`
 
 <p class="i2"></p>
 TODO
