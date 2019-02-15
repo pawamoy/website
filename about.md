@@ -81,7 +81,8 @@ results though.
 `--happy`
 
 <p class="i2"></p>
-TODO
+Everyone wants to be happy right? Use this option regularly to ensure proper
+sanity of mind.
 
 `--introvert`
 
