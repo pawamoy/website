@@ -107,7 +107,9 @@ Spend more time thinking about things than actually doing them.
 `--perfectionist`
 
 <p class="i2"></p>
-TODO
+Nothing is ever good enough. Use this option to enable a
+"constantly-improving-and-refactoring" behavior. Beware: time spent in this mode
+is exponentially increased, and there are no guarantee of obtaining a final product!
 
 `--reluctant`
 
