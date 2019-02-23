@@ -114,12 +114,15 @@ is exponentially increased, and there are no guarantee of obtaining a final prod
 `--reluctant`
 
 <p class="i2"></p>
-TODO
+When inspiration is low, reluctant mode is activated. Things will be harder
+at first, but once the machinery is warmed-up, this mode will be deactivated
+and behavior will go back to normal.
 
 `--safe`
 
 <p class="i2"></p>
-TODO
+Sometimes things are dangerous. Use this mode to increase cautiousness and
+avoid accidents.
 
 `--silent`
 
