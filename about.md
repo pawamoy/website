@@ -127,7 +127,9 @@ avoid accidents.
 `--silent`
 
 <p class="i2"></p>
-TODO
+Do not say a word and be silent. This mode can be used to silently sneak behind
+someone and surprise them. Be sure to know the person though. This mode is also
+used at night, to avoid waking up the significant other.
 
 `--slow`
 
