@@ -134,7 +134,8 @@ used at night, to avoid waking up the significant other.
 `--slow`
 
 <p class="i2"></p>
-TODO
+Side-effect of `--reluctant`, also triggered when tired. Everyone needs a bit
+of slowness from time to time right?
 
 `--strict`
 
