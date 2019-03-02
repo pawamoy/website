@@ -137,17 +137,14 @@ used at night, to avoid waking up the significant other.
 Side-effect of `--reluctant`, also triggered when tired. Everyone needs a bit
 of slowness from time to time right?
 
-`--strict`
-
-<p class="i2"></p>
-TODO
-
 
 #### **COMMANDS**
 `code`
 
 <p class="i2"></p>
-Write or design code. It can imply drawing and thinking.
+Write or design code. It implies thinking, and can imply drawing. This command
+can be run regularly, without moderation. It should not be used 100% of the time
+though, because other vital tasks need attention.
 
 `drink`
 
