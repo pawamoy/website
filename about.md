@@ -149,7 +149,10 @@ though, because other vital tasks need attention.
 `drink`
 
 <p class="i2"></p>
-TODO
+Drink liquids. Opions are: `--water` (the default), `--juice`, `--alcohol` and `--soda`.
+Juices are good in the morning, while alcohol is better for social events, though
+not mandatory. Soda is really an extra, for example when eating pizza (both go well
+together). Water is mandatory. A bottle of it must always be available at night.
 
 `eat`
 
