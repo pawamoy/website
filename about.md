@@ -157,7 +157,8 @@ together). Water is mandatory. A bottle of it must always be available at night.
 `eat`
 
 <p class="i2"></p>
-TODO
+Eat food. Almost every kind of food is accepted as positional argument. Ability to
+eat insects is not yet implemented, but might be in the future.
 
 `exercise`
 
