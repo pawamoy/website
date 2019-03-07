@@ -163,7 +163,9 @@ eat insects is not yet implemented, but might be in the future.
 `exercise`
 
 <p class="i2"></p>
-TODO
+Exercise command should be run regularly, like two or three times a week. Option `--bike`
+is built-in and optional because it is used as the main transport mean. Currently,
+option `--badminton` is available, and soon maybe `--basketball` will be implemented.
 
 `learn`
 
