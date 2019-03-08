@@ -91,7 +91,7 @@ Act with more reserve. Talk less. This option overrides and disables `--chatty`.
 There is a high probability that `--over-thinking` will be switched on using
 `--introvert`. This option can be used to avoid unnecessary jokes during professional
 interactions, but try not to use it too much as it will reduce enthusiasm
-and increase risk of switching `--shut` and `--silent` on.
+and increase risk of switching `--silent` on.
 
 `--open`
 
@@ -109,7 +109,7 @@ Spend more time thinking about things than actually doing them.
 <p class="i2"></p>
 Nothing is ever good enough. Use this option to enable a
 "constantly-improving-and-refactoring" behavior. Beware: time spent in this mode
-is exponentially increased, and there are no guarantee of obtaining a final product!
+is exponentially increased, and there is no guarantee to obtain a final product!
 
 `--reluctant`
 
@@ -149,7 +149,7 @@ though, because other vital tasks need attention.
 `drink`
 
 <p class="i2"></p>
-Drink liquids. Opions are: `--water` (the default), `--juice`, `--alcohol` and `--soda`.
+Drink liquids. Options are: `--water` (the default), `--juice`, `--alcohol` and `--soda`.
 Juices are good in the morning, while alcohol is better for social events, though
 not mandatory. Soda is really an extra, for example when eating pizza (both go well
 together). Water is mandatory. A bottle of it must always be available at night.
@@ -164,8 +164,8 @@ eat insects is not yet implemented, but might be in the future.
 
 <p class="i2"></p>
 Exercise command should be run regularly, like two or three times a week. Option `--bike`
-is built-in and optional because it is used as the main transport mean. Currently,
-option `--badminton` is available, and soon maybe `--basketball` will be implemented.
+is built-in and very often used as the main transport mean. Currently, option `--badminton`
+is available, and soon maybe `--basketball` will be implemented.
 
 `learn`
 
@@ -175,7 +175,9 @@ TODO
 `listen`
 
 <p class="i2"></p>
-TODO
+Focus on listening. Probability of talking is decreased. This command is well used when
+someone is asking a question. It helps preventing an anticipation bias that often leads
+to an incorrect comprehension of the question, and thus an incorrect answer.
 
 `love`
 
@@ -231,4 +233,4 @@ TODO
 
 #### **NOTES**
 This man page is a perpetual work in progress. Expect some delays between
-`pawamoy` and its documentation updates.
+`pawamoy` releases and its documentation updates.
