@@ -187,7 +187,7 @@ TODO
 `play`
 
 <p class="i2"></p>
-TODO
+Play single or multi-player. Card games, video games, especially horror ones, social games, etc.
 
 `read`
 
