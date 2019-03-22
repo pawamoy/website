@@ -187,7 +187,7 @@ TODO
 `play`
 
 <p class="i2"></p>
-Play single or multi-player. Card games, video games, especially horror ones, social games, etc.
+Play single or multi-player. Card games, video games, especially horror ones, all sorts of games!
 
 `read`
 
@@ -197,7 +197,9 @@ TODO
 `sleep`
 
 <p class="i2"></p>
-TODO
+Sleep must be done regularly and in sufficient quantity to ensure proper performance in any other activity.
+Run this command at least once per day (better during the night) for at least eight hours. More is better.
+Less and headache will appear, and `--reluctant` flag will be turned on until more sleep is done.
 
 `talk`
 
