@@ -30,6 +30,7 @@ I want to say **thank you** to all these projects, companies, foundations, conso
 
 [![alpine](https://www.vectorlogo.zone/logos/alpinelinux/alpinelinux-ar21.svg)](https://alpinelinux.org/?utm_source=vectorlogozone&utm_medium=referrer)
 [![android](https://www.vectorlogo.zone/logos/android/android-ar21.svg)](https://www.android.com/?utm_source=vectorlogozone&utm_medium=referrer)
+[![archlinux](https://www.vectorlogo.zone/logos/archlinux/archlinux-ar21.svg)](https://www.archlinux.org/?utm_source=vectorlogozone&utm_medium=referrer)
 [![asus](https://www.vectorlogo.zone/logos/asus/asus-ar21.svg)](https://www.asus.com/us/?utm_source=vectorlogozone&utm_medium=referrer)
 [![atom](https://www.vectorlogo.zone/logos/atom_io/atom_io-ar21.svg)](https://atom.io/?utm_source=vectorlogozone&utm_medium=referrer)
 [![bash](https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-ar21.svg)](https://www.gnu.org/software/bash/?utm_source=vectorlogozone&utm_medium=referrer)
