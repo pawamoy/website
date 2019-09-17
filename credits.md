@@ -17,6 +17,7 @@ I want to say **thank you** to all these projects, companies, foundations, conso
 [![pycharm]()](https://www.jetbrains.com/pycharm/)
 [![pypi]()](https://pypi.org/)
 [![pyup]()](https://pyup.io/)
+[![qtile]()](http://www.qtile.org/)
 [![raspbian]()](https://www.raspberrypi.org/downloads/raspbian/)
 [![readthedocs]()](https://readthedocs.org/)
 [![sqlite](https://www.vectorlogo.zone/logos/sqlite/sqlite-ar21.svg)](https://sqlite.org/?utm_source=vectorlogozone&utm_medium=referrer)
