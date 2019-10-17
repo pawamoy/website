@@ -27,13 +27,13 @@ But I was already logging every exception!
 I just had to enable the logging functionality while running tests,
 and write them to the disk so I could create an artifact!
 The artifact could then be downloaded,
-and you inspected in great details to see exactly what happened.
+and inspected in great details to see exactly what happened.
 
 What I use:
 
 - [`loguru`](https://github.com/Delgan/loguru) as a logging
-  utility in `aria2p`. It's really easy to use, and I have to admit
-  that I just like the colors :wink2:
+  utility. It's really easy to use, and I have to admit
+  that I just like the colors :wink:
 - [`pytest`](https://github.com/pytest-dev/pytest/) to run the test suite.
   It's very powerful and has lots of nice plugins, like
   [`pytest-cov`](https://github.com/pytest-dev/pytest-cov),
@@ -41,7 +41,7 @@ What I use:
   [`pytest-xdist`](https://github.com/pytest-dev/pytest-xdist).
 - [GitLab CI](https://docs.gitlab.com/ee/ci/) as Continuous Integration service.
 
-## Logging with `loguru`
+## Logging with loguru
 Let say you have an interactive function that accepts user input
 and execute code according to this input. Anything could happen,
 right? So you log every exception that might happen like this:
@@ -131,8 +131,8 @@ Let's explain this code in details.
   before adding our own.
 - we set our handler using the `log_path` variable, the `TRACE` level
   (the lowest level to catch everything), and the mode `"w"`.
-  The default mode is `"a"`, like append, but we want don't want to keep
-  the logs of previous runs, so we overwrite each time.
+  The default mode is `"a"`, for append, but we want don't want to keep
+  the logs of previous runs, so we overwrite them each time.
 - finally, enable the logger for your package.
 
 We're setup.
@@ -195,4 +195,4 @@ Now when a job fails, you'll be able to download or browse the logs:
 
 Or even from the pipelines pages:
 
-![artifacts1]({{ "/assets/gitlab_artifacts2.png" | absolute_url }})
+![artifacts2]({{ "/assets/gitlab_artifacts2.png" | absolute_url }})
