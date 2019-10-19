@@ -56,8 +56,8 @@ his Masters in C.S. in Université de Strasbourg.
 He is therefore able to write code, amongst other things (see [COMMANDS](#commands)).
 
 #### **GLOBAL OPTIONS**
-These options influence how the command will be run. Please note that some switches
-may not apply to some commands.
+These options influence how the command will be run.
+Please note that some switches may not apply to some commands.
 
 `--chatty`
 
@@ -89,14 +89,15 @@ sanity of mind.
 <p class="i2"></p>
 Act with more reserve. Talk less. This option overrides and disables `--chatty`.
 There is a high probability that `--over-thinking` will be switched on using
-`--introvert`. This option can be used to avoid unnecessary jokes during professional
-interactions, but try not to use it too much as it will reduce enthusiasm
-and increase risk of switching `--silent` on.
+`--introvert`. This option can be used to avoid unnecessary jokes
+during professional interactions, but try not to use it too much
+as it will reduce enthusiasm and increase risk of switching `--silent` on.
 
 `--open`
 
 <p class="i2"></p>
-Stay open! Every thing you hear or see will be received with more curiosity and enthusiasm.
+Stay open! Every thing you hear or see will be received
+with more curiosity and enthusiasm.
 Best used in combination with `learn` and `work` commands.
 
 `--over-thinking`
@@ -149,89 +150,159 @@ though, because other vital tasks need attention.
 `drink`
 
 <p class="i2"></p>
-Drink liquids. Options are: `--water` (the default), `--juice`, `--alcohol` and `--soda`.
-Juices are good in the morning, while alcohol is better for social events, though
-not mandatory. Soda is really an extra, for example when eating pizza (both go well
+Drink liquids. Options are: `--water` (the default),
+`--juice`, `--alcohol` and `--soda`.
+Juices are good in the morning, while alcohol is better for social events,
+though not mandatory.
+Soda is really an extra, for example when eating pizza (both go well
 together). Water is mandatory. A bottle of it must always be available at night.
 
 `eat`
 
 <p class="i2"></p>
-Eat food. Almost every kind of food is accepted as positional argument. Ability to
-eat insects is not yet implemented, but might be in the future.
+Eat food. Almost every kind of food is accepted as positional argument.
+Ability to eat insects is not yet implemented, but might be in the future.
 
 `exercise`
 
 <p class="i2"></p>
-Exercise command should be run regularly, like two or three times a week. Option `--bike`
-is built-in and very often used as the main transport mean. Currently, option `--badminton`
-is available, and soon maybe `--basketball` will be implemented.
+Exercise command should be run regularly, like two or three times a week.
+Option `--bike` is built-in and very often used as the main transport mean.
+Currently, option `--badminton` is available,
+and soon maybe `--basketball` will be implemented.
 
 `learn`
 
 <p class="i2"></p>
-TODO
+Learn new things. It takes time and depending on the thing to learn,
+`--relucant` might be enabled at first.
+In any case, don't forget to use the `--open` global option to
+ease the process.
+One thing that seems to be instantly learned and remembered
+is new keyboard shortcuts.
 
 `listen`
 
 <p class="i2"></p>
-Focus on listening. Probability of talking is decreased. This command is well used when
-someone is asking a question. It helps preventing an anticipation bias that often leads
+Focus on listening. Probability of talking is decreased.
+This command is well used when someone is asking a question.
+It helps preventing an anticipation bias that often leads
 to an incorrect comprehension of the question, and thus an incorrect answer.
 
 `love`
 
 <p class="i2"></p>
-TODO
+You can love many things and people. Don't restrict yourself.
+Isn't love a choice after all? Brutal black metal was not loved at first,
+it took a bit of time and training to be able to listen to it,
+but now it's one of the most-cherished thing!
 
 `play`
 
 <p class="i2"></p>
-Play single or multi-player. Card games, video games, especially horror ones, all sorts of games!
+Play single or multi-player. Card games, video games,
+especially horror ones, all sorts of games!
+Option `--vr` is already implemented but is waiting for adequate hardware.
 
 `read`
 
 <p class="i2"></p>
-TODO
+Read a book, an article, on joke, docs, a tutorial, news.
+Read it on a desktop screen, on a smartphone screen, on an e-book screen, or...
+on paper directly? Technology is crazy. While using this option,
+please take care of your eyes: enable blue-light filters and adapt luminosity.
 
 `sleep`
 
 <p class="i2"></p>
-Sleep must be done regularly and in sufficient quantity to ensure proper performance in any other activity.
-Run this command at least once per day (better during the night) for at least eight hours. More is better.
-Less and headache will appear, and `--reluctant` flag will be turned on until more sleep is done.
+Sleep must be done regularly and in sufficient quantity
+to ensure proper performance in any other activity.
+Run this command at least once per day (better during the night)
+for at least eight hours. More is better.
+Less, and headache will appear, and `--reluctant` flag
+will be turned on until more sleep is done.
 
 `talk`
 
 <p class="i2"></p>
-TODO
+Talk about universal determinism at parties.
 
 `think`
 
 <p class="i2"></p>
-TODO
+Don't start to write code for your complex project idea immediately!
+Think it before! But be careful: **not too much**. You'll want to implement
+all the options. Yes, all. It will end as a generic program to do anything,
+and it will fail.
 
 `work`
 
 <p class="i2"></p>
-TODO
+Chop chop! It's time to work! But your work is your passion,
+so it's not really work, is it?
 
 `write`
 
 <p class="i2"></p>
-TODO
+Write man pages, blog posts, documentation, code, fiction.
+You should write more fiction.
 
 #### **BUGS**
+`pawamoy` has an extra pair of ribs.
+This bug does not come from the two engineers that designed `pawamoy`.
+It is due to some binary data corruption during replication over network.
+It can't be fixed.
 
 #### **COPYRIGHT**
+Copyright 1991-2009 Mazzucotelli Foundation, Inc.
+
+This is proprietary software; see the source for copying conditions.
+There is **NO** warranty; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
 
 #### **ENVIRONMENT VARIABLES**
+`HOME` - Define the home `pawamoy` will use.
+"Moon", "Area 51", or "Public bathrooms" are not valid values.
+
+`ENERGY` - An integer between 1 and 100.
+Using 0 will cause `pawamoy` to self-destruct.
+Use with caution.
+Use commands `eat` then `sleep` when `ENERGY` is low to increase it again.
+
+`HEALTH` - An integer between 1 and 100.
+Using 0 is reserved for the end-of-life date of `pawamoy`.
+Don't use it before.
+
+`HUNGER` - An integer between 1 and 100. 0 mens extra-full, 100 means starving.
+Use command `eat` to decrease `HUNGER`.
+
+`TEMPERATURE` - In degree Celsius.
+Try to increase it just a bit when `HEALTH` is lowering.
+This is experimental. Use it at your own risk.
+
 
 #### **FILES**
+`/boot/config` - This file was useful only once, because `pawamoy` can never
+reboot. Once shut down, it stays shut down.
+
+`/sys/cpu` - This file was auto-generated, and is self-mutating. Please
+don't mess too much with this file.
+
+`/etc/pawamoy/principles` - You can modify principles here. Don't add too many.
+
+`/var/log/pawamoy` - Interesting statistics and analytics about `pawamoy` usage.
+
 
 #### **LICENSE**
+`pawamoy` is released under the terms of the `Human Decency` license.
+Please use it accordingly.
+You cannot duplicate `pawamoy`. At least for now.
 
 #### **SEE ALSO**
+[`@pawamoy(github)`](https://github.com/pawamoy/),
+[`@pawamoy(reddit)`](https://reddit.com/u/pawamoy/),
+[`@paaawamoy(instagram)`](https://www.instagram.com/paaawamoy/),
+[`@pawamoy(twitter)`](https://twitter.com/pawamoy)
 
 #### **NOTES**
 This man page is a perpetual work in progress. Expect some delays between
