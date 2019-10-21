@@ -278,7 +278,7 @@ Use command `eat` to decrease `HUNGER`.
 
 `TEMPERATURE` - In degree Celsius.
 Try to increase it just a bit when `HEALTH` is lowering.
-This is experimental. Use it at your own risk.
+This is experimental. Use it at my own risk.
 
 
 #### **FILES**
