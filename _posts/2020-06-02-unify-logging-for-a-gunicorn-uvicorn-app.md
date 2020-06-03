@@ -331,3 +331,5 @@ and run our application!
 ---
 
 Well, I'm not really proud of this code, but it works!
+
+![logs]({{ "/assets/gunicorn_logs.png" | absolute_url }})
