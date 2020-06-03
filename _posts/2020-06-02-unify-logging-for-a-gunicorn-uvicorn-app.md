@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unify Python logging for a Gunicorn/Uvicorn/FastAPI application"
-date: 2020-06-03 16:00:00
+date: 2020-06-02 16:00:00
 tags: gunicorn uvicorn fastapi loguru logs logging unified unify httpx kibana
 image: /assets/gunicorn_logs.png
 excerpt_separator: <!--more-->
