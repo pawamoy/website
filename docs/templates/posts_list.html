@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{% block content %}
+  {{ page.content }}
+  {% for page in nav.pages|rejectattr("meta.date", "none") %}
+    {% if page.url.startswith("posts/") %}
+      <hr>
+      <span class="post-date">{{ page.meta.date.strftime("%b %d, %Y") }}</span>
+      <h2 class="post-title"><a href="{{ page.url }}" >{{ page.title }}</a></h1>
+      {{ page.content.split("<!--more-->", 1)[0] }}
+      {% if page.meta.image %}
+        <div class="post-excerpt-image"><img src="{{ page.meta.image }}"/></div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+.post-excerpt-image {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000, transparent);
+}
+
+.post-excerpt-image img {
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.post-date {
+  font-size: 0.8em;
+  text-decoration: underline;
+}
+
+.post-title {
+  margin-top: 0 !important;
+}
+
+.post-meta {
+  font-size: 0.8em;
+  text-decoration: underline;
+  color: grey;
+  text-align: right;
+}

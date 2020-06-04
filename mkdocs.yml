@@ -1,0 +1,93 @@
+site_name: "pawamoy's website"
+site_description: "Findings, thoughts, tutorials, work. Pieces of my mind!"
+site_url: "https://pawamoy.github.io/"
+repo_url: "https://github.com/pawamoy/pawamoy.github.io/"
+repo_name: "pawamoy.github.io"
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Posts:
+      - posts/unify-logging-for-a-gunicorn-uvicorn-app.md
+      - posts/save-pytest-logs-as-artifact-gitlab-ci.md
+      - posts/challenge-fill-space-one-line-90-degree-same-direction.md
+      - posts/django-auth-server-for-shiny.md
+      - posts/dual-screens-setup-nvidia-bunsenlabs-debian-jessie.md
+      - posts/docker-compose-django-postgres-nginx.md
+      - posts/python-static-code-analysis-tools.md
+      - posts/write-and-use-a-tox-plugin-from-inside-your-package.md
+      - posts/documentation-in-your-shell-scripts-using-shellman.md
+      - posts/django-dashboard-with-suit-and-highcharts.md
+  - Showcase:
+      - Showcase Grid: showcase.md
+      - Projects:
+        - showcase/aria2p.md
+        - showcase/mkdocstrings.md
+        - showcase/copier-poetry.md
+        - showcase/pytkdocs.md
+        - showcase/git-changelog.md
+        - showcase/shell-history.md
+        - showcase/failprint.md
+        - showcase/dependenpy.md
+        - showcase/mvodb.md
+        - showcase/shelldemo.md
+        - showcase/shellman.md
+      # - showcase/shellm/coverage.md
+      # - showcase/shellm/debug.md
+      # - showcase/shellm/profiler.md
+      # - showcase/shellm/trace.md
+      # - showcase/shellm/loop.md
+      # - showcase/privibot.md
+      # - showcase/pawabot.md
+  - Credits: credits.md
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: amber
+    accent: indigo
+  custom_dir: docs/templates
+  features:
+    - tabs
+
+extra_css:
+  - css/custom.css
+
+markdown_extensions:
+  - meta
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - toc:
+      permalink: "¤"
+
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        2020/06/02/unify-logging-for-a-gunicorn-uvicorn-app.md: posts/unify-logging-for-a-gunicorn-uvicorn-app.md
+        2019/10/17/save-pytest-logs-as-artifact-gitlab-ci.md: posts/save-pytest-logs-as-artifact-gitlab-ci.md
+        2019/02/01/challenge-fill-space-one-line-90-degree-same-direction.md: posts/challenge-fill-space-one-line-90-degree-same-direction.md
+        2018/03/15/django-auth-server-for-shiny.md: posts/django-auth-server-for-shiny.md
+        2018/03/09/dual-screens-setup-nvidia-bunsenlabs-debian-jessie.md: posts/dual-screens-setup-nvidia-bunsenlabs-debian-jessie.md
+        2018/02/01/docker-compose-django-postgres-nginx.html.md: posts/docker-compose-django-postgres-nginx.md
+        2017/05/31/python-static-code-analysis-tools.html.md: posts/python-static-code-analysis-tools.md
+        2016/12/07/documentation-in-your-shell-scripts-using-shellman.html.md: posts/documentation-in-your-shell-scripts-using-shellman.md
+        2016/12/07/write-and-use-a-tox-plugin-from-inside-your-package.html.md: posts/write-and-use-a-tox-plugin-from-inside-your-package.md
+        2016/04/06/django-dashboard-with-suit-and-highcharts.html.md: posts/django-dashboard-with-suit-and-highcharts.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pawamoy
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/pawamoy
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/timothée-mazzucotelli-0321607b/
+    - icon: fontawesome/brands/instagram
+      link: https://instagram.com/paaawamoy
