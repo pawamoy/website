@@ -1,8 +1,8 @@
 site_name: "pawamoy's website"
 site_description: "Findings, thoughts, tutorials, work. Pieces of my mind!"
 site_url: "https://pawamoy.github.io/"
-repo_url: "https://github.com/pawamoy/pawamoy.github.io/"
-repo_name: "pawamoy.github.io"
+repo_url: "https://github.com/pawamoy/website/"
+repo_name: "pawamoy/website"
 
 nav:
   - Home: index.md
