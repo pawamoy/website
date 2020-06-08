@@ -7,6 +7,7 @@ repo_name: "pawamoy/website"
 nav:
   - Home: index.md
   - About: about.md
+  - Credits: credits.md
   - Posts:
       - posts/unify-logging-for-a-gunicorn-uvicorn-app.md
       - posts/save-pytest-logs-as-artifact-gitlab-ci.md
@@ -39,7 +40,6 @@ nav:
       # - showcase/shellm/loop.md
       # - showcase/privibot.md
       # - showcase/pawabot.md
-  - Credits: credits.md
 
 theme:
   name: material

@@ -15,9 +15,6 @@
   .md-content {
     max-width: none;
   }
-  .md-content__inner {
-    /* margin-left: 30%; */
-  }
 }
 
 h1 {
@@ -38,6 +35,7 @@ tr:nth-child(2n+1) {
   text-align: center;
 }
 
+/* Credits to https://github.com/IanLunn/Hover */
 .hover-grow {
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
