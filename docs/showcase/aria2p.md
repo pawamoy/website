@@ -50,4 +50,4 @@ for download details, configuration option, more actions, etc.
 
 I want to write a tutorial on how to write an HTOP-like interface in Python
 someday, using `aria2p` as an example. Such a tutorial would have helped me
-tremendously back then, so I'm sure it would help other develoopers.
+tremendously back then, so I'm sure it would help other developers.
