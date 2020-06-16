@@ -6,7 +6,6 @@ authors:
   - Timothée Mazzucotelli
 tags: draw drawing challenge art fun games
 image: /assets/fill-space-drawing.jpg
-disqus: pawamoy
 ---
 
 Last night I was doing that in my head:

@@ -5,7 +5,6 @@ date: 2018-03-09
 authors:
   - Timothée Mazzucotelli
 tags: nvidia driver install bunsenlabs debian dual screen jessie xorg
-disqus: pawamoy
 ---
 
 Honestly, this post is mostly a personal memo. I will NOT go through this again!

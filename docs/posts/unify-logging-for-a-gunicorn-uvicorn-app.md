@@ -6,7 +6,6 @@ authors:
   - Timothée Mazzucotelli
 tags: gunicorn uvicorn fastapi loguru logs logging unified unify httpx kibana
 image: /assets/gunicorn_logs.png
-disqus: pawamoy
 ---
 
 I recently started playing with [FastAPI](https://fastapi.tiangolo.com/)

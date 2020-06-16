@@ -6,7 +6,6 @@ authors:
   - Timothée Mazzucotelli
 tags: pytest loguru logs gitlab ci artifact
 image: /assets/loguru.png
-disqus: pawamoy
 ---
 
 While I was writing tests for one of my latest project,

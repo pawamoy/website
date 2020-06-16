@@ -6,7 +6,6 @@ authors:
   - Timothée Mazzucotelli
 tags: django admin dashboard suit highcharts
 image: /assets/pie-chart.png
-disqus: pawamoy
 ---
 
 One day my boss said "I want to see some statistical data about the users".

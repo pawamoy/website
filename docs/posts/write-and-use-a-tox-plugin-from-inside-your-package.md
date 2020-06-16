@@ -5,7 +5,6 @@ date: 2016-12-07
 authors:
   - Timothée Mazzucotelli
 tags: python package tox plugin
-disqus: pawamoy
 ---
 
 So let's say you wrote a program that is using tox and you want to add

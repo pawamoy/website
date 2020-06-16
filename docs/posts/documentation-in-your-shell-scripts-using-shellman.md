@@ -5,7 +5,6 @@ date: 2016-12-07
 authors:
   - Timothée Mazzucotelli
 tags: shell doc documentation man page markdown text auto help script library shellman
-disqus: pawamoy
 ---
 
 When I write a script, I like to have a `-h, --help` option to help me remember what it does
