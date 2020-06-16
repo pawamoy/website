@@ -14,7 +14,7 @@ I tried some GUI applications for torrents (Transmission, Deluge),
 and was always disappointed by their lack of CLI-friendliness.
 
 On [r/torrents](https://reddit.com/r/torrents), people pointed me to
-[RTorrent](https://rakshasa.github.io/rtorrent/) (or is it RTorrent? rTorrent?),
+[Rtorrent](https://rakshasa.github.io/rtorrent/) (or is it RTorrent? rTorrent?),
 which seems to be extremely configurable, scriptable, and powerful.
 But it also seemed very complicated to grasp, particularly because it
 implements its own configuration language.
@@ -50,4 +50,4 @@ for download details, configuration option, more actions, etc.
 
 I want to write a tutorial on how to write an HTOP-like interface in Python
 someday, using `aria2p` as an example. Such a tutorial would have helped me
-tremendously back then, so I'm sure it would help other develoopers.
+tremendously back then, so I'm sure it would help other developers.
