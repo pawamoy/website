@@ -4,4 +4,4 @@ cd ../pawamoy.github.io || exit 1
 mkdocs gh-deploy \
   --config-file ../website/mkdocs.yml \
   --remote-branch master
-git stash
+git reset --hard HEAD
