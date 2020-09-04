@@ -20,6 +20,8 @@ with the goal being to find combinations
 that will not have an extra middle line
 when an optional Jinja clause is false.
 
+<!--more-->
+
 ## Script
 
 ```python
