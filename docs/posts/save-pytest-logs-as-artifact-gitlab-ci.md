@@ -117,6 +117,7 @@ def write_logs(request):
 ```
 
 Let's explain this code in details.
+
 - `@pytest.fixture(autouse=True)`: this decorator tells to always run
   the declared function before a test.
 - `def write_logs(request):`: the `request` parameter actually tells
@@ -137,7 +138,7 @@ Let's explain this code in details.
   the logs of previous runs, so we overwrite them each time.
 - finally, enable the logger for your package.
 
-We're setup.
+We're set up.
 
 With this tests structure:
 

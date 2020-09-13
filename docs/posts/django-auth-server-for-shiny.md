@@ -286,7 +286,7 @@ view, and then we add a script to retrieve the Shiny app contents:
 <script>
   $(document).ready(function () {
 
-    $.getJSON('{% raw %}{% url "shiny_contents" %}{% endraw %}', function (data) {
+    $.getJSON('{% url "shiny_contents" %}', function (data) {
 
       var iframe = document.createElement("iframe");
       $('#contents').append(iframe);
@@ -306,6 +306,7 @@ view, and then we add a script to retrieve the Shiny app contents:
 ```
 
 Several things happen here:
+
 - we declare a `div` of ID `contents` in which we will add an `iframe`,
 - we make use of JQuery's `$(document).ready` and `$.getJSON` methods to
   load HTML contents from an URL returning JSON,
