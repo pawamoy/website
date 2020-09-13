@@ -7,13 +7,15 @@
     {% if page.meta.authors %}by {{ page.meta.authors|join(",") }}{% endif %}
   </p>
   {{ page.content }}
+{% endblock %}
 
+{% block disqus %}
   <hr>
   <script src="https://utteranc.es/client.js"
-        repo="pawamoy/pawamoy.github.io"
-        issue-term="pathname"
-        theme="preferred-color-scheme"
-        crossorigin="anonymous"
-        async>
+          repo="pawamoy/pawamoy.github.io"
+          issue-term="pathname"
+          theme="preferred-color-scheme"
+          crossorigin="anonymous"
+          async>
   </script>
 {% endblock %}
