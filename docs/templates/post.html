@@ -1,13 +1,5 @@
 {% extends "main.html" %}
 
-{% block announce %}
-  <b>🚧 Comments are temporarily deactivated. 🚧</b><br>
-  The reason is: Disqus fails at migrating them to the new URLs.
-  I will replace Disqus with <a href="https://posativ.org/isso/"><code>Isso</code></a> shortly.
-  The past comments are safe, and I will re-import them in Isso
-  once I have it installed on a personal server.
- {% endblock %}
-
 {% block content %}
   <h1>{{ page.title }}</h1>
   <p class="post-meta">
@@ -15,4 +7,13 @@
     {% if page.meta.authors %}by {{ page.meta.authors|join(",") }}{% endif %}
   </p>
   {{ page.content }}
+
+  <hr>
+  <script src="https://utteranc.es/client.js"
+        repo="pawamoy/pawamoy.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+  </script>
 {% endblock %}
