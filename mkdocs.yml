@@ -47,8 +47,8 @@ theme:
   name: material
   palette:
     scheme: slate
-    primary: amber
-    accent: indigo
+    primary: teal
+    accent: purple
   custom_dir: docs/templates
   features:
     - tabs
