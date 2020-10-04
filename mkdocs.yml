@@ -9,6 +9,7 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+      - posts/howto-edit-git-commit-contents.md
       - posts/migrate-disqus-comments-to-utterances-github.md
       - posts/how-to-deal-with-jinja2-spacing.md
       - posts/unify-logging-for-a-gunicorn-uvicorn-app.md
