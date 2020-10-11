@@ -9,19 +9,25 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
-      - posts/howto-edit-git-commit-contents.md
-      - posts/migrate-disqus-comments-to-utterances-github.md
-      - posts/how-to-deal-with-jinja2-spacing.md
-      - posts/unify-logging-for-a-gunicorn-uvicorn-app.md
-      - posts/save-pytest-logs-as-artifact-gitlab-ci.md
-      - posts/challenge-fill-space-one-line-90-degree-same-direction.md
-      - posts/django-auth-server-for-shiny.md
-      - posts/dual-screens-setup-nvidia-bunsenlabs-debian-jessie.md
-      - posts/docker-compose-django-postgres-nginx.md
-      - posts/python-static-code-analysis-tools.md
-      - posts/write-and-use-a-tox-plugin-from-inside-your-package.md
-      - posts/documentation-in-your-shell-scripts-using-shellman.md
-      - posts/django-dashboard-with-suit-and-highcharts.md
+      - 2020:
+        - posts/plugins-as-python-native-namespace-packages.md
+        - posts/howto-edit-git-commit-contents.md
+        - posts/migrate-disqus-comments-to-utterances-github.md
+        - posts/how-to-deal-with-jinja2-spacing.md
+        - posts/unify-logging-for-a-gunicorn-uvicorn-app.md
+      - 2019:
+        - posts/save-pytest-logs-as-artifact-gitlab-ci.md
+        - posts/challenge-fill-space-one-line-90-degree-same-direction.md
+      - 2018:
+        - posts/django-auth-server-for-shiny.md
+        - posts/dual-screens-setup-nvidia-bunsenlabs-debian-jessie.md
+        - posts/docker-compose-django-postgres-nginx.md
+      - 2017:
+        - posts/python-static-code-analysis-tools.md
+      - 2016:
+        - posts/write-and-use-a-tox-plugin-from-inside-your-package.md
+        - posts/documentation-in-your-shell-scripts-using-shellman.md
+        - posts/django-dashboard-with-suit-and-highcharts.md
   - Showcase:
       - Showcase Grid: showcase.md
       - Projects:
