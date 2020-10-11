@@ -72,8 +72,8 @@ class StubbedGunicornLogger(Logger):
         self.error_logger.addHandler(handler)
         self.access_logger = logging.getLogger("gunicorn.access")
         self.access_logger.addHandler(handler)
-        self.error_log.setLevel(LOG_LEVEL)
-        self.access_log.setLevel(LOG_LEVEL)
+        self.error_logger.setLevel(LOG_LEVEL)
+        self.access_logger.setLevel(LOG_LEVEL)
 
 
 class StandaloneApplication(BaseApplication):
@@ -209,8 +209,8 @@ class StubbedGunicornLogger(Logger):
         self.error_logger.addHandler(handler)
         self.access_logger = logging.getLogger("gunicorn.access")
         self.access_logger.addHandler(handler)
-        self.error_log.setLevel(LOG_LEVEL)
-        self.access_log.setLevel(LOG_LEVEL)
+        self.error_logger.setLevel(LOG_LEVEL)
+        self.access_logger.setLevel(LOG_LEVEL)
 ```
 
 This code was copied from this
@@ -218,9 +218,6 @@ This code was copied from this
 by [@dcosson](https://github.com/dcosson). Thanks!
 It will allow us to override Gunicorn's own logging configuration
 so its logs can be formatted like the rest.
-
-I'm not sure about the last two lines, as removing them doesn't change anything.
-There are still mysteries about Python logging that I couldn't resolve...
 
 ---
 

@@ -58,7 +58,7 @@ First, [export your Disqus comments](https://help.disqus.com/en/articles/1717164
 
 Then you'll need two Python libraries:
 
-- [`pygithub`](https://pypi.org/project/pygithub33/)
+- [`pygithub`](https://pypi.org/project/PyGithub/)
 - [`xmltodict`](https://pypi.org/project/xmltodict/)
 
 You'll also need to create a token on GitHub,
@@ -78,6 +78,7 @@ export BASE_URL="https://yourUsername.github.io/"
 Now you can copy/paste and run this script:
 
 ```python
+import time
 import xmltodict
 from github import Github
 
@@ -133,6 +134,8 @@ def disqus_to_github():
             body = f"*Original author:* **{name}{mention}**  \n{body}" 
         print(f"Posting {i}/{len(posts)} to issue {issue.number}    \r", end="")
         issue.create_comment(body)
+        # prevent hitting rate limits!
+        time.sleep(0.5)
 
     print()
 
