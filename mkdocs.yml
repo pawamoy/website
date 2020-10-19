@@ -10,6 +10,7 @@ nav:
   - Credits: credits.md
   - Posts:
       - 2020:
+        - posts/pass-makefile-args-as-typed-in-command-line.md
         - posts/plugins-as-python-native-namespace-packages.md
         - posts/howto-edit-git-commit-contents.md
         - posts/migrate-disqus-comments-to-utterances-github.md
