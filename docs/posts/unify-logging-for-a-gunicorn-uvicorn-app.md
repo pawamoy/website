@@ -29,6 +29,8 @@ I didn't want to split logging configuration, Gunicorn configuration,
 and the rest of the code into multiple files, as it was harder to wrap
 my head around it.
 
+## Gunicorn + Uvicorn version
+
 Everything is contained in this single file:
 
 ```python
@@ -334,3 +336,79 @@ Well, I'm not really proud of this code, but it works!
 ![logs](/assets/gunicorn_logs.png)
 
 ![logs_json](/assets/gunicorn_logs_json.png)
+
+## Uvicorn-only version
+
+<small><em>Added Nov 11, 2020.</em></small>
+
+The Uvicorn-only version is way more simple.
+Note that since this post was published the first time,
+a new Uvicorn version was released, which contained a fix
+for its logging configuration:
+could be in [0.11.6](https://github.com/encode/uvicorn/compare/0.11.5...0.11.6)
+([*Don't override the root logger*](https://github.com/encode/uvicorn/commit/e382440aa6b604ecdd323288279876767ab36443))
+or [0.12.0](https://github.com/encode/uvicorn/releases/tag/0.12.0)
+([*Dont set log level for root logger*](https://github.com/encode/uvicorn/commit/df81b1684493ad97e8ba3fa323cc329089880a7c)).
+
+This simplifies a lot the `setup_logging` function,
+which now makes more sense and is easier to understand:
+
+```python
+import os
+import logging
+import sys
+
+from uvicorn import Config, Server
+from loguru import logger
+
+LOG_LEVEL = logging.getLevelName(os.environ.get("LOG_LEVEL", "DEBUG"))
+JSON_LOGS = True if os.environ.get("JSON_LOGS", "0") == "1" else False
+
+
+class InterceptHandler(logging.Handler):
+    def emit(self, record):
+        # Get corresponding Loguru level if it exists
+        try:
+            level = logger.level(record.levelname).name
+        except ValueError:
+            level = record.levelno
+
+        # Find caller from where originated the logged message
+        frame, depth = logging.currentframe(), 2
+        while frame.f_code.co_filename == logging.__file__:
+            frame = frame.f_back
+            depth += 1
+
+        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+
+
+def setup_logging():
+    # intercept everything at the root logger
+    logging.root.handlers = [InterceptHandler()]
+    logging.root.setLevel(LOG_LEVEL)
+
+    # remove every other logger's handlers
+    # and propagate to root logger
+    for name in logging.root.manager.loggerDict.keys():
+        logging.getLogger(name).handlers = []
+        logging.getLogger(name).propagate = True
+
+    # configure loguru
+    logger.configure(handlers=[{"sink": sys.stdout, "serialize": JSON_LOGS}])
+
+
+if __name__ == '__main__':
+    server = Server(
+        Config(
+            "my_app.app:app",
+            host="0.0.0.0",
+            log_level=LOG_LEVEL,
+        ),
+    )
+
+    # setup logging last, to make sure no library overwrites it
+    # (they shouldn't, but it happens)
+    setup_logging()
+
+    server.run()
+```
