@@ -1,10 +1,10 @@
 ---
 template: post.html
-title: "Save the logs generated during a pytest run as a job artifact on GitLab CI"
+title: "Save the logs generated during a pytest run as a job artifact on GitLab/GitHub CI"
 date: 2019-10-17
 authors:
   - Timothée Mazzucotelli
-tags: pytest loguru logs gitlab ci artifact
+tags: pytest loguru logs gitlab ci artifact github
 image: /assets/loguru.png
 ---
 
@@ -44,6 +44,7 @@ What I use:
 - [GitLab CI](https://docs.gitlab.com/ee/ci/) as Continuous Integration service.
 
 ## Logging with loguru
+
 Let say you have an interactive function that accepts user input
 and execute code according to this input. Anything could happen,
 right? So you log every exception that might happen like this:
@@ -59,6 +60,7 @@ def run():
 ```
 
 ## Testing the code
+
 Now in `pytest`, you would write a test function:
 
 ```python
@@ -75,6 +77,7 @@ What we're interested in is how we will write the logs
 of each test function into its own file on the disk.
 
 ## Writing logs for each test
+
 `pytest` allows you to run code before each test using
 fixtures. It's a bit more powerful than that (check the docs),
 but this is how we use it in this post.
@@ -180,6 +183,7 @@ OK great! Now let's configure GitLab CI to use this directory
 as an artifact.
 
 ## Logs artifact on GitLab CI
+
 You'll typically want to download the logs when a job failed.
 
 Add this in your test job:
@@ -199,3 +203,39 @@ Now when a job fails, you'll be able to download or browse the logs:
 Or even from the pipelines pages:
 
 ![artifacts2](/assets/gitlab_artifacts2.png)
+
+## Logs artifact in GitHub Workflow
+
+Same thing, but for a GitHub workflow:
+
+```yaml
+jobs:
+
+  tests:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
+    runs-on: ${{ matrix.os }}
+
+    # setup steps, etc.
+
+    - name: Run the test suite
+      run: poetry run duty test  # or your actual test command
+
+    - name: Archive tests logs
+      uses: actions/upload-artifact@v2
+      if: ${{ failure() }}
+      with:
+        name: tests-logs-${{ matrix.os }}-py${{ matrix.python-version }}
+        path: |
+          tests/logs
+        retention-days: 7
+```
+
+You'll be able to download the artifacts from the workflow page:
+
+![artifacts_github](/assets/github_artifacts.png)
