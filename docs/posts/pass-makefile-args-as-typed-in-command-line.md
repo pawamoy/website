@@ -83,7 +83,7 @@ I got a nice solution!
 Let me sprinkle this dark magic right here:
 
 ```Makefile
-args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a=$($a)))
+args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a="$($a)"))
 
 check_args = files
 docs_serve_args = host port
@@ -106,7 +106,7 @@ What happens here?!
 ## Recipe
 
 ```Makefile
-args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a=$($a)))
+args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a="$($a)"))
 ```
 
 The heart of the magic. We declare a function called `args`.
@@ -173,7 +173,7 @@ because you cannot have arguments with the same name for different commands.
 Or at least, you could not use these commands and arguments at the same time.
 
 ```Makefile
-args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a=$($a)))
+args = $(foreach a,$($(subst -,_,$1)_args),$(if $(value $a),$a="$($a)"))
 
 rule1_args = version
 rule2_args = version name
