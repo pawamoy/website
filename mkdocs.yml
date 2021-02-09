@@ -81,6 +81,43 @@ plugins:
   - search
   - redirects:
       redirect_maps:
+        # mkdocstrings
+        mkdocstrings.md: https://mkdocstrings.github.io/
+        mkdocstrings/usage.md: https://mkdocstrings.github.io/usage/
+        mkdocstrings/handlers/overview.md: https://mkdocstrings.github.io/handlers/overview/
+        mkdocstrings/handlers/python.md: https://mkdocstrings.github.io/handlers/python/
+        mkdocstrings/reference/handlers/base.md: https://mkdocstrings.github.io/reference/handlers/base/
+        mkdocstrings/reference/handlers/python.md: https://mkdocstrings.github.io/reference/handlers/python/
+        mkdocstrings/reference/extension.md: https://mkdocstrings.github.io/reference/extension/
+        mkdocstrings/reference/plugin.md: https://mkdocstrings.github.io/reference/plugin/
+        mkdocstrings/reference/references.md: https://mkdocstrings.github.io/reference/references/
+        mkdocstrings/troubleshooting.md: https://mkdocstrings.github.io/troubleshooting/
+        mkdocstrings/contributing.md: https://mkdocstrings.github.io/contributing/
+        mkdocstrings/code_of_conduct.md: https://mkdocstrings.github.io/code_of_conduct/
+        mkdocstrings/changelog.md: https://mkdocstrings.github.io/changelog/
+        mkdocstrings/credits.md: https://mkdocstrings.github.io/credits/
+        mkdocstrings/license.md: https://mkdocstrings.github.io/license/
+
+        # pytkdocs
+        pytkdocs.md: https://mkdocstrings.github.io/pytkdocs/
+        pytkdocs/reference/__init__.md: https://mkdocstrings.github.io/pytkdocs/reference/__init__/
+        pytkdocs/reference/__main__.md: https://mkdocstrings.github.io/pytkdocs/reference/__main__/
+        pytkdocs/reference/cli.md: https://mkdocstrings.github.io/pytkdocs/reference/cli/
+        pytkdocs/reference/loader.md: https://mkdocstrings.github.io/pytkdocs/reference/loader/
+        pytkdocs/reference/objects.md: https://mkdocstrings.github.io/pytkdocs/reference/objects/
+        pytkdocs/reference/parsers/__init__.md: https://mkdocstrings.github.io/pytkdocs/reference/parsers/__init__/
+        pytkdocs/reference/parsers/attributes.md: https://mkdocstrings.github.io/pytkdocs/reference/parsers/attributes/
+        pytkdocs/reference/parsers/docstrings/__init__.md: https://mkdocstrings.github.io/pytkdocs/reference/parsers/docstrings/__init__/
+        pytkdocs/reference/parsers/docstrings/base.md: https://mkdocstrings.github.io/pytkdocs/reference/parsers/docstrings/base/
+        pytkdocs/reference/parsers/docstrings/google.md: https://mkdocstrings.github.io/pytkdocs/reference/parsers/docstrings/google/
+        pytkdocs/reference/properties.md: https://mkdocstrings.github.io/pytkdocs/reference/properties/
+        pytkdocs/reference/serializer.md: https://mkdocstrings.github.io/pytkdocs/reference/serializer/
+        pytkdocs/contributing.md: https://mkdocstrings.github.io/pytkdocs/contributing/
+        pytkdocs/code_of_conduct.md: https://mkdocstrings.github.io/pytkdocs/code_of_conduct/
+        pytkdocs/changelog.md: https://mkdocstrings.github.io/pytkdocs/changelog/
+        pytkdocs/credits.md: https://mkdocstrings.github.io/pytkdocs/credits/
+
+        # old posts
         2020/06/02/unify-logging-for-a-gunicorn-uvicorn-app.md: posts/unify-logging-for-a-gunicorn-uvicorn-app.md
         2019/10/17/save-pytest-logs-as-artifact-gitlab-ci.md: posts/save-pytest-logs-as-artifact-gitlab-ci.md
         2019/02/01/challenge-fill-space-one-line-90-degree-same-direction.md: posts/challenge-fill-space-one-line-90-degree-same-direction.md
