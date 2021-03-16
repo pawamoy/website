@@ -78,6 +78,7 @@ export BASE_URL="https://yourUsername.github.io/"
 Now you can copy/paste and run this script:
 
 ```python
+import os
 import time
 import xmltodict
 from github import Github
