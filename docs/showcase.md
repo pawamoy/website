@@ -9,9 +9,9 @@ projects:
     description: Automatic documentation from sources, for MkDocs.
     image: mkdocstrings.gif
 
-  - name: copier-poetry
+  - name: copier-pdm
     description: My ultimate Python project template based on <a href="https://github.com/pykong/copier">copier</a>.
-    image: copier-poetry.svg
+    image: copier-pdm.svg
 
   - name: pytkdocs
     description: >

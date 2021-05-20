@@ -1,6 +1,9 @@
 ---
 title: Credits
 permalink: /credits/
+hide:
+- navigation
+- toc
 ---
 
 I want to say **thank you** to all these projects, companies, foundations,

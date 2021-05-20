@@ -35,7 +35,7 @@ nav:
       - Projects:
         - showcase/aria2p.md
         - showcase/mkdocstrings.md
-        - showcase/copier-poetry.md
+        - showcase/copier-pdm.md
         - showcase/pytkdocs.md
         - showcase/git-changelog.md
         - showcase/shell-history.md
@@ -54,13 +54,27 @@ nav:
 
 theme:
   name: material
-  palette:
-    scheme: slate
-    primary: teal
-    accent: purple
-  custom_dir: docs/templates
+  icon:
+    logo: material/currency-sign
   features:
-    - tabs
+  - navigation.tabs
+  - navigation.top
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: teal
+    accent: pink
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: black
+    accent: lime
+    toggle:
+      icon: material/weather-night
+      name: Switch to light mode
+  custom_dir: docs/templates
 
 extra_css:
   - css/custom.css
