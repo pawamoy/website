@@ -26,3 +26,8 @@
   text-decoration: underline;
   text-align: right;
 }
+
+/* More space at the bottom of the page */
+.md-main__inner {
+  margin-bottom: 1.5rem;
+}
