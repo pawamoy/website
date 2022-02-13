@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-. venv/bin/activate
-mkdocs serve
+[ ! -d venv ] && ./scripts/setup.sh
+venv/bin/mkdocs serve
