@@ -5,7 +5,9 @@ date: 2019-02-01
 authors:
   - Timothée Mazzucotelli
 tags: draw drawing challenge art fun games
-image: /assets/fill-space-drawing.jpg
+image:
+  src: /assets/fill-space-drawing.jpg
+  class: crop-excerpt
 ---
 
 Last night I was doing that in my head:

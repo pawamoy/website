@@ -5,7 +5,10 @@ date: 2019-10-17
 authors:
   - Timothée Mazzucotelli
 tags: pytest loguru logs gitlab ci artifact github
-image: /assets/loguru.png
+image:
+  src: /assets/loguru.png
+  class: crop-excerpt
+  add_to_post: yes
 ---
 
 While I was writing tests for one of my latest project,

@@ -5,7 +5,10 @@ date: 2020-06-02
 authors:
   - Timothée Mazzucotelli
 tags: gunicorn uvicorn fastapi loguru logs logging unified unify httpx kibana
-image: /assets/gunicorn_logs.png
+image:
+  src: /assets/gunicorn_logs.png
+  class: crop-excerpt
+  add_to_post: yes
 ---
 
 I recently started playing with [FastAPI](https://fastapi.tiangolo.com/)

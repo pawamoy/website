@@ -5,7 +5,10 @@ date: 2016-04-06
 authors:
   - Timothée Mazzucotelli
 tags: django admin dashboard suit highcharts
-image: /assets/pie-chart.png
+image:
+  src: /assets/pie-chart.png
+  class: crop-excerpt
+  add_to_post: yes
 ---
 
 One day my boss said "I want to see some statistical data about the users".

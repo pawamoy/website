@@ -6,6 +6,9 @@
     Published {{ page.meta.date.strftime("%b %d, %Y") }}
     {% if page.meta.authors %}by {{ page.meta.authors|join(",") }}{% endif %}
   </p>
+  {% if page.meta.image and page.meta.image.add_to_post %}
+    <div class="{{ page.meta.image.class }}"><img src="{{ page.meta.image.src }}"/></div>
+  {% endif %}
   {{ page.content }}
 {% endblock %}
 

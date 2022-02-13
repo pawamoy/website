@@ -1,4 +1,4 @@
-.post-excerpt-image {
+.post-excerpt-image.crop-excerpt {
   width: 100%;
   max-height: 200px;
   overflow: hidden;

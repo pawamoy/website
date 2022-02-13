@@ -5,7 +5,10 @@ date: 2018-02-01
 authors:
   - Timothée Mazzucotelli
 tags: docker example compose nginx django gunicorn pipenv postgres
-image: /assets/docker4.png
+image:
+  src: /assets/docker4.png
+  class: crop-excerpt
+  add_to_post: yes
 ---
 
 This post explains how to setup your Docker configuration for a web application

@@ -5,7 +5,9 @@ date: 2020-10-04
 authors:
   - Timothée Mazzucotelli
 tags: git commit edit howto shell rebase amend
-image: /assets/edit-commit3.png
+image:
+  src: /assets/edit-commit3.png
+  class: crop-excerpt
 ---
 
 When you type `change git commit` or similar keywords in a search engine,

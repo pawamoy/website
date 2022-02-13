@@ -9,7 +9,7 @@
       <span class="post-date">{{ page.meta.date.strftime("%b %d, %Y") }}</span>
       {{ page.content.split("<!--more-->", 1)[0] }}
       {% if page.meta.image %}
-        <div class="post-excerpt-image"><a href="{{ page.url }}"><img src="{{ page.meta.image }}"/></a></div>
+        <div class="post-excerpt-image {{ page.meta.image.class }}"><a href="{{ page.url }}"><img src="{{ page.meta.image.src }}"/></a></div>
       {% endif %}
     {% endif %}
   {% endfor %}

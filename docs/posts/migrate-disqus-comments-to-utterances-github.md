@@ -5,7 +5,9 @@ date: 2020-09-13
 authors:
   - Timothée Mazzucotelli
 tags: howto migrate disqus comments utterances github python xml
-image: /assets/comments.png
+image:
+  src: /assets/comments.png
+  class: crop-excerpt
 ---
 
 When I replaced [Jekyll](https://jekyllrb.com/)

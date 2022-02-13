@@ -5,7 +5,9 @@ date: 2018-03-15
 authors:
   - Timothée Mazzucotelli
 tags: django shiny server nginx auth request security reverse proxy app
-image: /assets/client-server-architecture.png
+image:
+  src: /assets/client-server-architecture.png
+  class: crop-excerpt
 ---
 
 As you may know, [Shiny Server][] comes in two versions: open-source and

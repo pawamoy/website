@@ -5,7 +5,9 @@ date: 2017-05-31
 authors:
   - Timothée Mazzucotelli
 tags: python static code analysis tools
-image: /assets/python-static-code-analysis-tools.png
+image:
+  src: /assets/python-static-code-analysis-tools.png
+  class: crop-excerpt
 ---
 
 Python static code analysis is often used in Continuous Integration.

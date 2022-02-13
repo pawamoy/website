@@ -5,7 +5,9 @@ date: 2020-11-15
 authors:
   - Timothée Mazzucotelli
 tags: localhost local http server fake virtual files testing python
-image: /assets/local-http-server.png
+image:
+  src: /assets/local-http-server.png
+  class: crop-excerpt
 ---
 
 I have developed a Python client/library
