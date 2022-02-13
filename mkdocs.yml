@@ -9,6 +9,8 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+      - 2022:
+        - posts/add-alembic-migrations-to-existing-fastapi-ormar-project.md
       - 2020:
         - posts/local-http-server-fake-files-testing-purposes.md
         - posts/pass-makefile-args-as-typed-in-command-line.md
