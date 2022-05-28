@@ -8,6 +8,7 @@ tags: git commit edit howto shell rebase amend
 image:
   src: /assets/edit-commit3.png
   class: crop-excerpt
+hide: [toc]
 ---
 
 When you type `change git commit` or similar keywords in a search engine,

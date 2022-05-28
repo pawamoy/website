@@ -8,6 +8,7 @@ tags: draw drawing challenge art fun games
 image:
   src: /assets/fill-space-drawing.jpg
   class: crop-excerpt
+hide: [toc]
 ---
 
 Last night I was doing that in my head:

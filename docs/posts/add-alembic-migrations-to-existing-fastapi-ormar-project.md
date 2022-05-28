@@ -8,6 +8,7 @@ tags: python alembic database migration fastapi ormar
 image:
   src: /assets/alembic_post.png
   add_to_post: yes
+hide: [toc]
 ---
 
 I had trouble adding an `ON DELETE CASCADE` constraint to foreign keys *after* they were already created, so here's a small post explaning how I did it. This specific constraint, `ON DELETE CASCADE`, is not relevant here. This post will help you for any kind of change you want to apply on database already used in production.
