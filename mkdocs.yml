@@ -84,8 +84,7 @@ extra_css:
 markdown_extensions:
   - meta
   - admonition
-  - codehilite:
-      guess_lang: false
+  - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.emoji
