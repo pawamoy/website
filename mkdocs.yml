@@ -10,6 +10,7 @@ nav:
   - Credits: credits.md
   - Posts:
       - 2022:
+        - posts/testing-fastapi-ormar-alembic-apps.md
         - posts/add-alembic-migrations-to-existing-fastapi-ormar-project.md
       - 2020:
         - posts/local-http-server-fake-files-testing-purposes.md
@@ -94,6 +95,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - markdown-exec
   - redirects:
       redirect_maps:
         # mkdocstrings
