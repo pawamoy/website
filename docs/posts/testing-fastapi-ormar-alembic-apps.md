@@ -10,7 +10,7 @@ image:
   add_to_post: yes
 ---
 
-In the [previous post](./add-alembic-migrations-to-existing-fastapi-ormar-project/)
+In the [previous post](../add-alembic-migrations-to-existing-fastapi-ormar-project/)
 I showed how to add Alembic migrations to an existing FastAPI + Ormar project.
 In this post we will see how to write unit tests for such applications.
 
