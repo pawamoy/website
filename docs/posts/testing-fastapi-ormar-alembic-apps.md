@@ -265,7 +265,7 @@ Creating or updating the database in the `startup` event allows several things:
     and the database is automatically created. They don't have to worry
     about running a database creation command. Similarly, they can
     simply delete the `db.sqlite` file and restart the server to empty
-    their local database, or a copy a pre-populated SQlite file to reset
+    their local database, or copy a pre-populated SQlite file to reset
     their local database to a particular state.
 - in a production environment, in which you have no control (no possibility
     to run custom shell commands), migrations are applied automatically
@@ -480,7 +480,7 @@ async def create_artist(client) -> Artist:
     return artist
 
 
-async def create_album(client) -> Artist:
+async def create_album(client) -> Album:
     album = factories.AlbumFactory()
 
     # create artist first
@@ -496,7 +496,7 @@ async def create_album(client) -> Artist:
     return album
 
 
-async def create_track(client) -> Artist:
+async def create_track(client) -> Track:
     track = factories.TrackFactory()
 
     # create artist first
