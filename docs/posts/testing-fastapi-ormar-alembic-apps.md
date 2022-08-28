@@ -1,10 +1,10 @@
 ---
 template: post.html
 title: "Testing a FastAPI application using Ormar models and Alembic migrations"
-date: 2022-02-13
+date: 2022-08-28
 authors:
   - Timothée Mazzucotelli
-tags: python alembic database migration fastapi ormar
+tags: python alembic database migration fastapi ormar testing pytest factory-boy
 image:
   src: /assets/alembic_post.png
   add_to_post: yes
