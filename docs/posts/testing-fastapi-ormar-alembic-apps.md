@@ -78,7 +78,7 @@ class Track(ormar.Model):
 Now lets create helpers to easily (re)create, update (migrate) or stamp the database.
 We will put everything that is related to migrations in a migrations subpackage:
 
-```tree hl_lines="5"
+```tree hl_lines="4 5"
 ./
     src/
         project/
@@ -234,6 +234,19 @@ else:
 
 Now, lets configure our FastAPI app so that the database is automatically
 created or updated every time we run our app (using [uvicorn](https://www.uvicorn.org/) for example):
+
+```tree hl_lines="8"
+./
+    src/
+        project/
+            migrations/
+                __init__.py
+                env.py
+            __init__.py
+            app.py
+            models.py
+    tests/
+```
 
 ```python title="src/project/app.py"
 """FastAPI application."""
@@ -431,7 +444,7 @@ Refer to [factory-boy's documentation](https://factoryboy.readthedocs.io/en/stab
 You could also use [Faker](https://pypi.org/project/Faker/)
 to set more relevant default values to your instances attributes.
 
-## Populating the database with fake data
+## Populating the database with data
 
 Creating instances is nice, but they are not magically inserted in the database for us.
 Since instances are Ormar model instances, we could technically use the `save()` method
@@ -521,6 +534,24 @@ async def create_track(client) -> Track:
 
 Now you can easily populate the database in tests,
 and call other API routes to test their behavior and output.
+
+```.tree hl_lines="15"
+./
+    src/
+        project/
+            migrations/
+                __init__.py
+                env.py
+            __init__.py
+            app.py
+            models.py
+    tests/
+        __init__.py
+        conftest.py
+        factories.py
+        helpers.py
+        test_tracks.py
+```
 
 ```python title="tests/test_tracks.py"
 """Tests for the `tracks` routes."""
