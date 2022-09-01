@@ -184,21 +184,19 @@ And try to go to `http://localhost:8000` to see if the app is running.
 At this point you should have the following tree:
 
 ```tree
-.
-├── djangoapp
-│   ├── db.sqlite3
-│   ├── djangoapp
-│   │   ├── __init__.py
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   └── wsgi.py
-│   └── manage.py
-└── shinyapp
-    ├── app.R
-    ├── DESCRIPTION
-    └── Readme.md
-
-3 directories, 9 files
+./
+    djangoapp/
+        db.sqlite3
+        djangoapp/
+            __init__.py
+            settings.py
+            urls.py
+            wsgi.py
+        manage.py
+    shinyapp/
+        app.R
+        DESCRIPTION
+        Readme.md
 ```
 
 We will proceed in three main steps:
