@@ -10,6 +10,7 @@ nav:
   - Credits: credits.md
   - Posts:
       - 2022:
+        # - posts/somewhat-modern-python-development.md
         - posts/testing-fastapi-ormar-alembic-apps.md
         - posts/add-alembic-migrations-to-existing-fastapi-ormar-project.md
       - 2020:

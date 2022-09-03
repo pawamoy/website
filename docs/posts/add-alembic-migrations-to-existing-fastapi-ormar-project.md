@@ -8,6 +8,7 @@ tags: python alembic database migration fastapi ormar
 image:
   src: /assets/alembic_post.png
   add_to_post: yes
+  class: crop-excerpt
 hide: [toc]
 ---
 
