@@ -9,7 +9,7 @@ tags: dev development python modern project template
 
 In this post I present my latest project template for Python projects,
 [copier-pdm](https://github.com/pawamoy/copier-pdm),
-based on the great [Copier](https://github.com/copier-org/copier) tool.
+based on the great [Copier](https://github.com/copier-org/copier).
 
 This parodic title was inspired by the
 ["Hypermodern Python"](https://cjolowicz.github.io/posts/hypermodern-python-01-setup/)
@@ -25,7 +25,7 @@ to call it "more-or-less modern".
 As Claudio points it out in his article series,
 the Python landscape has changed considerably this
 last decade, and even more so these last few years.
-Python is now one of the most used language in the world,
+Python is now one of the most used languages in the world,
 and we see a plethora of new projects coming up to life.
 Code formatters, linters, test runners, task runners,
 documentation generators, project managers, wheel builders
@@ -232,7 +232,7 @@ Or we can use full-fledge, all-in-one managers like [Hatch](https://github.com/p
     like `poetry build` and `poetry publish`. Poetry seriously improved the UX around project management
     and packaging in the Python ecosystem. I'll forever be thankful for that.
 
-    But Poetry also took some very annoying design decisions. They looked good at first,
+    But Poetry also took some annoying design decisions. They looked good at first,
     but were a huge hindrance for projects, depending on their environment.
     To make it short, I'm referring to this,
     ["Allow user to override PyPI URL without modifying pyproject.toml"](https://github.com/python-poetry/poetry/issues/1632),
@@ -270,9 +270,31 @@ and can manage them for you, just like Poetry.
 
 ### Installing and using PDM
 
-pipx, enabling shell integration
-explaining the sitecustomize effect
-pdm run vs. python -m.
+My recommandation to install PDM is to use [pipx](https://pypa.github.io/pipx/):
+
+```bash
+python -m pip install --user pipx
+pipx install pdm
+```
+
+I also like to enable PEP 582 support globally ([docs](https://pdm.fming.dev/latest/usage/pep582/#enable-pep-582-globally)),
+so that `python` is always aware of packages installed in a `__pypackages__` folder:
+
+```bash
+pdm --pep582 >> ~/.bash_profile
+```
+
+The commands written to `.bash_profile` simply add a subfolder of PDM to the `PYTHONPATH`
+environment variable. This folder contains a `sitecustomize.py` module,
+which Python executes upon starting. The module in turn will add subfolders
+of `__pypackages__` (when it exists) to `sys.path`. The end result is
+that you can run `python` and import dependencies normally,
+or even call modules with `python -m thing`,
+without having to use `pdm run python ...`. One limitation
+is that you still won't be able to call installed script directly,
+for example `pytest`, like in an activated virtual environment.
+For this, you'll have to run `pdm run pytest` (but remember that
+if packages support it, you can run `python -m pytest` instead).
 
 ### Declaring your project metadata
 
