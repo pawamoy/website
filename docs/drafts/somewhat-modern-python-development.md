@@ -179,18 +179,17 @@ Just run this in a terminal:
 ```bash
 pip install --user pipx
 pipx run copier gh:pawamoy/copier-pdm newproject
-cd newproject
 ```
 
-The template at [`gh:pawamoy/copier-pdm`](https://github.com/pawamoy/copier-pdm)
-is the actual template containing all the tools and configuration I'm writing about in this post.
-I'll present it in more details in the [last chapter](#integrating-everything-together) of this post.
+![copier generate ](../assets/copier-pdm-generate.svg)
 
 An important thing to know is that you should immediately stage and commit
 every generated file and folder, even if you want to delete some of them,
 because this will help later during updates.
 
 ```bash
+cd newproject
+git init
 git add -A
 git commit -m "feat: Generate initial project"
 # now modify and commit as much as you want!
@@ -277,7 +276,8 @@ python -m pip install --user pipx
 pipx install pdm
 ```
 
-I also like to enable PEP 582 support globally ([docs](https://pdm.fming.dev/latest/usage/pep582/#enable-pep-582-globally)),
+I also like to enable PEP 582 support globally
+([docs](https://pdm.fming.dev/latest/usage/pep582/#enable-pep-582-globally)),
 so that `python` is always aware of packages installed in a `__pypackages__` folder:
 
 ```bash
@@ -298,44 +298,703 @@ if packages support it, you can run `python -m pytest` instead).
 
 ### Declaring your project metadata
 
-PEP 517
-PEP 621
+PDM reads project metadata in `pyproject.toml`.
+It relies on [PEP 517](https://peps.python.org/pep-0517/) (build system)
+and [PEP 621](https://peps.python.org/pep-0621/) (project metadata):
+
+```toml title="pyproject.toml"
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
+
+[project]
+name = "package-name"
+description = "The package description."
+version = "0.1.0"
+authors = [{name = "Timothée Mazzucotelli", email = "pawamoy@pm.me"}]
+license = "ISC"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["some", "keywords"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Typing :: Typed",
+]
+```
+
+This example hardcodes the version but you can
+[fetch it from SCM](https://pdm.fming.dev/2.1/pyproject/build/#dynamic-version-from-scm)
+(Git tags).
+
+Projects using the [`src` layout](https://blog.ionelmc.ro/2014/05/25/python-packaging/) are supported:
+
+```toml title="pyproject.toml"
+[tool.pdm.build]
+package-dir = "src"
+```
 
 ### Declaring your dependencies
 
-Groups.
+Dependencies and optional dependencies can be declared as specified by PEP 621:
+
+```toml title="pyproject.toml"
+[project]
+dependencies = [
+   "griffe>0.22",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7.1",
+]
+```
+
+Note that this is not specific to PDM. Any tool that relies on PEP 621
+will be able to read these dependencies.
+
+Development dependencies however are not specified by PEP 621,
+so the next part is specific to PDM and will not work with other dependencies managers.
+Development dependencies can be separated into multiple groups,
+just like optional dependencies:
+
+```toml title="pyproject.toml"
+[tool.pdm.dev-dependencies]
+docs = [
+    "mkdocs>=1.3",
+    "mkdocs-material>=7.3",
+    "mkdocstrings[python]>=0.18",
+    "markdown-exec>=0.5",
+]
+tests = [
+    "pytest>=6.2",
+    "pytest-cov>=3.0",
+    "pytest-randomly>=3.10",
+    "pytest-xdist>=2.4",
+]
+```
+
+When installing dependencies, you can then select all of them, or specific groups only:
+
+```bash
+pdm install  # installs everything
+pdm install --prod  # installs production dependencies only
+pdm install -G docs  # installs production dependencies and docs group
+pdm install --no-default -G docs -G tests  # installs docs and tests groups only
+```
 
 ### Building and publishing wheels
 
-pdm build, pdm publish
+To build source and wheel distributions, simply run `pdm build`.
+To publish them, simply run `pdm publish`! Or use [Twine](https://twine.readthedocs.io/en/stable/).
+
+It is possible to customize the build process, see PDM's docs for more info.
 
 ## Task runner: duty
 
-Own tool, run str/list/callable, Invoke, failprint, output, makefile, no tox/nox, no venvs, multirun script.
+At this point we are able to declare and install dependencies and development dependencies.
+We will want to use some of them to run quality analysis and execute test suites.
 
-### Project setup
+[PDM supports npm-like scripts](https://pdm.fming.dev/2.1/usage/scripts/),
+but I don't use them because I find them not expressive/powerful enough.
+I prefer writing my tasks with the full power of Python.
+That makes them more verbose, but way more flexible,
+and you can use code from dependencies directly instead of calling subprocesses.
 
-setup script.
+I tried many task runners and eventually ended up writing my own: [duty](https://pawamoy.github.io/duty/).
+
+??? info "Story time: from tox to Invoke to duty, and why not nox"
+    A few years ago, when I was writing Django-apps, I was using [tox](https://tox.wiki/en/latest/)
+    to test my apps on multiple Django versions. I was happy with it, but found it a bit slow
+    when running jobs on a P*D-sized matrix (Python versions, Django versions).
+    Fortunately [detox](https://github.com/tox-dev/detox) was able to run tox envs in parallel.
+
+    At some point I stopped writing Django apps, and started searching an alternative
+    to tox with a lighter output, because I really don't like seeing *walls* of text
+    when a single line is enough (test passed? just print ok).
+
+    I started playing with [Invoke](https://www.pyinvoke.org/),
+    but quickly had issues with it,
+    notably [in Windows runs on GitHub](https://github.com/pyinvoke/invoke/issues/763).
+    I also felt limited in that I couldn't run Python code directly, only subprocesses.
+    I tried to implement such a feature in Invoke, but couldn't manage to do it.
+
+    I also played with [Nox](https://nox.thea.codes/en/stable/), but found it
+    too slow as well, even when reusing virtualenvs. And the console output was again
+    too heavy for my taste. Now that [PDM supports Nox](https://pdm.fming.dev/2.1/usage/advanced/#use-nox-as-the-runner),
+    I should definitely give it another try though!
+
+    In the end, I wrote my own task runner, duty, which is heavily inspired by Invoke.
+
+With duty, tasks are declared by default in a `duties.py` file at the root of the repository.
+You import the decorator, and decorate functions with it:
+
+```python title="duties.py"
+from duty import duty
+
+
+@duty
+def lint(ctx):
+    ctx.run("flake8 src")
+```
+
+You can then run decorated function (duties) on the command line: `duty lint`.
+
+The `ctx` (for context) argument is injected by duty when running the task.
+Its `run` method accepts strings (shell commands), list of strings, and Python callables.
+Yes, you can run callables directly, no need for subprocesses.
+Depending on the library, it will be easy or hard to replace the subprocess
+with a direct call:
+
+```python title="duties.py"
+from duty import duty
+
+
+@duty
+def lint(ctx):
+    from flake8.main.cli import main as flake8
+    ctx.run(flake8, args=["src"])
+
+
+@duty
+def docs(ctx):
+    from mkdocs.__main__ import cli as mkdocs
+    cli(["build"])
+```
+
+**I urge Python developers to expose their CLI entrypoint outside of `__main__`,
+and to make it accept command line parameters.** Otherwise we have
+to import from `__main__`, and/or patch `sys.argv`, which is ugly.
+Library first, CLI second!
+
+In the worst cases, you'll have to rebuild part of the CLI logic
+by copy/pasting code to make it work. For these cases,
+maybe it's easier to just run a subprocess.
+
+By default, duty will print the command that runs, and update
+the line with a check mark if it returns a success value
+(0 for subprocess, 0, None, True or truthy value for callables).
+If the command fails (non-zero, False or exception),
+duty will also print the captured output.
+Bye bye walls of text, hello very sexy output!
+
+Success:
+
+![duty success](../assets/duty-success.svg)
+
+Failure:
+
+![duty failure](../assets/duty-failure.svg)
+
+You can also output [`tap`](http://testanything.org/).
+Refer to [duty's documentation](https://pawamoy.github.io/duty/usage/) for many more examples.
+
+### Project setup, running tasks
+
+When I clone one of my projects, I want to be able to set it up
+in one command. Setting it up is basically installing the dependencies.
+With PDM, that command would be `pdm install`.
+But that installs dependencies for only one Python version,
+and since I'm not using tox or nox, I need to install
+dependencies for every Python version I want to support.
+
+```bash
+for py in 3.7 3.8 3.9 3.10 3.11; do
+    pdm use -f python$py
+    pdm install
+done
+```
+
+Again, I'm not using tox or nox, and I also need to be able
+to run some tasks on all supported Python versions.
+Typically tests, but quality analysis as well,
+because it needs to pass whatever the Python version is.
+
+```bash
+for py in 3.7 3.8 3.9 3.10 3.11; do
+    pdm use -f python$py
+    pdm run duty test
+done
+```
+
+The end result is that I have two Bash scripts,
+[`setup.sh`](https://github.com/pawamoy/copier-pdm/blob/0.10.1/project/scripts/setup.sh) and
+[`multirun.sh`](https://github.com/pawamoy/copier-pdm/blob/0.10.1/project/scripts/multirun.sh)
+in a scripts folder. Bash is usually available, even on Windows thanks
+to [Git-for-Windows](https://gitforwindows.org/). However I don't want
+to run these scripts with `bash scripts/setup.sh` or `./scripts/multirun.sh duty test`.
+It's way too long to type. So I decided to also write a Makefile.
+Make is not easily available on Windows, so I lose a bit of cross-platformness,
+but it's just so convenient on GNU/Linux systems.
+
+[Checkout my Makefile on GitHub.](https://github.com/pawamoy/copier-pdm/blob/0.10.1/project/Makefile.jinja)
+
+With this Makefile, I can simply type `make setup` after cloning a project.
+This action will try to install pipx if it's not available,
+and then it will try to install PDM with pipx if it's not available.
+Finally, it will run `pdm install` for a defined set of Python versions
+(at the time of writing: 3.7 up to 3.11).
+
+I can also type `make format`, or `make check`, or `make test`,
+and depending on the action, it will run it only once, using
+the Python version currently selected through PDM, or run it
+on all supported Python versions.
+
+If my duties (tasks) accept arguments, I can pass them
+from the command line: `make release version=1.0.0`,
+or `make test match="this or that"`.
+
+Once I fixed something or added a new feature,
+and wrote tests for it, I can format my code, check its quality,
+run the tests, generate a coverage HTML report, generate
+a changelog entry, commit everything, build and publish
+a new release, and then publish docs *with a single line*:
+
+```bash
+make format check test coverage changelog release version=2.13.1
+```
+
+No time is lost installing dependencies for each task
+since I pre-installed my dependencies for every Python version,
+and all the output is unified and minimal, showing details
+only if something went wrong.
+
+Here's a real run that published [dependenpy v3.3.2 on pypi.org](https://pypi.org/project/dependenpy/):
+
+![make all](../assets/make-all.svg)
+
+The next sections will present each action (format, check, test, etc.) in details.
 
 ### Quality analysis
 
-flake8 and plugins, mypy and stubs.
+I typically split quality analysis in two: code quality and type-checking.
+
+For static typing analysis, I use [mypy](http://mypy-lang.org/).
+
+<img src="../../assets/mypy-light.svg" style="max-width: 300px;" />
+
+=== "duty"
+    ```python title="duties.py"
+    @duty
+    def check_types(ctx):
+        ctx.run("mypy --config-file config/mypy.ini src", title="Type-checking")
+    ```
+
+=== "mypy config"
+    My configuration file is very basic and not very strict.
+    It can probably be improved a lot.
+
+    ```ini title="config/mypy.ini"
+    [mypy]
+    ignore_missing_imports = true
+    warn_unused_ignores = true
+    show_error_codes = true
+    ```
+
+=== "Output"
+    ```console
+    $ make check-types
+    > Currently selected Python version: python3.10
+    > pdm run duty check-types (python3.7)
+    ✓ Type-checking
+    > pdm run duty check-types (python3.8)
+    ✓ Type-checking
+    > pdm run duty check-types (python3.9)
+    ✓ Type-checking
+    > pdm run duty check-types (python3.10)
+    ✓ Type-checking
+    > pdm run duty check-types (python3.11)
+    ✓ Type-checking
+    > Restored previous Python version: python3.10
+    ```
+
+---
+
+For code quality analysis, I use [Flake8](https://flake8.pycqa.org/en/latest/)
+with a battery of plugins:
+
+- [darglint](https://pypi.org/project/darglint/):
+    docstrings linter that checks (missing) parameters, returns and exceptions in docstrings
+- [flake8-bandit](https://pypi.org/project/flake8-bandit/):
+    plugin that integrates [Bandit](https://pypi.org/project/bandit/)
+- [flake8-black](https://pypi.org/project/flake8-black/):
+    plugin that checks if [Black](https://pypi.org/project/black/) would make changes
+- [flake8-bugbear](https://pypi.org/project/flake8-bugbear/):
+    "finds likely bugs and design problems in your program"
+- [flake8-builtins](https://pypi.org/project/flake8-builtins/):
+    checks that you don't shadow builtins with variables or parameters
+- [flake8-comprehensions](https://pypi.org/project/flake8-comprehensions/):
+    helps you write better list/set/dict comprehensions
+- [flake8-docstrings](https://pypi.org/project/flake8-docstrings/):
+    plugin that integrates [pydocstyle](https://github.com/pycqa/pydocstyle)
+- [flake8-pytest-style](https://pypi.org/project/flake8-pytest-style/):
+    checks common style issues or inconsistencies with pytest-based tests
+- [flake8-string-format](https://pypi.org/project/flake8-string-format/):
+    checks formatted-strings and f-strings for errors
+- [flake8-tidy-imports](https://pypi.org/project/flake8-tidy-imports/):
+    I use this one to forbid relative imports
+- [flake8-variables-names](https://pypi.org/project/flake8-variables-names/):
+    helps to write more readable variables names
+- [pep8-naming](https://pypi.org/project/pep8-naming/):
+    famous PEP8 checks
+- [wps-light](https://pypi.org/project/wps-light/):
+    a lighter fork (no dependencies)
+    of [wemake-python-styleguide](https://pypi.org/project/wemake-python-styleguide/),
+    a very strict and opinionated plugin for Flake8. You'll see that I disable
+    a good part of its warnigns in my template, because they feel
+    too cumbersome to me. The rest of the warnings can be annoying,
+    but are very valuable to me: they definitely force you to write
+    more readable and maintainable code.
+
+=== "duty"
+    ```python title="duties.py"
+    @duty
+    def check_quality(ctx, files="src tests"):
+        ctx.run(f"flake8 --config=config/flake8.ini {files}", title="Checking code quality")
+    ```
+
+=== "Flake8 config"
+    ```ini title="config/flake8.ini"
+    [flake8]
+    exclude = fixtures,site
+    max-line-length = 132
+    docstring-convention = google
+    ban-relative-imports = true
+    ignore =
+        ...
+    ```
+
+    I truncated the file because it is a bit long, please
+    [check it out on GitHub](https://github.com/pawamoy/copier-pdm/blob/0.10.1/project/config/flake8.ini).
+
+=== "Output"
+    ```console
+    $ make check-quality
+    > Currently selected Python version: python3.10
+    > pdm run duty check-types (python3.7)
+    ✓ Checking code quality
+    > pdm run duty check-types (python3.8)
+    ✓ Checking code quality
+    > pdm run duty check-types (python3.9)
+    ✓ Checking code quality
+    > pdm run duty check-types (python3.10)
+    ✓ Checking code quality
+    > pdm run duty check-types (python3.11)
+    ✓ Checking code quality
+    > Restored previous Python version: python3.10
+    ```
 
 ### Code formatters
 
-isort, ssort, black, autoflake.
+Code formatting is done in three steps:
+
+1. remove unused imports using [autoflake](https://github.com/PyCQA/autoflake)
+2. sort imports using [isort](https://pycqa.github.io/isort/)
+3. format code using [Black](https://github.com/psf/black)
+
+=== "duty"
+    ```python title="duties.py"
+    @duty
+    def format(ctx):
+        ctx.run(
+            "autoflake -ir --exclude tests/fixtures --remove-all-unused-imports src/ tests/",
+            title="Removing unused imports",
+        )
+        ctx.run("isort src/ tests/", title="Ordering imports")
+        ctx.run("black src/ tests/", title="Formatting code")
+    ```
+
+=== "Black and isort configs"
+    ```toml title="pyproject.toml"
+    [tool.black]
+    line-length = 120
+    exclude = "tests/fixtures"
+
+    [tool.isort]
+    line_length = 120
+    not_skip = "__init__.py"
+    multi_line_output = 3
+    force_single_line = false
+    balanced_wrapping = true
+    default_section = "THIRDPARTY"
+    known_first_party = "markdown_exec"
+    include_trailing_comma = true
+    ```
+
+=== "Output"
+    ```console
+    $ make format
+    ✓ Removing unused imports
+    ✓ Ordering imports
+    ✓ Formatting code
+    ```
 
 ### Security analysis
 
-safety, dependency confusion.
+Security analysis is partly with [safety](https://github.com/pyupio/safety),
+which queries a curated PyUP.io database to show dependencies that are vulnerable.
+
+=== "duty"
+    The duty is a bit long here, because I try to ensure
+    safety's modules are not patched by malicious packages installed
+    in the current environment. Rebuilding the CLI logic also allows
+    us to lighten up or even rework the output.
+
+    ```python title="duties.py"
+    @duty
+    def check_dependencies(ctx):
+        # undo possible patching
+        # see https://github.com/pyupio/safety/issues/348
+        for module in sys.modules:  # noqa: WPS528
+            if module.startswith("safety.") or module == "safety":
+                del sys.modules[module]  # noqa: WPS420
+
+        importlib.invalidate_caches()
+
+        # reload original, unpatched safety
+        from safety.formatter import SafetyFormatter
+        from safety.safety import calculate_remediations
+        from safety.safety import check as safety_check
+        from safety.util import read_requirements
+
+        # retrieve the list of dependencies
+        requirements = ctx.run(
+            ["pdm", "export", "-f", "requirements", "--without-hashes"],
+            title="Exporting dependencies as requirements",
+            allow_overrides=False,
+        )
+
+        # check using safety as a library
+        def safety():
+            packages = list(read_requirements(StringIO(requirements)))
+            vulns, _ = safety_check(packages=packages, ignore_vulns="")
+            output_report = SafetyFormatter("text").render_vulnerabilities(
+                announcements=[],
+                vulnerabilities=vulns,
+                remediations=[],
+                full=True,
+                packages=packages,
+            )
+            if vulns:
+                print(output_report)
+                return False
+            return True
+
+        ctx.run(safety, title="Checking dependencies")
+    ```
+
+=== "Output"
+    ```console
+    $ make check-dependencies
+    ✓ Exporting dependencies as requirements
+    ✗ Checking dependencies (1)
+      > safety()
+      +==============================================================================+
+
+                                        /$$$$$$            /$$
+                                        /$$__  $$          | $$
+                    /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$
+                    /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$
+                  |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$
+                    \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$
+                    /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
+                  |_______/  \_______/|__/     \_______/   \___/   \____  $$
+                                                                    /$$  | $$
+                                                                  |  $$$$$$/
+            by pyup.io                                              \______/
+
+      +==============================================================================+
+
+      REPORT 
+
+        Safety v2.1.1 is scanning for Vulnerabilities...
+        Scanning dependencies in your environment:
+
+        -> temp_file
+
+        Using non-commercial database
+        Found and scanned 118 packages
+        Timestamp 2022-09-04 14:18:55
+        3 vulnerabilities found
+        0 vulnerabilities ignored
+
+      +==============================================================================+
+      VULNERABILITIES FOUND
+      +==============================================================================+
+
+      -> Vulnerability found in numpy version 1.21.1
+        Vulnerability ID: 44716
+        Affected spec: <1.22.0
+        ADVISORY: Numpy 1.22.0 includes a fix for CVE-2021-41496: Buffer
+        overflow in the array_from_pyobj function of fortranobject.c, which allows
+        attackers to conduct a Denial of Service attacks by carefully constructing an
+        array with negative values. NOTE: The vendor does not agree this is a
+        vulnerability; the negative dimensions can only be created by an already
+        privileged user (or internally).https://github.com/numpy/numpy/issues/19000
+        CVE-2021-41496
+        For more information, please visit
+        https://pyup.io/vulnerabilities/CVE-2021-41496/44716/
+
+
+      -> Vulnerability found in numpy version 1.21.1
+        Vulnerability ID: 44717
+        Affected spec: <1.22.0
+        ADVISORY: Numpy 1.22.0 includes a fix for CVE-2021-34141: An
+        incomplete string comparison in the numpy.core component in NumPy before
+        1.22.0 allows attackers to trigger slightly incorrect copying by constructing
+        specific string objects. NOTE: the vendor states that this reported code
+        behavior is "completely harmless."https://github.com/numpy/numpy/issues/18993
+        CVE-2021-34141
+        For more information, please visit
+        https://pyup.io/vulnerabilities/CVE-2021-34141/44717/
+
+
+      -> Vulnerability found in numpy version 1.21.1
+        Vulnerability ID: 44715
+        Affected spec: <1.22.2
+        ADVISORY: Numpy 1.22.2  includes a fix for CVE-2021-41495: Null
+        Pointer Dereference vulnerability exists in numpy.sort in NumPy in the
+        PyArray_DescrNew function due to missing return-value validation, which
+        allows attackers to conduct DoS attacks by repetitively creating sort arrays.
+        NOTE: While correct that validation is missing, an error can only occur due
+        to an exhaustion of memory. If the user can exhaust memory, they are already
+        privileged. Further, it should be practically impossible to construct an
+        attack which can target the memory exhaustion to occur at exactly this
+        place.https://github.com/numpy/numpy/issues/19038
+        CVE-2021-41495
+        For more information, please visit
+        https://pyup.io/vulnerabilities/CVE-2021-41495/44715/
+
+      Scan was completed. 3 vulnerabilities were found. 
+
+      +==============================================================================+
+
+    make: *** [Makefile:49: check-dependencies] Error 1
+    ```
+
+I'm considering using/creating tooling around the [OSV database](https://osv.dev/) instead.
+
+The [code quality analysis](#quality-analysis), presented earlier,
+also checks the code for security risks using Bandit.
 
 ### Test suite
 
-pytest, coverage, pytest-plugin, hypothesis.
+Tests are written and executed using [pytest](https://docs.pytest.org/en/7.1.x/) and plugins:
 
-## Workflow
+- sometimes [pytest-asyncio](https://pypi.org/project/pytest-asyncio/),
+    to test asynchronous code
+- [pytest-cov](https://pypi.org/project/pytest-cov/),
+    which uses [Coverage.py](https://github.com/nedbat/coveragepy)
+    to build code coverage reports
+- [pytest-randomly](https://pypi.org/project/pytest-randomly/),
+    to randomize the order of tests, to make sure each test is independant from the others
+- [pytest-xdist](https://pypi.org/project/pytest-xdist/),
+    to run tests in parallel and therefore speed up the test runs
+- sometimes [hypothesis](https://hypothesis.readthedocs.io/en/latest/),
+    to test huge ranges of input values
 
-git commit messages, automatic changelog generation, new releases.
+=== "duty"
+    ```python title="duties.py"
+    @duty(silent=True)
+    def coverage(ctx):
+        ctx.run("coverage combine", nofail=True)
+        ctx.run("coverage report --rcfile=config/coverage.ini", capture=False)
+        ctx.run("coverage html --rcfile=config/coverage.ini")
+
+
+    @duty
+    def test(ctx, match: str = ""):
+        py_version = f"{sys.version_info.major}{sys.version_info.minor}"
+        os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
+        ctx.run(
+            ["pytest", "-c", "config/pytest.ini", "-n", "auto", "-k", match, "tests"],
+            title="Running tests",
+        )
+    ```
+
+=== "pytest config"
+    ```ini title="config/pytest.ini"
+    [pytest]
+    norecursedirs =
+      .git
+      .tox
+      .env
+      dist
+      build
+    python_files =
+      test_*.py
+      *_test.py
+      tests.py
+    addopts =
+      --cov
+      --cov-config config/coverage.ini
+    testpaths =
+      tests
+    ```
+
+=== "coverage config"
+    ```ini title="config/coverage.ini"
+    [coverage:run]
+    branch = true
+    parallel = true
+    source =
+      src/
+      tests/
+
+    [coverage:paths]
+    equivalent =
+      src/
+      __pypackages__/
+
+    [coverage:report]
+    precision = 2
+    omit =
+      src/*/__init__.py
+      src/*/__main__.py
+      tests/__init__.py
+    ```
+
+=== "Output"
+    ```console
+    $ make test coverage
+    > Currently selected Python version: python3.10
+    > pdm run duty test (python3.7)
+    ✓ Running tests
+    > pdm run duty test (python3.8)
+    ✓ Running tests
+    > pdm run duty test (python3.9)
+    ✓ Running tests
+    > pdm run duty test (python3.10)
+    ✓ Running tests
+    > pdm run duty test (python3.11)
+    ✓ Running tests
+    > Restored previous Python version: python3.10
+    Name                                       Stmts   Miss Branch BrPart     Cover
+    -------------------------------------------------------------------------------
+    src/markdown_exec/formatters/base.py          26      2      6      2    87.50%
+    src/markdown_exec/formatters/bash.py          12      6      0      0    50.00%
+    src/markdown_exec/formatters/console.py       33     23     10      0    23.26%
+    src/markdown_exec/formatters/markdown.py       4      1      2      0    50.00%
+    src/markdown_exec/formatters/pycon.py         33     23     10      0    23.26%
+    src/markdown_exec/formatters/python.py        24      0      6      0   100.00%
+    src/markdown_exec/formatters/sh.py            12      0      0      0   100.00%
+    src/markdown_exec/formatters/tree.py          43      9     14      2    70.18%
+    src/markdown_exec/logger.py                   20      4      4      0    75.00%
+    src/markdown_exec/mkdocs_plugin.py            25     25      6      0     0.00%
+    src/markdown_exec/rendering.py                82     32     38      5    54.17%
+    tests/conftest.py                              7      0      2      0   100.00%
+    tests/test_python.py                          17      0      0      0   100.00%
+    tests/test_shell.py                           12      0      0      0   100.00%
+    tests/test_tree.py                             5      0      0      0   100.00%
+    tests/test_validator.py                        6      0      0      0   100.00%
+    -------------------------------------------------------------------------------
+    TOTAL                                        361    125     98      9    59.04%
+    ```
+
+The coverage action also generates an HTML report that can later be integrated into the docs.
 
 ## Documentation: MkDocs
 
@@ -345,4 +1004,6 @@ Writing docs/docstrings, automatic code reference, site generation, publishing.
 
 Linux/MacOS/Windows. DRY configuration between local and CI.
 
-## Integrating everything together
+## Workflow: integrating everything together
+
+git commit messages, automatic changelog generation, new releases.

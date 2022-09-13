@@ -92,6 +92,8 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.emoji
   - pymdownx.magiclink
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: "¤"
 
