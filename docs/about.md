@@ -305,5 +305,5 @@ You cannot duplicate `pawamoy`. At least for now.
 [`@pawamoy(twitter)`](https://twitter.com/pawamoy)
 
 #### **NOTES**
-This man page is a perpetual work in progress. Expect some delays between
+This main page is a perpetual work in progress. Expect some delays between
 `pawamoy` releases and its documentation updates.
