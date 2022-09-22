@@ -1,7 +1,7 @@
 ---
 template: post.html
 title: "Somewhat-modern Python"
-date: 2022-02-01
+date: 2022-09-22
 authors:
   - Timothée Mazzucotelli
 tags: dev development python modern project template
