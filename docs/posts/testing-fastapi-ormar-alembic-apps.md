@@ -8,6 +8,7 @@ tags: python alembic database migration fastapi ormar testing pytest factory-boy
 image:
   src: /assets/alembic_post.png
   add_to_post: yes
+  class: crop-excerpt
 ---
 
 In the [previous post](../add-alembic-migrations-to-existing-fastapi-ormar-project/)

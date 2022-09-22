@@ -1345,4 +1345,4 @@ your local machine.
 
 I hope you enjoyed the article, or at least learned one or two things.
 In any case, don't hesitate to leave a comment: I'll gladly fix any
-mistake I made, or elaborate if something isn't clear enough!
+mistake I made, or elaborate if something isn't clear enough.
