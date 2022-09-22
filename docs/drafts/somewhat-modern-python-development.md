@@ -22,6 +22,8 @@ to call it "more-or-less modern".
 
 ---
 
+## Introduction
+
 As Claudio points it out in his article series,
 the Python landscape has changed considerably this
 last decade, and even more so these last few years.
@@ -49,7 +51,7 @@ I have my opinions, which not everybody will share.
 And I know (almost) exactly what I need as a Python developer.
 This is why I have created my own template for Python projects.
 It is very opinionated, and makes use of some of my own tools
-which are probably completely unknown to the community at large.
+which are probably completely unknown to the community.
 
 This post presents all the tools
 and libraries used in my template, categorized and ordered
@@ -60,9 +62,9 @@ standard output of my task runner":
 - [Project templating](#project-templating-copier): creating a template, generating projects, updating generated projects.
 - [Project management](#project-management-pdm): metadata, dependencies, building and publishing wheels.
 - [Running tasks](#task-runner-duty): setting the project up, running quality checks or tests suites, etc.
-- [Workflow](#workflow): git commit messages, automatic changelog generation, new releases.
-- [Generating documentation](#documentation-mkdocs): writing docs/docstrings, automatic code reference, publishing.
+- [Documentation](#documentation-mkdocs): writing docs/docstrings, automatic code reference, publishing.
 - [Continuous Integration](#continuous-integration-github-actions): DRY configuration between local and CI
+- [Workflow](#workflow-integrating-everything-together): Git commit messages, automatic changelog generation, new releases.
 
 ## Project templating: Copier
 
@@ -732,6 +734,10 @@ Code formatting is done in three steps:
     ✓ Formatting code
     ```
 
+INFO: **Idea: use ssort**  
+I'm also looking at [ssort](https://github.com/bwhmather/ssort),
+but it probably needs some enhancements before we're able to use it.
+
 ### Security analysis
 
 Security analysis is partly with [safety](https://github.com/pyupio/safety),
@@ -996,14 +1002,347 @@ Tests are written and executed using [pytest](https://docs.pytest.org/en/7.1.x/)
 
 The coverage action also generates an HTML report that can later be integrated into the docs.
 
+INFO: **Idea: use ward**  
+I'm also looking at [ward](https://github.com/darrenburns/ward),
+but it feels a bit hard to leave pytest and its huge community.
+
 ## Documentation: MkDocs
 
-Writing docs/docstrings, automatic code reference, site generation, publishing.
+To write documentation for your project, I suggest using [MkDocs](https://www.mkdocs.org/).
+The well-known alternative is of course [Sphinx](https://www.sphinx-doc.org/en/master/).
+Sphinx is battle-tested and more targeted towards Python project documentation,
+but I've found MkDocs to be easier to work with.
+
+Combined to the great [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme,
+it gives you a beautiful and responsive website
+for your documentation pages, or even for your blog.
+And combined to the [mkdocstrings](https://mkdocstrings.github.io/) plugin,
+you can auto-generate documentation for your Python API
+(modules, functions, classes, methods, attributes, etc.).
+
+<img src="../../assets/mkdocs-material.svg" style="max-width: 200px;"/>
+<img src="../../assets/mkdocstrings-logo.png" style="max-width: 300px;"/>
+
+??? info "Story time: from Sphinx to MkDocs"
+    A few years ago (around 2020), I bumped into the Pydantic project (again).
+    I had already seen it before, mainly interested in its settings configuration ability
+    that could replace most of the logic in my Django app
+    [django-appsettings](https://github.com/pawamoy/django-appsettings).
+    This time, when I landed on its docs pages, I thought: "wow, this looks nice".
+    Then, a bit later, [FastAPI](https://fastapi.tiangolo.com/) exploded in our faces,
+    and I thought again: "hey, looks familiar, and I love it!".
+    So I looked around and saw that it used MkDocs and a theme called "Material for MkDocs".
+
+    I started migrating my projects to MkDocs and Material for MkDocs from Sphinx,
+    because it looked nicer than the ReadTheDocs theme, and was far easier to use.
+    Indeed, for the six previous years I had been using Sphinx for my projects
+    documentation, and I never quite enjoyed writing docs with it.
+    This was before the [MyST parser](https://myst-parser.readthedocs.io/en/latest/)
+    or [recommonmark](https://github.com/readthedocs/recommonmark) (which I used a bit later),
+    so I was writing my documentation in [reStructuredText](https://www.writethedocs.org/guide/writing/reStructuredText/).
+    I constantly had to check the syntax of rST and the Sphinx docs
+    to achieve basic things. In particular, I wanted to have ToC (Table of Contents)
+    entries in the sidebar for every documented module, class or function
+    auto-generated with Sphinx's autodoc extension.
+    I posted [a question on StackOverflow](https://github.com/sphinx-doc/sphinx/issues/6316)
+    and then found a [feature request](https://github.com/sphinx-doc/sphinx/issues/6316) on Sphinx's bugtracker:
+    the answer was "it's not possible (yet)".
+
+    So I thought, hey, why not bring that in MkDocs instead of Sphinx?
+    At the time, the only viable option for autodoc in MkDocs was
+    Tom Christie's [mkautodoc](https://github.com/tomchristie/mkautodoc).
+    Tom expressed his lack of capacity to work on the project,
+    and I had an itch to scratch, so I decided to create my own MkDocs plugin
+    for auto-documentation. This is how mkdocstrings was born.
+    Tom's code has been very helpful at the beginning of the project
+    (mkdocstrings' `:::` syntax actually comes from mkautodoc),
+    so thanks Tom!
+
+    Today we have a thriving MkDocs community and ecosystem,
+    and I think it gave a nice push to the Sphinx community which,
+    to me, seemed to stagnate a bit.
+
+With MkDocs, you write your documentation in Markdown files,
+inside a `docs` folder. Then you configure MkDocs in `mkdocs.yml`,
+at the root of your repository:
+
+```tree
+./
+    docs/
+        index.md
+    mkdocs.yml
+```
+
+```yaml title="./mkdocs.yml"
+site_name: My project documentation
+theme:
+  name: material
+plugins:
+- search
+- mkdocstrings
+```
+
+With mkdocstrings, you can inject documentation of an object
+using the `::: identifier` syntax. For example, if you have a project like this:
+
+```tree
+./
+    project/
+        __init__.py
+        module.py
+```
+
+...and this class in `module.py`:
+
+```python title="./project/module.py"
+"""This module is not very useful."""
+
+class AlmostEmptyClass:
+    """This class doesn't allow to do a lot of things."""
+
+    def __init__(self, something: str) -> None:
+        """Initialize an almost empty instance.
+
+        Parameters:
+            something: Pass something to the instance.
+        """
+        self.thing: str = something
+```
+
+...you can inject documentation for your class like so,
+in a Markdown file, for example `index.md`:
+
+```md title="./docs/index.md"
+::: project.module.AlmostEmptyClass
+```
+
+Or you could inject the whole module docs, recursively:
+
+```md title="./docs/index.md"
+::: project.module
+```
+
+There's even
+[a recipe to automatically document all your modules](https://mkdocstrings.github.io/recipes/#automatic-code-reference-pages).
+
+**If you want to learn in details how to build documentation
+with MkDocs, Material for MkDocs, and mkdocstrings,
+I can't recommend this guide enough, from *Real Python*:
+[Build Your Python Project Documentation With MkDocs](https://realpython.com/python-project-documentation-with-mkdocs/).**
+
+Building the docs locally is as easy as running `mkdocs build`,
+and deploying them onto GitHub Pages
+is just a matter of running `mkdocs gh-deploy`.
+
+The `copier-pdm` template provides these actions/duties to check, build and deploy your docs:
+
+- `make docs`: build the docs locally, in the `site` directory
+- `make docs-serve`: serve the docs locally, at http://localhost:8000
+- `make docs-deploy`: deploy your docs on GitHub Pages
+- `make check-docs`: build docs in strict mode, failing at any warning or error
 
 ## Continuous Integration: GitHub Actions
 
-Linux/MacOS/Windows. DRY configuration between local and CI.
+GitHub Actions allows to do continuous integration
+on most major operating systems: Linux, MacOS and Windows,
+which is very nice when you build a cross-platform tool or library.
+
+To follow the DRY principle, what is executed in CI can be executed locally,
+and reciprocally. Locally, we use `duty` to run the tasks,
+so we do the same in CI:
+
+```yaml title=".github/workflows/ci.yml"
+name: ci
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up PDM
+      uses: pdm-project/setup-pdm@v2.6  # (1)
+      with:
+        python-version: "3.8"
+
+    - name: Resolving dependencies
+      run: pdm lock
+
+    - name: Install dependencies
+      run: pdm install -G duty -G docs -G quality -G typing -G security  # (2)
+
+    - name: Check if the documentation builds correctly
+      run: pdm run duty check-docs  # (3)
+
+    - name: Check the code quality
+      run: pdm run duty check-quality
+
+    - name: Check if the code is correctly typed
+      run: pdm run duty check-types
+
+    - name: Check for vulnerabilities in dependencies
+      run: pdm run duty check-dependencies
+
+  tests:
+
+    strategy:
+      matrix:
+        os:
+        - ubuntu-latest
+        - macos-latest
+        - windows-latest
+        python-version:
+        - "3.7"
+        - "3.8"
+        - "3.9"
+        - "3.10"
+        - "3.11-dev"
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2    
+
+    - name: Set up PDM
+      uses: pdm-project/setup-pdm@v2.6
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: pdm install --no-editable -G duty -G tests  # (4)
+
+    - name: Run the test suite
+      run: pdm run duty test  # (5)
+```
+
+1. The PDM project provides this very convenient
+    [`setup-pdm` GitHub action](https://github.com/pdm-project/setup-pdm).
+2. We install production dependencies and every necessary development dependency.
+3. And we run each check sequentially: docs, quality, types, security. That should be fast enough.
+4. We only install production dependencies and tests development dependencies.
+    We tell PDM not to use an editable installation method,
+    to be as close as a production environment as possible. 
+5. We run the test suite.
+
+That's it. No special cases for CI. Whats runs up there
+can run down here with `make check test`.
 
 ## Workflow: integrating everything together
 
-git commit messages, automatic changelog generation, new releases.
+Now let see the typical workflow with all these tools integrated together.
+
+If you don't already have a local clone of your project,
+you clone it, enter it and install dependencies:
+
+```bash
+git clone ...
+cd ...
+make setup
+```
+
+Then you can start working on a bugfix, feature or documentation improvement.
+
+```bash
+git switch -c fix-some-bug
+```
+
+For example, you add a test to your test suite to assert that it fails
+with the current code, and then run the test suite:
+
+```bash
+# add a failing test, then
+make test
+```
+
+It fails successfully on every Python version.
+You can now fix the code itself, and run the test suite again
+to make sure it's fixed for every Python version you support:
+
+```bash
+# fix the code, then
+make test
+```
+
+The test passes on every version, great.
+Make sure the code is well-formatted and there's no code smells:
+
+```bash
+make format check
+# fix any code smell
+```
+
+If you wrote or updated documentation, serve the site locally
+to check if everything renders correctly:
+
+```bash
+make docs-serve
+# go to localhost:8000
+```
+
+You are ready to commit. At some point you will want to release
+a new version, and therefore add a new entry in the changelog.
+You will be able to auto-generate such an entry thanks to
+[git-changelog](https://github.com/pawamoy/git-changelog),
+but only if you follow the
+[Angular commit-message convention](https://gist.github.com/brianclements/841ea7bffdb01346392c),
+prefixing commit messages with a type like `feat` or `fix`.
+
+```bash
+git commit -am "fix: Fix broken feature X"
+```
+
+After some commits (and/or merged pull requests),
+and if you are ready to release a new version,
+you can update your changelog and see
+if the suggestion new version matches your expectations:
+
+```bash
+make changelog
+# review CHANGELOG.md
+```
+
+The new version is based on your latest Git tag.
+
+With a major version of `0`, fixes and code refactoring
+will increment the patch version by 1, and features will increment
+the minor version by 1. Breaking changes (detected using the body
+of the commit message) won't increment the major version.
+
+With a major version higher than 0, detected breaking changes
+will increment the major version.
+
+Changes since the last release will be nicely organized
+in sections such as "Features" and "Bug fixes".
+
+The changelog should only be updated when you are ready
+to publish a new release. Then, simply build and publish
+a new release of your project, providing the same version
+that was added to the changelog (you don't need to commit it):
+
+```bash
+make release version=1.2.3
+# check out your new release on pypi.org!
+```
+
+The changelog and release parts are explained a bit more in the
+[Changelog](https://pawamoy.github.io/copier-pdm/work/#changelog) and
+[Releases](https://pawamoy.github.io/copier-pdm/work/#releases) sections of the
+[template's documentation](https://pawamoy.github.io/copier-pdm/requirements/).
+
+## Conclusion
+
+What I like about this template and the projects generated with it,
+is that they are pretty much self-contained. You have everything
+you need at the tips of your fingers, and don't have to rely
+on particular online services to perform specific actions.
+Don't like GitHub Actions? Switch to something else!
+You'll always be able to run checks and tests locally,
+or publish a new release or a documentation update from
+your local machine.
+
+I hope you enjoyed the article, or at least learned one or two things.
+In any case, don't hesitate to leave a comment: I'll gladly fix any
+mistake I made, or elaborate if something isn't clear enough!

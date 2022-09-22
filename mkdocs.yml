@@ -61,6 +61,7 @@ theme:
   icon:
     logo: material/currency-sign
   features:
+  - content.code.annotate
   - navigation.tabs
   - navigation.top
   palette:
@@ -86,6 +87,7 @@ extra_css:
 markdown_extensions:
   - meta
   - admonition
+  - callouts
   - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
