@@ -9,6 +9,8 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+      - 2023:
+        - posts/tips-for-writing-good-python-cli-libraries.md
       - 2022:
         - posts/somewhat-modern-python-development.md
         - posts/testing-fastapi-ormar-alembic-apps.md
@@ -88,6 +90,7 @@ markdown_extensions:
   - meta
   - admonition
   - callouts
+  - pymdownx.blocks.admonition
   - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
