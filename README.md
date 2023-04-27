@@ -15,6 +15,5 @@ Serve locally with `./scripts/serve.sh`.
 
 ## Deployment
 
-Deploy to GitHub pages with `./scripts/deploy.sh`.
-The script will build and publish the site by pushing it
-on https://github.com/pawamoy/pawamoy.github.io.
+Deploy to [pawamoy.github.io](https://github.com/pawamoy/pawamoy.github.io)'s
+GitHub pages with `./scripts/deploy.sh`.
