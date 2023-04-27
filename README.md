@@ -19,14 +19,5 @@ Serve locally with `./scripts/serve.sh`.
 ## Deployment
 
 Deploy to GitHub pages with `./scripts/deploy.sh`.
-The repository `pawamoy.github.io` must exist one directory above:
-
-```
-..
-├── pawamoy.github.io
-└── website
-    ├── docs
-    ├── scripts
-    ├── site
-    └── venv
-```
+The script will build and publish the site by pushing it
+on https://github.com/pawamoy/pawamoy.github.io.

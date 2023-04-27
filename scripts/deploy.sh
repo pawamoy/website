@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 . venv/bin/activate
-cd ../pawamoy.github.io || exit 1
-git pull
-mkdocs gh-deploy \
-  --config-file ../website/mkdocs.yml \
+git remote add gh-pages git@github.com:pawamoy/pawamoy.github.io &>/dev/null
+mkdocs gh-deploy --force \
+  --remote-name gh-pages \
   --remote-branch master
-git reset --hard HEAD
+# git reset --hard HEAD
