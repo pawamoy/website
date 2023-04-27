@@ -7,10 +7,7 @@ Served at https://pawamoy.github.io/.
 
 ## Setup
 
-```bash
-python3 -m venv venv
-venv/bin/pip install -r requirements.txt
-```
+Install dependencies in a venv with `/scripts/setup.sh`.
 
 ## Development
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. venv/bin/activate
+. .venv/bin/activate
 git remote add gh-pages git@github.com:pawamoy/pawamoy.github.io &>/dev/null
 mkdocs gh-deploy --force \
   --remote-name gh-pages \
