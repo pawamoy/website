@@ -3,6 +3,10 @@ site_description: "Findings, thoughts, tutorials, work. Pieces of my mind!"
 site_url: "https://pawamoy.github.io/"
 repo_url: "https://github.com/pawamoy/website/"
 repo_name: "pawamoy/website"
+exclude_docs: drafts/
+not_in_nav: |
+  notes/
+  tips-for-writing-*
 
 nav:
   - Home: index.md
