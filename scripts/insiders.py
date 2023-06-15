@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import json
 import logging
+import posixpath
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from itertools import chain
 from pathlib import Path
-from textwrap import dedent
 from typing import Iterable, cast
 from urllib.error import HTTPError
 from urllib.parse import urljoin
 from urllib.request import urlopen
-import posixpath
 
 import yaml
 
@@ -29,6 +28,8 @@ def human_readable_amount(amount: int) -> str:  # noqa: D103
 
 @dataclass
 class Project:
+    """Class representing an Insiders project."""
+
     name: str
     url: str
 
@@ -42,17 +43,12 @@ class Feature:
     since: date | None
     project: Project | None
 
-    def url(self, rel_base: str = "..") -> str:
-        """The URL to the feature's documentation.
-
-        Returns:
-            The feature's local reference, or joined using its origin.
-        """
+    def url(self, rel_base: str = "..") -> str:  # noqa: D102
         if self.project:
             rel_base = self.project.url
         return posixpath.join(rel_base, self.ref.lstrip("/"))
 
-    def render(self, rel_base: str = "..", badge: bool = False) -> None:
+    def render(self, rel_base: str = "..", *, badge: bool = False) -> None:  # noqa: D102
         new = ""
         if badge:
             recent = self.since and date.today() - self.since <= timedelta(days=60)  # noqa: DTZ011
@@ -104,7 +100,7 @@ def load_goals(data: str, funding: int = 0, project: Project | None = None) -> d
                 Feature(
                     name=feature_data["name"],
                     ref=feature_data["ref"],
-                    since=feature_data["since"]
+                    since=feature_data.get("since")
                     and datetime.strptime(feature_data["since"], "%Y/%m/%d").date(),  # noqa: DTZ007
                     project=project,
                 )
@@ -115,7 +111,32 @@ def load_goals(data: str, funding: int = 0, project: Project | None = None) -> d
     }
 
 
-def funding_goals(source: str | list[tuple[str, str, str]], funding: int = 0) -> dict:
+def _load_goals_from_disk(path: str, funding: int = 0) -> dict[int, Goal]:
+    try:
+        data = Path(path).read_text()
+    except OSError as error:
+        raise RuntimeError(f"Could not load data from disk: {path}") from error
+    return load_goals(data, funding)
+
+
+def _load_goals_from_url(source_data: tuple[str, str, str], funding: int = 0) -> dict[int, Goal]:
+    project_name, project_url, data_fragment = source_data
+    data_url = urljoin(project_url, data_fragment)
+    try:
+        with urlopen(data_url) as response:  # noqa: S310
+            data = response.read()
+    except HTTPError as error:
+        raise RuntimeError(f"Could not load data from network: {data_url}") from error
+    return load_goals(data, funding, project=Project(name=project_name, url=project_url))
+
+
+def _load_goals(source: str | tuple[str, str, str], funding: int = 0) -> dict[int, Goal]:
+    if isinstance(source, str):
+        return _load_goals_from_disk(source, funding)
+    return _load_goals_from_url(source, funding)
+
+
+def funding_goals(source: str | list[str | tuple[str, str, str]], funding: int = 0) -> dict[int, Goal]:
     """Load funding goals from a given data source.
 
     Parameters:
@@ -126,20 +147,10 @@ def funding_goals(source: str | list[tuple[str, str, str]], funding: int = 0) ->
         A dictionaries of goals, keys being their target monthly amount.
     """
     if isinstance(source, str):
-        try:
-            data = Path(source).read_text()
-        except OSError as error:
-            raise RuntimeError(f"Could not load data from disk: {source}") from error
-        return load_goals(data, funding)
+        return _load_goals_from_disk(source, funding)
     goals = {}
-    for project_name, project_url, data_fragment in source:
-        data_url = urljoin(project_url, data_fragment)
-        try:
-            with urlopen(data_url) as response:  # noqa: S310
-                data = response.read()
-        except HTTPError as error:
-            raise RuntimeError(f"Could not load data from network: {data_url}") from error
-        source_goals = load_goals(data, funding, project=Project(name=project_name, url=project_url))
+    for src in source:
+        source_goals = _load_goals(src)
         for amount, goal in source_goals.items():
             if amount not in goals:
                 goals[amount] = goal
@@ -173,32 +184,9 @@ sponsors: list[dict] = load_json(f"{data_url}/sponsors.json")  # type: ignore[as
 current_funding = numbers["total"]
 sponsors_count = numbers["count"]
 goals = funding_goals(data_source, funding=current_funding)
-all_features = feature_list(goals.values())
-completed_features = sorted(
-    (ft for ft in all_features if ft.since),
+ongoing_goals = [goal for goal in goals.values() if not goal.complete]
+unreleased_features = sorted(
+    (ft for ft in feature_list(ongoing_goals) if ft.since),
     key=lambda ft: cast(date, ft.since),
     reverse=True,
 )
-
-
-def print_join_sponsors_button() -> None:  # noqa: D103
-    btn_classes = "{ .md-button .md-button--primary }"
-    print(
-        dedent(
-            f"""
-            [:octicons-heart-fill-24:{{ .pulse }}
-            &nbsp; Join our {sponsors_count} awesome sponsors]({sponsor_url}){btn_classes}
-            """,
-        ),
-    )
-
-
-def print_sponsors() -> None:  # noqa: D103
-    private_sponsors_count = sponsors_count - len(sponsors)
-    for sponsor in sponsors:
-        print(
-            f"""<a href="{sponsor['url']}" class="sponsorship-item" title="@{sponsor['name']}">"""
-            f"""<img src="{sponsor['image']}&size=72"></a>""",
-        )
-    if private_sponsors_count:
-        print(f"""<a href="{sponsor_url}" class="sponsorship-item private">+{private_sponsors_count}</a>""")
