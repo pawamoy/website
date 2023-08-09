@@ -1,6 +1,6 @@
 # aria2p
 
-![aria2p](/assets/aria2p.gif)
+![aria2p](../assets/aria2p.gif)
 
 - Repository: https://github.com/pawamoy/aria2p
 - Documentation: https://pawamoy.github.io/aria2p

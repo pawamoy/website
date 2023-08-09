@@ -201,11 +201,11 @@ Add this in your test job:
 
 Now when a job fails, you'll be able to download or browse the logs:
 
-![artifacts1](/assets/gitlab_artifacts1.png)
+![artifacts1](../assets/gitlab_artifacts1.png)
 
 Or even from the pipelines pages:
 
-![artifacts2](/assets/gitlab_artifacts2.png)
+![artifacts2](../assets/gitlab_artifacts2.png)
 
 ## Logs artifact in GitHub Workflow
 
@@ -241,4 +241,4 @@ jobs:
 
 You'll be able to download the artifacts from the workflow page:
 
-![artifacts_github](/assets/github_artifacts.png)
+![artifacts_github](../assets/github_artifacts.png)

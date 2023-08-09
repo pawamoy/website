@@ -336,9 +336,9 @@ and run our application!
 
 Well, I'm not really proud of this code, but it works!
 
-![logs](/assets/gunicorn_logs.png)
+![logs](../assets/gunicorn_logs.png)
 
-![logs_json](/assets/gunicorn_logs_json.png)
+![logs_json](../assets/gunicorn_logs_json.png)
 
 ## Uvicorn-only version
 

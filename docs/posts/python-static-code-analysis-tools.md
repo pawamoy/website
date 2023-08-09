@@ -21,7 +21,7 @@ is represented in the following chart.
 
 <!--more-->
 
-![Chart](/assets/python-static-code-analysis-tools.png)
+![Chart](../assets/python-static-code-analysis-tools.png)
 
 In this post, we will see the advantages and disadvantages of these tools,
 and compare them a bit.

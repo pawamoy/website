@@ -21,7 +21,7 @@ This post quickly explains how to do that.
 
 Lets begin by listing our commits:
 
-![edit-commit-1](/assets/edit-commit1.png)
+![edit-commit-1](../assets/edit-commit1.png)
 
 <small>
 In this screenshot I use my `gl` alias which expands to:
@@ -44,18 +44,18 @@ by running:
 git rebase -i HEAD~3
 ```
 
-![edit-commit-2](/assets/edit-commit2.png)
+![edit-commit-2](../assets/edit-commit2.png)
 
 This command launches your git editor (vim here)
 to tell git what to do. Here we tell git to stop
 right after the commit we want to modify:
 
-![edit-commit-3](/assets/edit-commit3.png)
+![edit-commit-3](../assets/edit-commit3.png)
 
 We save and quit this temporary file (with `:wq`),
 and git tells us that it stopped at the desired commit:
 
-![edit-commit-4](/assets/edit-commit4.png)
+![edit-commit-4](../assets/edit-commit4.png)
 
 <small>
 Don't pay attention to the commit SHA:
@@ -67,7 +67,7 @@ Now you can start modifying, adding or deleting files!
 In my case I wanted to remove wrong sections in `CHANGELOG.md`,
 as well as remove conflict-resolution lines in `pyproject.toml`.
 
-![edit-commit-5](/assets/edit-commit5.png)
+![edit-commit-5](../assets/edit-commit5.png)
 
 <small>
 In this screenshot I use my `gs` alias
@@ -82,7 +82,7 @@ git commit -a --amend --no-edit
 # --no-edit because we don't want to edit the message
 ```
 
-![edit-commit-6](/assets/edit-commit6.png)
+![edit-commit-6](../assets/edit-commit6.png)
 
 And finally, let git finish the interactive rebase:
 
@@ -90,6 +90,6 @@ And finally, let git finish the interactive rebase:
 git rebase --continue
 ```
 
-![edit-commit-7](/assets/edit-commit7.png)
+![edit-commit-7](../assets/edit-commit7.png)
 
 Done!

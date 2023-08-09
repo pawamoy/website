@@ -158,7 +158,7 @@ urlpatterns = [
 
 That's it, go check your new empty dashboard!
 
-![Empty dashboard](/assets/empty-dashboard.png)
+![Empty dashboard](../assets/empty-dashboard.png)
 
 ## Step 3: Highcharts!
 
@@ -259,7 +259,7 @@ to create, for example, a pie chart:
 
 Here is the result:
 
-![Pie chart](/assets/pie-chart.png)
+![Pie chart](../assets/pie-chart.png)
 
 For other types of chart, go check the Highcharts [demos][] and their excellent
 [API documentation][]!
@@ -337,7 +337,7 @@ poorly imitate Bootstrap's columns:
 
 ...and which results like this:
 
-![Columns](/assets/columns.png)
+![Columns](../assets/columns.png)
 
 But this tweak is very limited because you can't have columns with different
 sizes on the same row...

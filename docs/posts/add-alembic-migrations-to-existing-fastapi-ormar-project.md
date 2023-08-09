@@ -161,6 +161,6 @@ async def startup() -> None:
         await database.connect()
 ```
 
-In my [next post](../add-alembic-migrations-to-existing-fastapi-ormar-project/),
+In my [next post](add-alembic-migrations-to-existing-fastapi-ormar-project.md),
 you will see how to write tests for such setups,
 but also how to configure all this in a more robust and elegant way.

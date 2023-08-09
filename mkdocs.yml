@@ -116,6 +116,7 @@ markdown_extensions:
 - md_in_html
 - meta
 - pymdownx.blocks.admonition
+- pymdownx.blocks.tab
 - pymdownx.details
 - pymdownx.emoji:
     emoji_index: !!python/name:materialx.emoji.twemoji
@@ -144,6 +145,11 @@ plugins:
 - search
 - markdown-exec
 - typeset
+- mkdocstrings:
+    enable_inventory: false
+    handlers:
+      python:
+        paths: [examples]
 - redirects:
     redirect_maps:
       # mkdocstrings

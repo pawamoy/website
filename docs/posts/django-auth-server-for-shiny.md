@@ -60,7 +60,7 @@ on the port 80 or 443 (HTTP or HTTPs), but not on the ports 8000 or 8100, which
 are used internally by Django and Shiny. This can be configured through the
 firewall.
 
-![client-server-architecture](/assets/client-server-architecture.png)
+![client-server-architecture](../assets/client-server-architecture.png)
 
 The second picture shows what happens when the client requests the URL
 that the Shiny app is served on. As we wrap the Shiny app into a Django-powered
@@ -69,7 +69,7 @@ initial Shiny page HTML contents with an internal HTTP Get request, and renders
 it in a `iframe` (we will see the details later). It then returns this rendered
 page to NginX, which returns it to the client.
 
-![client-requests-shiny](/assets/client-requests-shiny.png)
+![client-requests-shiny](../assets/client-requests-shiny.png)
 
 The third picture shows each subsequent requests from the client to the server
 through a WebSocket, and how NginX is asking authorization to Django. When NginX
@@ -79,7 +79,7 @@ says yes (HTTP 200), NginX proxies the request to Shiny. If Django says no
 (HTTP 403 or any other error code), NginX rejects the request by returning
 HTTP 403 as a response to the client.
 
-![client-shiny-subrequests](/assets/client-shiny-subrequests.png)
+![client-shiny-subrequests](../assets/client-shiny-subrequests.png)
 
 OK, let's try it! To begin, create a directory that we will use for this
 tutorial:
@@ -368,7 +368,7 @@ go to http://localhost:8000/shiny to see how it goes!
 
 You should see something like the following image:
 
-![screenshot-django-shiny](/assets/screenshot-django-shiny.png)
+![screenshot-django-shiny](../assets/screenshot-django-shiny.png)
 
 But since Shiny requests are not proxied, they are simply lost in-between, and
 your Shiny app will not respond, nor get a nice look because the static assets

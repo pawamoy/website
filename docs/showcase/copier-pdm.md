@@ -1,6 +1,6 @@
 # copier-pdm
 
-![copier-pdm](/assets/copier-pdm.svg)
+![copier-pdm](../assets/copier-pdm.svg)
 
 - Repository: https://github.com/pawamoy/copier-pdm
 - Documentation: https://pawamoy.github.io/copier-pdm/

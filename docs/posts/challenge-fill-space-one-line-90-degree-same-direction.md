@@ -21,7 +21,7 @@ Well, today I actually drawn it:
 
 <!--more-->
 
-![fill-space-drawing](/assets/fill-space-drawing.jpg)
+![fill-space-drawing](../assets/fill-space-drawing.jpg)
 
 I started top left, and finish bottom right. I turned right all the time.
 It took me about 20 minutes.
@@ -35,7 +35,7 @@ The difficult parts are:
   (though repetition of symmetrical patterns could be very pretty!)
 
 Here are some mistakes I made (the most obvious ones):
-![fill-space-drawing-errors](/assets/fill-space-drawing-errors.jpg)
+![fill-space-drawing-errors](../assets/fill-space-drawing-errors.jpg)
 
 But anyway, it was my first attempt, and I kinda like the childish aspect of it.
 10/10 would do again!

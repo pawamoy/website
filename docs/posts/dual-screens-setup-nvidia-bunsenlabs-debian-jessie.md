@@ -87,7 +87,7 @@ sudo apt install -t jessie-backports nvidia-xconfig nvidia-settings xserver-xorg
 
 Reboot! At this point, it won't hurt your OS (it will actually help).
 
-![reboot](/assets/reboot.png)
+![reboot](../assets/reboot.png)
 
 *Rebooting...*
 
@@ -112,7 +112,7 @@ Login, then finalize with:
 sudo nvidia-settings
 ```
 
-![nvidia-settings](/assets/nvidia-settings.png)
+![nvidia-settings](../assets/nvidia-settings.png)
 
 Set your screen(s) resolutions and everything, save the configuration
 into `/etc/X11/xorg.conf`, maybe reboot one last time, and you should be

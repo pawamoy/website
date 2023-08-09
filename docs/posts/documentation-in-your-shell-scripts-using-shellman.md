@@ -139,7 +139,7 @@ Options:
 ```
 
 #### Man
-![man output](/assets/man-output.png)
+![man output](../assets/man-output.png)
 
 #### Markdown
 ```markdown
@@ -170,7 +170,7 @@ the current instruction when using -x option.
 
 ... which would look like:
 
-![markdown output](/assets/markdown-output.png)
+![markdown output](../assets/markdown-output.png)
 
 ## More
 Shellman supports more tags, in particular: function tags.

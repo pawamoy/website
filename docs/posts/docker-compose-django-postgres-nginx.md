@@ -46,7 +46,7 @@ one for NginX, one for Django + Gunicorn (they always go together), and one for
 our database. The NginX container communicate with the Django+Gunicorn one,
 which itself connects to the Postgres container. Pretty straight-forward, right?
 
-![docker1](/assets/docker1.png)
+![docker1](../assets/docker1.png)
 
 In our configuration, it means we will declare three containers, or three
 services if we talk in terms of Docker Compose.
@@ -54,7 +54,7 @@ services if we talk in terms of Docker Compose.
 Except that we need bridges between the containers, in order for them to
 communicate. Let's add these bridges:
 
-![docker2](/assets/docker2.png)
+![docker2](../assets/docker2.png)
 
 In `docker-compose.yml`, we will declare these bridges thanks to the `networks`
 directive, and connect them to the right containers.
@@ -63,7 +63,7 @@ Of course, you may want or need several databases for your project. So here is
 an updated image with two database containers. It's simply a matter of adding
 a new brige:
 
-![docker3](/assets/docker3.png)
+![docker3](../assets/docker3.png)
 
 Once you know how to do it for two databases, it's very easy to add more.
 
@@ -73,7 +73,7 @@ production, we need these data to be persistent. If we keep the data in
 production, let's keep them in local environment as well. To do this, we will
 use volumes, a feature of Docker:
 
-![docker4](/assets/docker4.png)
+![docker4](../assets/docker4.png)
 
 Alright, that is enough for the overview, let's get our hands dirty!
 
