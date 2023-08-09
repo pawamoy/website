@@ -13,8 +13,9 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
-    # - 2023:
-    #   - posts/tips-for-writing-good-python-cli-libraries.md
+    - 2023:
+      # - posts/tips-for-writing-good-python-cli-libraries.md
+      - posts/adding-links-to-formatted-and-syntax-highlighted-code.md
     - 2022:
       - posts/somewhat-modern-python-development.md
       - posts/testing-fastapi-ormar-alembic-apps.md
