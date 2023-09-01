@@ -12,6 +12,7 @@ data_source = [
     ("griffe-pydantic", "https://mkdocstrings.github.io/griffe-pydantic/", "insiders/goals.yml"),
     ("griffe-typing-deprecated", "https://mkdocstrings.github.io/griffe-typing-deprecated/", "insiders/goals.yml"),
     ("markdown-exec", "https://pawamoy.github.io/markdown-exec/", "insiders/goals.yml"),
+    ("markdown-pycon", "https://pawamoy.github.io/markdown-pycon/", "insiders/goals.yml"),
     ("mkdocs-manpage", "https://pawamoy.github.io/mkdocs-manpage/", "insiders/goals.yml"),
     ("mkdocstrings-python", "https://mkdocstrings.github.io/python/", "insiders/goals.yml"),
     ("pypi-insiders", "https://pawamoy.github.io/pypi-insiders/", "insiders/goals.yml"),
