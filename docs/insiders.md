@@ -15,6 +15,7 @@ data_source = [
     ("markdown-pycon", "https://pawamoy.github.io/markdown-pycon/", "insiders/goals.yml"),
     ("mkdocs-manpage", "https://pawamoy.github.io/mkdocs-manpage/", "insiders/goals.yml"),
     ("mkdocstrings-python", "https://mkdocstrings.github.io/python/", "insiders/goals.yml"),
+    ("mkdocstrings-shell", "https://mkdocstrings.github.io/shell/", "insiders/goals.yml"),
     ("pypi-insiders", "https://pawamoy.github.io/pypi-insiders/", "insiders/goals.yml"),
 ]
 ```
