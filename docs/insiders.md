@@ -10,6 +10,7 @@ and [what's in it for you][features]!
 data_source = [
     ("griffe2md", "https://mkdocstrings.github.io/griffe2md/", "insiders/goals.yml"),
     ("griffe-pydantic", "https://mkdocstrings.github.io/griffe-pydantic/", "insiders/goals.yml"),
+    ("griffe-tui", "https://mkdocstrings.github.io/griffe-tui/", "insiders/goals.yml"),
     ("griffe-typing-deprecated", "https://mkdocstrings.github.io/griffe-typing-deprecated/", "insiders/goals.yml"),
     ("markdown-exec", "https://pawamoy.github.io/markdown-exec/", "insiders/goals.yml"),
     ("markdown-pycon", "https://pawamoy.github.io/markdown-pycon/", "insiders/goals.yml"),
