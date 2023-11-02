@@ -8,6 +8,7 @@ and [what's in it for you][features]!
 
 ```python exec="1" session="insiders"
 data_source = [
+    ("devboard", "https://pawamoy.github.io/devboard/", "insiders/goals.yml"),
     ("griffe2md", "https://mkdocstrings.github.io/griffe2md/", "insiders/goals.yml"),
     ("griffe-pydantic", "https://mkdocstrings.github.io/griffe-pydantic/", "insiders/goals.yml"),
     ("griffe-tui", "https://mkdocstrings.github.io/griffe-tui/", "insiders/goals.yml"),

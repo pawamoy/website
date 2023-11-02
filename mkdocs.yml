@@ -15,6 +15,7 @@ nav:
   - Posts:
     - 2023:
       # - posts/tips-for-writing-good-python-cli-libraries.md
+      - posts/the-insiders-journey.md
       - posts/adding-links-to-formatted-and-syntax-highlighted-code.md
     - 2022:
       - posts/somewhat-modern-python-development.md
@@ -112,11 +113,13 @@ extra_css:
 markdown_extensions:
 - admonition
 - attr_list
-- callouts
+- callouts:
+    strip_period: false
 - footnotes
 - md_in_html
 - meta
 - pymdownx.blocks.admonition
+- pymdownx.blocks.html
 - pymdownx.blocks.tab
 - pymdownx.details
 - pymdownx.emoji:
