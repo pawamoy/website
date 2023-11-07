@@ -152,7 +152,7 @@ but they do have budget for marketing, and logo placement is marketing,
 so offering it can be the decisive factor for a company to sponsor you!
 In my case I added $100/month and $200/month tiers, for Bronze :third_place:
 and Silver :second_place: sponsors, offering higher logo placement in the docs,
-and will probably add a Gold :first_place: tier later. budget
+and will probably add a Gold :first_place: tier later.
 You can see how tiers look [on my GitHub sponsors page](https://github.com/sponsors/pawamoy/).
 
 You are also looking for a platform that will allow automation, for example to grant access
@@ -904,7 +904,7 @@ def show_events(events: list[tuple[str, str]]):
 show_events(
     [
         ("June, 2019", 'Creation of my <a href="https://github.com/sponsors/pawamoy">GitHub Sponsors profile</a> 😤'),
-        ("September-October, 2020", "First three sponsors: Chad Smith, Cristoph Rieke, and Gunther Klessinger 💜"),
+        ("September-October, 2020", "First three sponsors: Chad Smith, Christoph Rieke, and Gunther Klessinger 💜"),
         ("January, 2021", "First user trying to game the system 👹"),
         ("October, 2021", "New sponsor."),
         ("February, 2022", "Beginning of a long preparation for my sponsorware strategy."),
