@@ -4,6 +4,12 @@ permalink: /about/
 ---
 
 <style>
+@media only screen and (min-width: 1220px) {
+  .md-nav__list { 
+    display: none; 
+  }
+}
+
 .post-header {
   display: none;
 }

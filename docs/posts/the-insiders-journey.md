@@ -8,6 +8,7 @@ tags: journal insiders sponsoring sponshorship opensource entrepreneurship
 image:
   src: /assets/insiders-journey.png
   add_to_post: yes
+  class: crop-excerpt
 ---
 
 This post will embark you on my journey about making a living

@@ -10,7 +10,9 @@ You can also checkout my [About](about.md) page,
 or some projects I worked on in the [Showcase](showcase.md).
 
 <style>
-    .md-nav__list {
-        display: none;
+@media only screen and (min-width: 1220px) {
+    .md-nav__list { 
+        display: none; 
     }
+}
 </style>
