@@ -280,31 +280,7 @@ linkStyle 3 display:none;
 
 If your project already exists and you want to start developing insiders features,
 all you have to do is create the insiders repository in your dedicated organization.
-
 If you start a project from scratch, you have to create both the public and insiders repositories.
-The public repository should at least have a README that explains this project is for sponsors only,
-with links to your Insiders program documentation as well as the project's docs.
-
-This is the text I use in READMEs of Insiders projects (when the whole project
-is available to sponsors-only, not just some features):
-
-```md
-# Project Name
-
-This project is currently available to [sponsors](https://github.com/sponsors/pawamoy) only.
-See the documentation here: https://pawamoy.github.io/project-name.
-```
-
-I also set up a GitHub description like:
-
-```
-Short description of the project. Only available to sponsors.
-```
-
-Here is how it looks (at the time of writing)
-for my [MkDocs Manpage](https://github.com/pawamoy/mkdocs-manpage) project:
-
-![mkdocs manpage project](../assets/mkdocs_manpage.png){ alt="Screenshot of the MkDocs Manpage project home page on GitHub." }
 
 TIP: **Create and setup GitHub repositories with my `insiders` tool**
 I created a tool called [`insiders`](https://pawamoy.github.io/insiders-project)
@@ -679,6 +655,70 @@ that is used by the next job to match and exclude test jobs.
 I am definitely not an expert in comms/marketing,
 but here are some obvious tips on how to advertise your work.
 
+Your Insiders organization can have both a
+[public README](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#adding-a-public-organization-profile-readme)
+and a
+[member-only README](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile#adding-a-member-only-organization-profile-readme).
+You can use that to your advantage by telling about your Insiders program
+in the public README, and giving useful tips and instructions to your sponsors
+in the member-only README. For example, in the public README:
+
+```md
+# pawamoy Insiders
+
+This organization contains all my [Insiders](https://pawamoy.github.io/insiders/) projects.
+[Learn what Insiders is](https://pawamoy.github.io/insiders/#what-is-insiders),
+or how to gain access by [becoming a sponsor](https://pawamoy.github.io/insiders/#how-to-become-a-sponsor).
+```
+
+![public profile](../assets/insiders-public-profile.png){ alt="Screenshot of the public Insiders org profile." }
+
+And in the member-only README:
+
+```md
+# pawamoy Insiders
+
+Welcome to [Insiders](https://pawamoy.github.io/insiders/)!
+
+Thanks to your sponsorship, you became a member of this organization,
+and gained access to all of my Insiders projects.
+
+To get started,
+[see how to install the Insiders version of a project](https://mkdocstrings.github.io/python/insiders/installation/)
+(for example *mkdocstrings-python Insiders*).
+
+Make sure you have read the (very short) [terms of use](https://pawamoy.github.io/insiders/#terms).
+
+If you have any question regarding your sponsorship, or the Insiders program,
+send me an email at pawamoy@pm.me.
+```
+
+![private profile](../assets/insiders-private-profile.png){ alt="Screenshot of the member-only Insiders org profile." }
+
+The public repositories of your Insiders projects
+(when the whole project is available to sponsors-only)
+should have a README that explains this project is for sponsors only,
+with links to your Insiders program documentation
+as well as the project's documentation. For example:
+
+```md
+# Project Name
+
+This project is currently available to [sponsors](https://github.com/sponsors/pawamoy) only.
+See the documentation here: https://pawamoy.github.io/project-name.
+```
+
+You can also set up a GitHub description like:
+
+```
+Short description of the project. Only available to sponsors.
+```
+
+Here is how it looks (at the time of writing)
+for my [MkDocs Manpage](https://github.com/pawamoy/mkdocs-manpage) project:
+
+![mkdocs manpage project](../assets/mkdocs_manpage.png){ alt="Screenshot of the MkDocs Manpage project home page on GitHub." }
+
 Automate GitHub Releases creation for both public and Insiders
 repositories. GitHub users can subscribe to releases activity,
 in their feed or through notifications. It makes your progress
@@ -904,46 +944,107 @@ def show_events(events: list[tuple[str, str]]):
 
 show_events(
     [
-        ("June, 2019", 'Creation of my <a href="https://github.com/sponsors/pawamoy">GitHub Sponsors profile</a> 😤'),
-        ("September-October, 2020", "First three sponsors: Chad Smith, Christoph Rieke, and Gunther Klessinger 💜"),
-        ("January, 2021", "First user trying to game the system 👹"),
-        ("October, 2021", "New sponsor."),
-        ("February, 2022", "Beginning of a long preparation for my sponsorware strategy."),
-        ("April-June, 2022", "Three new sponsors."),
-        ("June, 2022", '<a href="https://github.blog/2022-06-24-thank-you-to-our-maintainers/">One-time donation of $550 from GitHub</a> 🎉'),
-        ("September-November, 2022", "Two new sponsors."),
-        ("December, 2022", "First sponsorship cancellation 😢."),
-        ("January-March, 2023", "Finalization of my Insiders setup. Five new sponsors, two cancellations."),
-        ("April, 2023", f'{vibrate()} <b>New feature (markdown-exec):</b> <a href="https://pawamoy.github.io/markdown-exec/usage/pyodide">A Pyodide fence.</a><hr>'
+        (
+          "June, 2019",
+          'Creation of my <a href="https://github.com/sponsors/pawamoy">GitHub Sponsors profile</a> 😤',
+        ),
+        (
+          "September-October, 2020",
+          "First three sponsors: Chad Smith, Christoph Rieke, and Gunther Klessinger 💜",
+        ),
+        (
+          "January, 2021",
+          "First user trying to game the system 👹",
+        ),
+        (
+          "October, 2021",
+          "New sponsor.",
+        ),
+        (
+          "February, 2022",
+          "Beginning of a long preparation for my sponsorware strategy."),
+        (
+          "April-June, 2022",
+          "Three new sponsors.",
+        ),
+        (
+          "June, 2022",
+          '<a href="https://github.blog/2022-06-24-thank-you-to-our-maintainers/">One-time donation of $550 from GitHub</a> 🎉'),
+        (
+          "September-November, 2022",
+          "Two new sponsors.",
+        ),
+        (
+          "December, 2022",
+          "First sponsorship cancellation 😢.",
+        ),
+        (
+          "January-March, 2023",
+          "Finalization of my Insiders setup. Five new sponsors, two cancellations. "
+          "I quit my job to work full-time on my projects.",
+        ),
+        (
+          "April, 2023",
+          f'{vibrate()} <b>New feature (markdown-exec):</b> <a href="https://pawamoy.github.io/markdown-exec/usage/pyodide">A Pyodide fence.</a><hr>'
           '<a href="https://github.com/mkdocstrings/mkdocstrings/discussions/550"><b>Official launch of my Insiders program 🚀</b></a><br>'
           '<a href="https://twitter.com/pydantic/status/1642893007107006464">One-time donation of $500 from Pydantic 🎊</a><br>'
           "Martin ups his sponsorship to $100, supporting the MkDocs ecosystem. "
-          "Two new sponsors."),
-        ("May, 2023", f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/signatures/#signature_crossrefs">Cross-references for type annotations in signatures.</a><br>'
-          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe2md">griffe2md</a>, a tool to output API docs to Markdown using Griffe.<br>'),
-        ("June, 2023", f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/headings/#show_symbol_type_toc">Symbol types in headings and table of contents.</a><br>'
+          "Two new sponsors.",
+        ),
+        (
+          "May, 2023",
+          f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/signatures/#signature_crossrefs">Cross-references for type annotations in signatures.</a><br>'
+          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe2md">griffe2md</a>, a tool to output API docs to Markdown using Griffe.<br>',
+        ),
+        (
+          "June, 2023",
+          f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/headings/#show_symbol_type_toc">Symbol types in headings and table of contents.</a><br>'
           f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/mkdocs-manpage">MkDocs Manpage</a>, a plugin to generate a manpage from the documentation site.<br>'
           f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/pypi-insiders">PyPI Insiders</a>, a self-hosted PyPI server with automatic updates for Insiders versions of projects.<hr>'
           "First two sponsorships from organizations, Pydantic and Kolena. "
-          "Two new sponsors, one cancellation."),
-        ("July, 2023", f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-pydantic">Griffe Pydantic</a>, a Griffe extension for Pydantic.<br>'
-          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-typing-deprecated">Griffe Typing Deprecated</a>, a Griffe extension for <code>@typing.deprecated</code> (PEP 702).'),
-        ("August, 2023", f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/members/#summary">Auto-summary of object members.</a><hr>'
+          "Two new sponsors, one cancellation.",
+        ),
+        (
+          "July, 2023",
+          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-pydantic">Griffe Pydantic</a>, a Griffe extension for Pydantic.<br>'
+          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-typing-deprecated">Griffe Typing Deprecated</a>, a Griffe extension for <code>@typing.deprecated</code> (PEP 702).',
+        ),
+        (
+          "August, 2023",
+          f'{vibrate()} <b>New feature (mkdocstrings-python):</b> <a href="https://mkdocstrings.github.io/python/usage/configuration/members/#summary">Auto-summary of object members.</a><hr>'
           '<a href="https://github.com/mkdocs/mkdocs/discussions/3369">'
           "One-time donation of $10,000 to MkDocs, by Bloomberg</a> (I receive $1,000 🤸‍♂️). "
-          "Two new sponsors, one cancellation."),
-        ("September, 2023", f'{vibrate()} <b>New feature (mkdocstrings-python):</b> Automatic rendering of function signature overloads<br>'
+          "Two new sponsors, one cancellation.",
+        ),
+        (
+          "September, 2023",
+          f'{vibrate()} <b>New feature (mkdocstrings-python):</b> Automatic rendering of function signature overloads<br>'
           f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/markdown-pycon">Markdown PyCon</a>, a Markdown extension to parse <code>pycon</code> code blocks without indentation or fences.<br>'
           f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-tui">Griffe TUI</a>, a Textual user interface for Griffe.<br>'
           f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/shell">mkdocstrings-shell</a>, a shell scripts/libraries handler for mkdocstrings.<hr>'
           "One-time donation of $1,000 by Sebastián Ramírez 🤯 "
-          "Three new sponsors."),
-        ("October, 2023", f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/insiders-project">insiders</a>, a tool to manage your Insiders projects.<hr>'
+          "Three new sponsors.",
+        ),
+        (
+          "October, 2023",
+          f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/insiders-project">insiders</a>, a tool to manage your Insiders projects.<hr>'
           "<b>Creation of my company, a French micro-entreprise called <i>pawamoy-insiders</i>.</b> "
-          "Four new sponsors (two orgs), one cancellation."),
-        ("November, 2023", f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/devboard">Devboard</a>, a development dashboard for your projects.'),
-        ("???", "French administration sends me my SIREN number (company number)."),
-        ("???", "I declare my taxes for the first time 👶"),
+          "Four new sponsors (two orgs), one cancellation.",
+        ),
+        (
+          "November, 2023",
+          f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/devboard">Devboard</a>, a development dashboard for your projects.<br>'
+          f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-inherited-docstrings">Griffe Inherited Docstrings</a>, a Griffe extension to inherit docstrings from parent classes.<hr>'
+          "One new sponsor.",
+        ),
+        (
+          "???",
+          "French administration sends me my SIREN number (company number).",
+        ),
+        (
+          "???",
+          "I declare my taxes for the first time 👶",
+        ),
     ]
 )
 ```
