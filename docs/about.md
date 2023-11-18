@@ -179,7 +179,7 @@ and soon maybe `--basketball` will be implemented.
 
 <p class="i2"></p>
 Learn new things. It takes time and depending on the thing to learn,
-`--relucant` might be enabled at first.
+`--reluctant` might be enabled at first.
 In any case, don't forget to use the `--open` global option to
 ease the process.
 One thing that seems to be instantly learned and remembered
