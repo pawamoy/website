@@ -1035,11 +1035,16 @@ show_events(
           "November, 2023",
           f'{vibrate()} <b>New project:</b> <a href="https://pawamoy.github.io/devboard">Devboard</a>, a development dashboard for your projects.<br>'
           f'{vibrate()} <b>New project:</b> <a href="https://mkdocstrings.github.io/griffe-inherited-docstrings">Griffe Inherited Docstrings</a>, a Griffe extension to inherit docstrings from parent classes.<hr>'
-          "One new sponsor.",
+          "Eight new sponsors, two cancellations.",
         ),
         (
-          "???",
-          "French administration sends me my SIREN number (company number).",
+          "December, 2023",
+          "French administration sends me my SIREN number (company number)."
+          "Three new sponsors.",
+        ),
+        (
+          "January, 2024",
+          '<a href="https://github.com/mkdocstrings/mkdocstrings/discussions/641">First funding goal reached!</a>',
         ),
         (
           "???",
