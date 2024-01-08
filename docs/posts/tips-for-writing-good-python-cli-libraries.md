@@ -50,6 +50,8 @@ Toot on Mastodon, quote from docs "call to developers".
 - @ionelmc's wisdom `__main__.py`
 - accepts args in your CLI entrypoints
 - (unsure) if you operate on files, accepts directories and implement discovery/recursion
+- (tyro) https://brentyi.github.io/tyro/examples/01_basics/01_functions/ not good,
+  hides actual CLI args
 
 ## Benefits
 
