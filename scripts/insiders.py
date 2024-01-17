@@ -26,7 +26,7 @@ def human_readable_amount(amount: int) -> str:  # noqa: D103
     return str_amount
 
 
-@dataclass
+@dataclass(frozen=True)
 class Project:
     """Class representing an Insiders project."""
 
@@ -179,7 +179,38 @@ def load_json(url: str) -> str | list | dict:  # noqa: D103
         return json.loads(response.read().decode())
 
 
+def project_card(repository: str, url: str, description: str, public: bool) -> str:
+    rel, unrel, inc = per_project_features[repository]
+    if public and not unrel:
+        heart = ""
+    elif public:
+        heart = "-half-full"
+    else:
+        heart = "-outline"
+    heart_title = {
+        "-half-full": "Public/Insiders features",
+        "-outline": "Project available to sponsors only"
+    }.get(heart, "All features released!")
+    feature_emojis = (
+        ':material-check-all:{ title="Released feature" } ' * len(rel) +
+        ':material-check:{ title="Insiders feature" }' * len(unrel) +
+        ':material-progress-clock:{ title="Incoming feature" }' * len(inc)
+    )
+    return f'- :material-heart{heart}:{{ title="{heart_title}" }} **[`{repository}`]({url})** {feature_emojis}<hr>{description}'
+
+
+def project_cards(prefix: str) -> str:
+    lines = ['<div class="grid cards" markdown>']
+    for repo, url, _ in data_source:
+        if repo.startswith(prefix):
+            lines.append(project_card(repo, url, descriptions[repo], public[repo]))
+    lines.append("</div>")
+    return "\n\n".join(lines)
+
+
 data_source = globals()["data_source"]
+descriptions = globals()["descriptions"]
+public = globals()["public"]
 sponsor_url = "https://github.com/sponsors/pawamoy"
 data_url = "https://raw.githubusercontent.com/pawamoy/sponsors/main"
 numbers: dict[str, int] = load_json(f"{data_url}/numbers.json")  # type: ignore[assignment]
@@ -187,9 +218,29 @@ sponsors: list[dict] = load_json(f"{data_url}/sponsors.json")  # type: ignore[as
 current_funding = numbers["total"]
 sponsors_count = numbers["count"]
 goals = funding_goals(data_source, funding=current_funding)
+completed_goals = [goal for goal in goals.values() if goal.complete]
 ongoing_goals = [goal for goal in goals.values() if not goal.complete]
+features = feature_list(goals.values())
+projects = set(feature.project for feature in features)
+incoming_features = sorted(
+    (ft for ft in feature_list(goals.values()) if not ft.since),
+    key=lambda ft: ft.project,  # type: ignore[return-value]
+)
+released_features = sorted(
+    (ft for ft in feature_list(completed_goals) if ft.since),
+    key=lambda ft: cast(date, ft.since),
+    reverse=True,
+)
 unreleased_features = sorted(
     (ft for ft in feature_list(ongoing_goals) if ft.since),
     key=lambda ft: cast(date, ft.since),
     reverse=True,
 )
+per_project_features = {
+    project.name: (  # type: ignore[union-attr]
+        [ft for ft in features if ft.project == project and ft in released_features],
+        [ft for ft in features if ft.project == project and ft in unreleased_features],
+        [ft for ft in features if ft.project == project and not ft.since],
+    )
+    for project in projects
+}

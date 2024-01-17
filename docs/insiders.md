@@ -1,6 +1,17 @@
+---
+hide:
+- navigation
+---
+
 # Insiders
 
-Some of my projects follow the **sponsorware** release strategy, which means
+I develop open-source software, notably Python tools and libraries.
+Previously, all these projects were developed in my free time, without any financial compensation.
+Since April 2023, I dedicate **100%** of my time to these projects,
+and rely on sponsorships from individual users and companies
+to earn a living and make these projects sustainable.
+
+Some of my projects therefore follow the **sponsorware** release strategy, which means
 that new features are first exclusively released to sponsors as part of
 [Insiders][insiders]. Read on to learn [what sponsorships achieve][sponsorship],
 [how to become a sponsor][sponsors] to get access to Insiders,
@@ -8,27 +19,57 @@ and [what's in it for you][features]!
 
 ```python exec="1" session="insiders"
 data_source = [
-    ("devboard", "https://pawamoy.github.io/devboard/", "insiders/goals.yml"),
-    ("griffe2md", "https://mkdocstrings.github.io/griffe2md/", "insiders/goals.yml"),
-    ("griffe-inherited-docstrings", "https://mkdocstrings.github.io/griffe-inherited-docstrings/", "insiders/goals.yml"),
-    ("griffe-pydantic", "https://mkdocstrings.github.io/griffe-pydantic/", "insiders/goals.yml"),
-    ("griffe-tui", "https://mkdocstrings.github.io/griffe-tui/", "insiders/goals.yml"),
-    ("griffe-typing-deprecated", "https://mkdocstrings.github.io/griffe-typing-deprecated/", "insiders/goals.yml"),
-    ("insiders", "https://pawamoy.github.io/insiders-project/", "insiders/goals.yml"),
-    ("markdown-exec", "https://pawamoy.github.io/markdown-exec/", "insiders/goals.yml"),
-    ("markdown-pycon", "https://pawamoy.github.io/markdown-pycon/", "insiders/goals.yml"),
-    ("mkdocs-manpage", "https://pawamoy.github.io/mkdocs-manpage/", "insiders/goals.yml"),
-    ("mkdocstrings-python", "https://mkdocstrings.github.io/python/", "insiders/goals.yml"),
-    ("mkdocstrings-shell", "https://mkdocstrings.github.io/shell/", "insiders/goals.yml"),
-    ("pypi-insiders", "https://pawamoy.github.io/pypi-insiders/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe", "https://mkdocstrings.github.io/griffe/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe2md", "https://mkdocstrings.github.io/griffe2md/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe-inherited-docstrings", "https://mkdocstrings.github.io/griffe-inherited-docstrings/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe-pydantic", "https://mkdocstrings.github.io/griffe-pydantic/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe-tui", "https://mkdocstrings.github.io/griffe-tui/", "insiders/goals.yml"),
+    ("mkdocstrings/griffe-typing-deprecated", "https://mkdocstrings.github.io/griffe-typing-deprecated/", "insiders/goals.yml"),
+    ("mkdocstrings/python", "https://mkdocstrings.github.io/python/", "insiders/goals.yml"),
+    ("mkdocstrings/shell", "https://mkdocstrings.github.io/shell/", "insiders/goals.yml"),
+    ("pawamoy/devboard", "https://pawamoy.github.io/devboard/", "insiders/goals.yml"),
+    ("pawamoy/insiders-project", "https://pawamoy.github.io/insiders-project/", "insiders/goals.yml"),
+    ("pawamoy/markdown-exec", "https://pawamoy.github.io/markdown-exec/", "insiders/goals.yml"),
+    ("pawamoy/markdown-pycon", "https://pawamoy.github.io/markdown-pycon/", "insiders/goals.yml"),
+    ("pawamoy/mkdocs-manpage", "https://pawamoy.github.io/mkdocs-manpage/", "insiders/goals.yml"),
+    ("pawamoy/pypi-insiders", "https://pawamoy.github.io/pypi-insiders/", "insiders/goals.yml"),
 ]
+descriptions = {
+    "mkdocstrings/griffe": "Signatures for entire Python programs. Generate API documentation or find breaking changes in your API.",
+    "mkdocstrings/griffe2md": "Output API docs to Markdown using Griffe.",
+    "mkdocstrings/griffe-inherited-docstrings": "Griffe extension for inheriting docstrings.",
+    "mkdocstrings/griffe-pydantic": "Griffe extension for Pydantic.",
+    "mkdocstrings/griffe-tui": "A textual user interface for Griffe.",
+    "mkdocstrings/griffe-typing-deprecated": "Griffe extension for `@typing.deprecated` (PEP 702).",
+    "mkdocstrings/python": "A Python handler for mkdocstrings.",
+    "mkdocstrings/shell": "A shell scripts/libraries handler for mkdocstrings.",
+    "pawamoy/devboard": "A development dashboard for your projects.",
+    "pawamoy/insiders-project": "Manage your Insiders projects.",
+    "pawamoy/markdown-exec": "Utilities to execute code blocks in Markdown files.",
+    "pawamoy/markdown-pycon": "Markdown extension to parse `pycon` code blocks without indentation.",
+    "pawamoy/mkdocs-manpage": "MkDocs plugin to generate a manpage from the documentation site.",
+    "pawamoy/pypi-insiders": "Self-hosted PyPI server with automatic updates for Insiders versions.",
+}
+public = {
+    "mkdocstrings/griffe": True,
+    "mkdocstrings/griffe2md": True,
+    "mkdocstrings/griffe-inherited-docstrings": True,
+    "mkdocstrings/griffe-pydantic": False,
+    "mkdocstrings/griffe-tui": False,
+    "mkdocstrings/griffe-typing-deprecated": False,
+    "mkdocstrings/python": True,
+    "mkdocstrings/shell": False,
+    "pawamoy/devboard": False,
+    "pawamoy/insiders-project": False,
+    "pawamoy/markdown-exec": True,
+    "pawamoy/markdown-pycon": False,
+    "pawamoy/mkdocs-manpage": True,
+    "pawamoy/pypi-insiders": False,
+}
 ```
 
-Current projects offering an Insiders version:
-
 ```python exec="1" session="insiders"
-for project_name, project_url, _ in data_source:
-    print(f"- [{project_name}]({project_url})")
+--8<-- "scripts/insiders.py"
 ```
 
 ## What is Insiders?
@@ -36,8 +77,7 @@ for project_name, project_url, _ in data_source:
 Insiders are private forks of my projects, hosted as
 private GitHub repositories. Almost[^1] [all new features][features]
 are developed as part of these forks, which means that they are immediately
-available to all eligible sponsors, as they are made collaborators of this
-repository.
+available to all eligible sponsors, as they are made members of these repositories.
 
   [^1]:
     In general, every new feature is first exclusively released to sponsors, but
@@ -57,11 +97,28 @@ Sponsorships start as low as [**$10 a month**][sponsors].[^2]
     technical reasons. Such contributions are still very much welcome as
     they help ensuring the project's sustainability.
 
+### *mkdocstrings* projects
+
+[*mkdocstrings*](https://mkdocstrings.github.io) is a plugin for [MkDocs](https://www.mkdocs.org/),
+a static site generator written in Python. It brings autodoc capabilities to MkDocs,
+to enable automatic and configurable documentation of Python APIs.
+
+```python exec="1" session="insiders"
+print(project_cards("mkdocstrings/"))
+```
+
+### Other tools/libraries
+
+These tools are focused on documentation, developer-experience and productivity.
+
+```python exec="1" session="insiders"
+print(project_cards("pawamoy/"))
+```
 
 ## What sponsorships achieve
 
-Sponsorships make this project sustainable, as they buy the maintainers of this
-project time – a very scarce resource – which is spent on the development of new
+Sponsorships make these projects sustainable, as they buy the maintainers of these
+projects time – a very scarce resource – which is spent on the development of new
 features, bug fixing, stability improvement, issue triage and general support.
 The biggest bottleneck in Open Source is time.[^3]
 
@@ -80,8 +137,6 @@ a handful of them, [thanks to our awesome sponsors][sponsors]!
 ## What's in it for me?
 
 ```python exec="1" session="insiders"
---8<-- "scripts/insiders.py"
-
 print(f"""The moment you <a href="#how-to-become-a-sponsor">become a sponsor</a>, you'll get **immediate
 access to {len(unreleased_features)} additional features** that you can start using right away, and
 which are currently exclusively available to sponsors:\n""")
