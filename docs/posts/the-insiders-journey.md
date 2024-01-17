@@ -650,6 +650,89 @@ Basically, it detects if it runs in an Insiders repository,
 and in that case outputs a JSON list of patterns
 that is used by the next job to match and exclude test jobs.
 
+### How to merge?
+
+Once a funding goal is reached, you will have to merge back features
+listed in that goal into the public versions of your projects.
+There are several ways to do that, and they will depend on how
+disciplined your Git history is.
+
+All methods except the last one require that you configure
+an Insiders remote in your public project and fetch it:
+
+```bash
+git remote add insiders git@github.com:pawamoy-insiders/project
+git fetch insiders
+```
+
+1. :hot_pepper:
+   If you develop Insiders features in branches, and keep these branches
+   locally or remotely, you can try to pull them directly into a branch
+   of your local public project. I did not try that because I just thought
+   about it while writing this section, so I cannot guarantee this is
+   the best way to merge Insiders features, but it looks promising
+   (less conflicts than the next two methods).
+2. :hot_pepper: :fire:
+   If you don't have Insiders branches to pull from, but at least have
+   a well ordered Git history, i.e. all changes related to a single Insiders
+   feature are grouped together (in a chain of commits), you can cherry-pick
+   these commits with a range selection: `git cherry-pick 0a0a0a0^..1b1b1b1`
+   (both ends included). Be prepared to resolve conflicts.
+3. :hot_pepper: :volcano:
+   If you don't have clean chains of commits, and if you're patient and like
+   resolving conflicts, you can cherry-pick commits one by one. I tried that,
+   it's not fun, really, which led me to the last method below.
+4. :ice_cream:
+   The probably dumbest and most efficient method is to recursively copy
+   every file from your local Insiders clone into your local public clone,
+   with a command like `cp -r insiders/project/* project/`.
+   Then, make sure to only stage changes related to the features you want
+   to merge, and discard the rest. You can stage and commit several times,
+   once for each feature.
+   
+The last method has two benefits:
+
+- your feature commits now even pack bug fixes (where cherry-picking
+  would have kept them separate). This is a subjective opinion of course,
+  but as said previously in the post, Insiders repositories should be
+  considered ephemeral (destined to disappear at some point),
+  so keeping their Git history intact is not important.
+  It's a bit like squashing commits before merging a pull request.
+- you can take this opportunity to synchronize back any divergence
+  between your public and Insiders versions, typically: documentation.
+  This will further simplify future Insiders-to-public merges,
+  as well as Git pulls from upstream in your Insiders project.
+
+Now, what happens to a project when Insiders features
+are merged back into its public version?
+There are a few different scenarios to consider:
+
+- The entire project was under Insiders, and is now free:
+  you might want to remove Insiders-related documentation,
+  but keep your Insiders changelog, and links to it from now-free features.
+  Also keep any documentation your have about completed funding goals.
+  It's important to let users know these features were developed
+  thanks to the funding from sponsors, especially if you have
+  other Insiders projects. If you plan on adding new Insiders
+  features to this project very soon, just keep everything.
+- Some of the Insiders features for this project are now merged:
+  update their documentation to remove any "Sponsors only" label.
+  As above, keep links to changelogs under each previously-Insiders
+  feature.
+- All Insiders features for this project are now merged,
+  and you will keep adding Insiders features soon or later: like above.
+- All Insiders features for this project are now merged,
+  and every new feature will immediately be free (this project
+  stops being an Insiders project): you might want to remove all
+  Insiders-related documentation, while keeping feature-changelog links
+  and funding goals data.
+
+To simplify removing and adding back Insiders-related documentation
+to my projects when they go back and forth between these different states,
+my project template has a question "Is it an Insiders project?" that
+handles creation/removal of related files when updating a project.
+Then I just have to stage or discard changes with Git.
+
 ## Communication
 
 I am definitely not an expert in comms/marketing,
@@ -1039,12 +1122,14 @@ show_events(
         ),
         (
           "December, 2023",
-          "French administration sends me my SIREN number (company number)."
+          "French administration sends me my SIREN number (company number). "
           "Three new sponsors.",
         ),
         (
           "January, 2024",
-          '<a href="https://github.com/mkdocstrings/mkdocstrings/discussions/641">First funding goal reached!</a>',
+          '<a href="https://github.com/mkdocstrings/mkdocstrings/discussions/641"><b>First funding goal reached! 🎉</b></a><br>'
+          f'{vibrate()} <b>New feature (griffe):</b> <a href="https://mkdocstrings.github.io/griffe/checking/#markdown">Markdown output for the <code>check</code> command.</a><br>'
+          f'{vibrate()} <b>New feature (griffe):</b> <a href="https://mkdocstrings.github.io/griffe/checking/#github">GitHub output for the <code>check</code> command.</a><br>'
         ),
         (
           "???",
