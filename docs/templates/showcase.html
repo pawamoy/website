@@ -7,7 +7,7 @@
 
 {% block content %}
 <table class="showcase-table">
-{% for row in page.meta.projects|sort(attribute="name")|batch(3) %}
+{% for row in page.meta.projects|batch(3) %}
 <tr>
   {% for project in row %}
   <td>

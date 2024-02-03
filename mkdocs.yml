@@ -46,14 +46,14 @@ nav:
     - Showcase Grid: showcase.md
     - Projects:
       - showcase/aria2p.md
-      - showcase/mkdocstrings.md
       - showcase/copier-pdm.md
-      - showcase/pytkdocs.md
-      - showcase/git-changelog.md
-      - showcase/shell-history.md
-      - showcase/failprint.md
       - showcase/dependenpy.md
+      - showcase/failprint.md
+      - showcase/griffe.md
+      - showcase/git-changelog.md
+      - showcase/mkdocstrings.md
       - showcase/mvodb.md
+      - showcase/shell-history.md
       - showcase/shelldemo.md
       - showcase/shellman.md
     # - showcase/shellm/coverage.md

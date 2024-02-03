@@ -4,12 +4,6 @@ permalink: /about/
 ---
 
 <style>
-@media only screen and (min-width: 1220px) {
-  .md-nav__list { 
-    display: none; 
-  }
-}
-
 .post-header {
   display: none;
 }
@@ -45,12 +39,15 @@ ul {
 </style>
 
 #### **NAME**
+
 `pawamoy` — Timothée Mazzucotelli
 
 #### **SYNOPSIS**
+
 `pawamoy [GLOBAL_OPTS] COMMAND [COMMAND_OPTS] [OBJECT | IDEA]...`
 
 #### **DESCRIPTION**
+
 `pawamoy` lets you take control over the person identified by the name
 *Timothée Mazzucotelli*.
 
@@ -60,6 +57,7 @@ his Masters in C.S. in Université de Strasbourg.
 He is therefore able to write code, amongst other things (see [COMMANDS](#commands)).
 
 #### **GLOBAL OPTIONS**
+
 These options influence how the command will be run.
 Please note that some switches may not apply to some commands.
 
@@ -252,12 +250,14 @@ Write man pages, blog posts, documentation, code, fiction.
 You should write more fiction.
 
 #### **BUGS**
+
 `pawamoy` has an extra pair of ribs.
 This bug does not come from the two engineers that designed `pawamoy`.
 It is due to some binary data corruption during replication over network.
 It can't be fixed.
 
 #### **COPYRIGHT**
+
 Copyright 1991-2009 Mazzucotelli Foundation, Inc.
 
 This is proprietary software; see the source for copying conditions.
@@ -265,6 +265,7 @@ There is **NO** warranty; not even for MERCHANTABILITY or
 FITNESS FOR A PARTICULAR PURPOSE.
 
 #### **ENVIRONMENT VARIABLES**
+
 `HOME` - Define the home `pawamoy` will use.
 "Moon", "Area 51", or "Public bathrooms" are not valid values.
 
@@ -284,8 +285,8 @@ Use command `eat` to decrease `HUNGER`.
 Try to increase it just a bit when `HEALTH` is lowering.
 This is experimental. Use it at my own risk.
 
-
 #### **FILES**
+
 `/boot/config` - This file was useful only once, because `pawamoy` can never
 reboot. Once shut down, it stays shut down.
 
@@ -296,20 +297,20 @@ don't mess too much with this file.
 
 `/var/log/pawamoy` - Interesting statistics and analytics about `pawamoy` usage.
 
-
 #### **LICENSE**
+
 `pawamoy` is released under the terms of the `Human Decency` license.
 Please use it accordingly.
 You cannot duplicate `pawamoy`. At least for now.
 
 #### **SEE ALSO**
-[`@pawamoy(dev.to)`](https://dev.to/pawamoy),
+
 [`@pawamoy(github)`](https://github.com/pawamoy/),
-[`@paaawamoy(instagram)`](https://www.instagram.com/paaawamoy/),
-[`@pawamoy(reddit)`](https://reddit.com/u/pawamoy/),
+[`@pawamoy(fosstodon)`](https://fosstodon.org/@pawamoy)
 [`@pawamoy(stackoverflow)`](https://stackoverflow.com/users/3451029/pawamoy),
 [`@pawamoy(twitter)`](https://twitter.com/pawamoy)
 
 #### **NOTES**
+
 This man page is a perpetual work in progress. Expect some delays between
 `pawamoy` releases and its documentation updates.

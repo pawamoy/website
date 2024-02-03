@@ -2,7 +2,7 @@
 
 ![mkdocstrings](../assets/mkdocstrings.gif)
 
-- Repository: https://github.com/pawamoy/mkdocstrings
-- Documentation: https://pawamoy.github.io/mkdocstrings
+- Repository: https://github.com/mkdocstrings/mkdocstrings
+- Documentation: https://mkdocstrings.github.io/
 
 ---
