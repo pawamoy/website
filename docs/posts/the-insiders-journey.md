@@ -1132,7 +1132,7 @@ show_events(
           f'{vibrate()} <b>New feature (griffe):</b> <a href="https://mkdocstrings.github.io/griffe/checking/#github">GitHub output for the <code>check</code> command.</a><br>'
         ),
         (
-          "???",
+          "February, 2024",
           "I declare my taxes for the first time 👶",
         ),
     ]
