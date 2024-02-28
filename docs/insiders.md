@@ -5,16 +5,12 @@ hide:
 
 # Insiders
 
-I develop open-source software, notably Python tools and libraries.
-Previously, all these projects were developed in my free time, without any financial compensation.
-Since April 2023, I dedicate **100%** of my time to these projects,
-and rely on sponsorships from individual users and companies
-to earn a living and make these projects sustainable.
+I develop open-source software, primarily Python tools and libraries.
+I do this full time: I earn my keep through sponsorship from individual users and companies,
+which is what makes these projects sustainable and gives you a chance to use them.
 
-Some of my projects therefore follow the **sponsorware** release strategy, which means
-that new features are first exclusively released to sponsors as part of
-[Insiders][insiders]. Read on to learn [what sponsorships achieve][sponsorship],
-[how to become a sponsor][sponsors] to get access to Insiders,
+I follow a sponsorware release strategy: new features are at first exclusively available to sponsors.
+Read on to learn [what sponsorships achieve][sponsorship], how to [become a sponsor][sponsors] to get access to Insiders,
 and [what's in it for you][features]!
 
 ```python exec="1" session="insiders"
@@ -97,24 +93,6 @@ Sponsorships start as low as [**$10 a month**][sponsors].[^2]
     technical reasons. Such contributions are still very much welcome as
     they help ensuring the project's sustainability.
 
-### *mkdocstrings* projects
-
-[*mkdocstrings*](https://mkdocstrings.github.io) is a plugin for [MkDocs](https://www.mkdocs.org/),
-a static site generator written in Python. It brings autodoc capabilities to MkDocs,
-to enable automatic and configurable documentation of Python APIs.
-
-```python exec="1" session="insiders"
-print(project_cards("mkdocstrings/"))
-```
-
-### Other tools/libraries
-
-These tools are focused on documentation, developer-experience and productivity.
-
-```python exec="1" session="insiders"
-print(project_cards("pawamoy/"))
-```
-
 ## What sponsorships achieve
 
 Sponsorships make these projects sustainable, as they buy the maintainers of these
@@ -145,6 +123,26 @@ for feature in unreleased_features:
     feature.render(badge=True)
 ```
 
+---
+
+### *mkdocstrings* projects
+
+[*mkdocstrings*](https://mkdocstrings.github.io) is a plugin for [MkDocs](https://www.mkdocs.org/),
+a static site generator written in Python. It brings autodoc capabilities to MkDocs,
+to enable automatic and configurable documentation of Python APIs.
+
+```python exec="1" session="insiders"
+print(project_cards("mkdocstrings/"))
+```
+
+### Other tools/libraries
+
+These tools are focused on documentation, developer-experience and productivity.
+
+```python exec="1" session="insiders"
+print(project_cards("pawamoy/"))
+```
+
 ## How to become a sponsor
 
 Thanks for your interest in sponsoring! In order to become an eligible sponsor
@@ -154,7 +152,7 @@ You can use your individual or organization GitHub account for sponsoring.
 
 **Important**: If you're sponsoring **[@pawamoy][github sponsor profile]**
 through a GitHub organization, please send a short email
-to pawamoy@pm.me with the name of your
+to insiders@pawamoy.fr with the name of your
 organization and the GitHub account of the individual
 that should be added as a collaborator.[^4]
 
@@ -163,7 +161,7 @@ You can cancel your sponsorship anytime.[^5]
   [^4]:
     It's currently not possible to grant access to each member of an
     organization, as GitHub only allows for adding users. Thus, after
-    sponsoring, please send an email to pawamoy@pm.me, stating which
+    sponsoring, please send an email to insiders@pawamoy.fr, stating which
     account should become a collaborator of the Insiders repository. We're
     working on a solution which will make access to organizations much simpler.
     To ensure that access is not tied to a particular individual GitHub account,
@@ -245,7 +243,7 @@ yearly billing cycle][billing cycle]. If for some reason you cannot do that, you
 could also create a dedicated GitHub account with a yearly billing cycle, which
 you only use for sponsoring (some sponsors already do that).
 
-If you have any problems or further questions, please reach out to pawamoy@pm.me.
+If you have any problems or further questions, please reach out to insiders@pawamoy.fr.
 
 ### Terms
 

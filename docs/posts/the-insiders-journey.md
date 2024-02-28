@@ -304,7 +304,7 @@ setup(
     description="",
     long_description="",
     author="Timothée Mazzucotelli",
-    author_email="pawamoy@pm.me",
+    author_email="dev@pawamoy.fr",
     packages=[],
     classifiers=["Development Status :: 1 - Planning"],
 )
@@ -773,7 +773,7 @@ To get started,
 Make sure you have read the (very short) [terms of use](https://pawamoy.github.io/insiders/#terms).
 
 If you have any question regarding your sponsorship, or the Insiders program,
-send me an email at pawamoy@pm.me.
+send me an email at insiders@pawamoy.fr.
 ```
 
 ![private profile](../assets/insiders-private-profile.png){ alt="Screenshot of the member-only Insiders org profile." }

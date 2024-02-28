@@ -90,7 +90,7 @@ The Jinja context will be populated with the user's answers.
 🎤 Your full name
    Timothée Mazzucotelli
 🎤 Your email
-   pawamoy@pm.me
+   dev@pawamoy.fr
 🎤 Your username (e.g. on GitHub)
    pawamoy
 ...
@@ -313,7 +313,7 @@ build-backend = "pdm.pep517.api"
 name = "package-name"
 description = "The package description."
 version = "0.1.0"
-authors = [{name = "Timothée Mazzucotelli", email = "pawamoy@pm.me"}]
+authors = [{name = "Timothée Mazzucotelli", email = "dev@pawamoy.fr"}]
 license = "ISC"
 readme = "README.md"
 requires-python = ">=3.7"
