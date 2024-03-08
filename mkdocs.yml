@@ -13,6 +13,8 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+    - 2024:
+      - posts/steam-linux-alvr-quest2.md
     - 2023:
       # - posts/tips-for-writing-good-python-cli-libraries.md
       - posts/the-insiders-journey.md
