@@ -5,6 +5,10 @@ date: 2024-03-08
 authors:
 - Timothée Mazzucotelli
 tags: steam gaming vr alvr oculus quest quest2 meta linux arch
+image:
+  src: /assets/quest2.png
+  add_to_post: yes
+  class: crop-excerpt
 ---
 
 A few days ago I was finally able to setup my Linux computer and Oculus Quest 2
