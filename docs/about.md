@@ -98,7 +98,7 @@ as it will reduce enthusiasm and increase risk of switching `--silent` on.
 `--open`
 
 <p class="i2"></p>
-Stay open! Every thing you hear or see will be received
+Stay open! Everything you hear or see will be received
 with more curiosity and enthusiasm.
 Best used in combination with `learn` and `work` commands.
 
@@ -209,7 +209,7 @@ Option `--vr` is already implemented but is waiting for adequate hardware.
 `read`
 
 <p class="i2"></p>
-Read a book, an article, on joke, docs, a tutorial, news.
+Read a book, an article, a joke, docs, a tutorial, news.
 Read it on a desktop screen, on a smartphone screen, on an e-book screen, or...
 on paper directly? Technology is crazy. While using this option,
 please take care of your eyes: enable blue-light filters and adapt luminosity.
@@ -278,7 +278,7 @@ Use commands `eat` then `sleep` when `ENERGY` is low to increase it again.
 Using 0 is reserved for the end-of-life date of `pawamoy`.
 Don't use it before.
 
-`HUNGER` - An integer between 1 and 100. 0 mens extra-full, 100 means starving.
+`HUNGER` - An integer between 1 and 100. 0 means extra-full, 100 means starving.
 Use command `eat` to decrease `HUNGER`.
 
 `TEMPERATURE` - In degree Celsius.
