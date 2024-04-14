@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "How to install NVidia drivers on BunsenLabs/Debian 8 to setup dual screens"
+title: How to install NVidia drivers on BunsenLabs/Debian 8 to setup dual screens
 date: 2018-03-09
 authors:
   - Timothée Mazzucotelli
@@ -13,19 +13,18 @@ Honestly, this post is mostly a personal memo. I will NOT go through this again!
 
 - [The fun way](#the-fun-way)
 - [The quick way](#the-quick-way)
-- [~~If~~ When things go wrong](#if-when-things-go-wrong)
-  (you should probably read this anyway)
+- [~~If~~ When things go wrong](#if-when-things-go-wrong) (you should probably read this anyway)
 - [Appendix](#appendix)
 
 ## The fun way
+
 First, to save your time and mind, install the Linux headers!
 
 ```bash
 sudo apt install linux-headers-$(uname -r)
 ```
 
-I spent two painful hours this afternoon trying to figure out why it wouldn't
-work. It happens that I didn't install these headers!
+I spent two painful hours this afternoon trying to figure out why it wouldn't work. It happens that I didn't install these headers!
 
 Also install these requirements:
 
@@ -33,8 +32,7 @@ Also install these requirements:
 sudo apt install xserver-xorg xserver-xorg-core xserver-xorg-dev
 ```
 
-Now, install the Nvidia Detect program. It will tell you where to get the driver
-from:
+Now, install the Nvidia Detect program. It will tell you where to get the driver from:
 
 ```bash
 sudo apt install nvidia-detect
@@ -56,8 +54,7 @@ package.
 
 So, in my case, I have to install the driver from Jessie backports.
 
-**Beware!!** It might not be your case! Pay attention to what `nvidia-detect`
-says, and do what it says :D!
+**Beware!!** It might not be your case! Pay attention to what `nvidia-detect` says, and do what it says :D!
 
 So, for Jessie backports, you would install the driver like this:
 
@@ -78,8 +75,7 @@ deb-src http://security.debian.org/ jessie/updates main contrib non-free
 ```
 -->
 
-But the driver is not the only thing you need to install. I'm gonna install
-the rest from Jessie backports as well, **adapt to your needs!**
+But the driver is not the only thing you need to install. I'm gonna install the rest from Jessie backports as well, **adapt to your needs!**
 
 ```bash
 sudo apt install -t jessie-backports nvidia-xconfig nvidia-settings xserver-xorg-video-nvidia
@@ -99,8 +95,7 @@ sudo nvidia-xconfig
 
 This command will create or update the file `/etc/X11/xorg.conf`.
 
-You can now restart your X server and send me a not-positive comment below
-if nothing works and your system is broken.
+You can now restart your X server and send me a not-positive comment below if nothing works and your system is broken.
 
 ```bash
 sudo systemctl restart lightdm.service
@@ -114,13 +109,11 @@ sudo nvidia-settings
 
 ![nvidia-settings](../assets/nvidia-settings.png)
 
-Set your screen(s) resolutions and everything, save the configuration
-into `/etc/X11/xorg.conf`, maybe reboot one last time, and you should be
-good to go!
+Set your screen(s) resolutions and everything, save the configuration into `/etc/X11/xorg.conf`, maybe reboot one last time, and you should be good to go!
 
 ## The quick way
-It's just a summary of the previous commands. Don't actually copy-paste-run it:
-have a break at the lonely `nvidia-detect` line.
+
+It's just a summary of the previous commands. Don't actually copy-paste-run it: have a break at the lonely `nvidia-detect` line.
 
 ```bash
 sudo apt install linux-headers-$(uname -r)
@@ -139,22 +132,16 @@ sudo nvidia-settings  # update your config and save it
 ```
 
 ## ~~If~~ When things go wrong
+
 - You should consider following another tutorial.
-- If the X server does not start, hit `Ctrl-Alt-F1` to get a non-graphical
-  terminal. From there, simply delete the bad `/etc/X11/xorg.conf` and
-  run `systemctl restart lightdm.service` again to get back your beloved GUI.
-- If you installed the wrong things: it's pretty safe to purge all `nvidia-*`
-  packages, but it is **not safe to purge `xserver-xorg-*` ones**.
-  Except the specific `xserver-xorg-video-nvidia`.
-  Or if you like the Linux (re)installation process.
-- **After an update/upgrade**: if you upgraded your system with
-  `apt update; apt upgrade` and your X server does not start anymore, it might
-  be because your Linux headers have not been updated. Remember to
-  always update your Linux headers after the kernel has been upgraded!
-  `sudo apt install linux-headers-$(uname -r)`
+- If the X server does not start, hit `Ctrl-Alt-F1` to get a non-graphical terminal. From there, simply delete the bad `/etc/X11/xorg.conf` and run `systemctl restart lightdm.service` again to get back your beloved GUI.
+- If you installed the wrong things: it's pretty safe to purge all `nvidia-*` packages, but it is **not safe to purge `xserver-xorg-*` ones**. Except the specific `xserver-xorg-video-nvidia`. Or if you like the Linux (re)installation process.
+- **After an update/upgrade**: if you upgraded your system with `apt update; apt upgrade` and your X server does not start anymore, it might be because your Linux headers have not been updated. Remember to always update your Linux headers after the kernel has been upgraded! `sudo apt install linux-headers-$(uname -r)`
 
 ## Appendix
+
 Example of `/etc/X11/xorg.conf` for dual screen setup:
+
 ```config
 # nvidia-settings: X configuration file generated by nvidia-settings
 # nvidia-settings:  version 375.26  (buildd@debian)  Wed Jan 18 14:43:15 UTC 2017

@@ -1,21 +1,17 @@
 ---
 template: post.html
-title: "Documentation in your shell scripts using shellman"
+title: Documentation in your shell scripts using shellman
 date: 2016-12-07
 authors:
   - Timothée Mazzucotelli
 tags: shell doc documentation man page markdown text auto help script library shellman
 ---
 
-When I write a script, I like to have a `-h, --help` option to help me remember what it does
-and how it works. But I was never delighted to write this help text. Besides, when your script's
-options change, you have to update the help text.
+When I write a script, I like to have a `-h, --help` option to help me remember what it does and how it works. But I was never delighted to write this help text. Besides, when your script's options change, you have to update the help text.
 
-I also always liked man pages, their search feature and their ability to scroll up and down
-and not leave any output in the console. But maintaining a man page is even more tedious than
-maintaining a help text.
+I also always liked man pages, their search feature and their ability to scroll up and down and not leave any output in the console. But maintaining a man page is even more tedious than maintaining a help text.
 
-This is why I thought of using documentation in shell scripts. So I wrote [shellman][].
+This is why I thought of using documentation in shell scripts. So I wrote [shellman].
 
 <!--more-->
 
@@ -23,22 +19,21 @@ This is why I thought of using documentation in shell scripts. So I wrote [shell
 - [Using shellman](#using-shellman)
 - [An example](#an-example)
 - [How it looks](#how-it-looks)
-  - [Text](#text)
-  - [Man](#man)
-  - [Markdown](#markdown)
+    - [Text](#text)
+    - [Man](#man)
+    - [Markdown](#markdown)
 - [More](#more)
 
 ## Writing doc
-Shellman can read special comments in your file. These special comments are the documentation
-of your script or library. They simply begin with two sharps instead of one:
+
+Shellman can read special comments in your file. These special comments are the documentation of your script or library. They simply begin with two sharps instead of one:
 
 ```bash
 # A normal comment.
 ## A documentation comment.
 ```
 
-Also, to give a special meaning to your documentation, each documentation line can be tagged,
-just like you would do in doxygen documentation:
+Also, to give a special meaning to your documentation, each documentation line can be tagged, just like you would do in doxygen documentation:
 
 ```bash
 ## \brief A brief description.
@@ -47,9 +42,8 @@ just like you would do in doxygen documentation:
 ```
 
 ## Using shellman
-After reading and loading all the documentation written in a file, shellman will then be able
-to output it on stdout (on in another file) in different formats, such as text, man page
-or markdown.
+
+After reading and loading all the documentation written in a file, shellman will then be able to output it on stdout (on in another file) in different formats, such as text, man page or markdown.
 
 ```bash
 shellman my_script.sh  # text output by default
@@ -57,12 +51,10 @@ man <(shellman --format man my_script.sh)
 # Available formats for -f, --format option: text, man, markdown
 ```
 
-Shellman also has a `--check` option that will not output anything, but instead check for
-written documentation in a file. A simple `--check` option will return 0 or 1, but display no
-warnings. Add a `--warn` option to print warnings on stderr. It will help you fix your
-documentation, or even do some linting and continuous integration on your scripts' documentation.
+Shellman also has a `--check` option that will not output anything, but instead check for written documentation in a file. A simple `--check` option will return 0 or 1, but display no warnings. Add a `--warn` option to print warnings on stderr. It will help you fix your documentation, or even do some linting and continuous integration on your scripts' documentation.
 
 ## An example
+
 Here is an example of how I write documentation in my scripts now:
 
 ```bash
@@ -112,6 +104,7 @@ main "$@"
 ```
 
 ## How it looks
+
 The different outputs would be like the following.
 
 #### Text
@@ -139,9 +132,11 @@ Options:
 ```
 
 #### Man
+
 ![man output](../assets/man-output.png)
 
 #### Markdown
+
 ```markdown
 **dbg** - shell script debugger
 # Usage
@@ -173,8 +168,8 @@ the current instruction when using -x option.
 ![markdown output](../assets/markdown-output.png)
 
 ## More
-Shellman supports more tags, in particular: function tags.
-See its [documentation][].
 
-[shellman]: https://github.com/Pawamoy/shellman
-[documentation]: https://github.com/Pawamoy/shellman/wiki
+Shellman supports more tags, in particular: function tags. See its [documentation].
+
+[documentation]: https://github.com/pawamoy/shellman/wiki
+[shellman]: https://github.com/pawamoy/shellman

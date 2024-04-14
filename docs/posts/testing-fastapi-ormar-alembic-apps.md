@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "Testing a FastAPI application using Ormar models and Alembic migrations"
+title: Testing a FastAPI application using Ormar models and Alembic migrations
 date: 2022-08-28
 authors:
   - Timothée Mazzucotelli
@@ -11,9 +11,7 @@ image:
   class: crop-excerpt
 ---
 
-In the [previous post](add-alembic-migrations-to-existing-fastapi-ormar-project.md)
-I showed how to add Alembic migrations to an existing FastAPI + Ormar project.
-In this post we will see how to write unit tests for such applications.
+In the [previous post](add-alembic-migrations-to-existing-fastapi-ormar-project.md) I showed how to add Alembic migrations to an existing FastAPI + Ormar project. In this post we will see how to write unit tests for such applications.
 
 <!--more-->
 
@@ -31,8 +29,7 @@ We start with the following project layout:
 
 ## Database models
 
-Let say we have three models: Artist, Album and Track.
-To keep things simple, we just add a `name` field on each. 
+Let say we have three models: Artist, Album and Track. To keep things simple, we just add a `name` field on each.
 
 ```python title="src/project/models.py"
 """Database models."""
@@ -76,8 +73,7 @@ class Track(ormar.Model):
 
 ## Database and migrations helpers
 
-Now lets create helpers to easily (re)create, update (migrate) or stamp the database.
-We will put everything that is related to migrations in a migrations subpackage:
+Now lets create helpers to easily (re)create, update (migrate) or stamp the database. We will put everything that is related to migrations in a migrations subpackage:
 
 ```tree hl_lines="4 5"
 ./
@@ -91,9 +87,7 @@ We will put everything that is related to migrations in a migrations subpackage:
     tests/
 ```
 
-We will define helpers in the `__init__` module.
-[Loguru](https://pypi.org/project/loguru/) will be used to log things,
-but that's optional and you can remove logging lines or use another logging framework.
+We will define helpers in the `__init__` module. [Loguru](https://pypi.org/project/loguru/) will be used to log things, but that's optional and you can remove logging lines or use another logging framework.
 
 ```python title="src/project/migrations/__init__.py"
 """Database migrations modules."""
@@ -158,9 +152,7 @@ def apply_migrations(db_url: str = SQLITE_DB) -> None:
         stamp_database(db_url=db_url)
 ```
 
-Note how each function accepts a `db_url` parameter:
-this will be very useful to support different environments,
-such as development, production and testing.
+Note how each function accepts a `db_url` parameter: this will be very useful to support different environments, such as development, production and testing.
 
 We still need the Alembic configuration module:
 
@@ -233,8 +225,7 @@ else:
 
 ## Automatic database creation/update
 
-Now, lets configure our FastAPI app so that the database is automatically
-created or updated every time we run our app (using [uvicorn](https://www.uvicorn.org/) for example):
+Now, lets configure our FastAPI app so that the database is automatically created or updated every time we run our app (using [uvicorn](https://www.uvicorn.org/) for example):
 
 ```tree hl_lines="8"
 ./
@@ -275,30 +266,13 @@ async def shutdown() -> None:
 
 Creating or updating the database in the `startup` event allows several things:
 
-- in a development environment, developers can simply run the server,
-    and the database is automatically created. They don't have to worry
-    about running a database creation command. Similarly, they can
-    simply delete the `db.sqlite` file and restart the server to empty
-    their local database, or copy a pre-populated SQlite file to reset
-    their local database to a particular state.
-- in a production environment, in which you have no control (no possibility
-    to run custom shell commands), migrations are applied automatically
-    upon starting the server. If there are no (new) migrations,
-    the startup event is a no-op: nothing happens and the server starts
-    normally, with the current database untouched.
-    Note that we ensure only one instance of the server will apply the migrations,
-    as to prevent multiple parallel/concurrent accesses to a potentially
-    shared storage space (for example multiple pods accessing the same persistent volume
-    on a Kubernetes infrastructure).
-- in a testing environment, tests will be able to provide a unique database URL
-    (a local file path) so that they each have their own temporary database.
-    It means tests will be able to run in parallel,
-    for example using [pytest-xdist](https://pypi.org/project/pytest-xdist/).
+- in a development environment, developers can simply run the server, and the database is automatically created. They don't have to worry about running a database creation command. Similarly, they can simply delete the `db.sqlite` file and restart the server to empty their local database, or copy a pre-populated SQlite file to reset their local database to a particular state.
+- in a production environment, in which you have no control (no possibility to run custom shell commands), migrations are applied automatically upon starting the server. If there are no (new) migrations, the startup event is a no-op: nothing happens and the server starts normally, with the current database untouched. Note that we ensure only one instance of the server will apply the migrations, as to prevent multiple parallel/concurrent accesses to a potentially shared storage space (for example multiple pods accessing the same persistent volume on a Kubernetes infrastructure).
+- in a testing environment, tests will be able to provide a unique database URL (a local file path) so that they each have their own temporary database. It means tests will be able to run in parallel, for example using [pytest-xdist](https://pypi.org/project/pytest-xdist/).
 
 ## Pytest fixture
 
-Now lets create a Pytest fixture that will allow each test
-to get access to its own unique, temporary database:
+Now lets create a Pytest fixture that will allow each test to get access to its own unique, temporary database:
 
 ```tree hl_lines="12"
 ./
@@ -356,21 +330,13 @@ async def async_client(tmp_path: Path, monkeypatch):
         yield client
 ```
 
-You'll notice that we use [asgi-lifespan](https://pypi.org/project/asgi-lifespan/).
-Without it, the startup and shutdown ASGI events would not be triggered.
+You'll notice that we use [asgi-lifespan](https://pypi.org/project/asgi-lifespan/). Without it, the startup and shutdown ASGI events would not be triggered.
 
-In the startup event, we apply migrations using the URL in `BaseMeta.database.url`.
-This allows us to monkeypatch the `database` attribute in our fixture to change
-the database URL for each test.
+In the startup event, we apply migrations using the URL in `BaseMeta.database.url`. This allows us to monkeypatch the `database` attribute in our fixture to change the database URL for each test.
 
 ## Model instances factories
 
-In our tests, we'll want to insert some rows in the database to test our API.
-Doing so manually can be cumbersome, as you have to define each instance
-one after the other, linking them together.
-To ease the process, we use [factory-boy](https://pypi.org/project/factory-boy/),
-with which we'll be able to define model factories. With these factories,
-it will be very easy to create instances of models in our tests.
+In our tests, we'll want to insert some rows in the database to test our API. Doing so manually can be cumbersome, as you have to define each instance one after the other, linking them together. To ease the process, we use [factory-boy](https://pypi.org/project/factory-boy/), with which we'll be able to define model factories. With these factories, it will be very easy to create instances of models in our tests.
 
 ```tree hl_lines="13"
 ./
@@ -422,8 +388,7 @@ class TrackFactory(factory.Factory):
     album = factory.SubFactory(AlbumFactory)
 ```
 
-With these factories you can now create an artist, album and track,
-all linked together, using a single line of code:
+With these factories you can now create an artist, album and track, all linked together, using a single line of code:
 
 ```python
 from tests import factories
@@ -441,24 +406,15 @@ track = factories.TrackFactory(
 )
 ```
 
-Refer to [factory-boy's documentation](https://factoryboy.readthedocs.io/en/stable/) for more examples.
-You could also use [Faker](https://pypi.org/project/Faker/)
-to set more relevant default values to your instances attributes.
+Refer to [factory-boy's documentation](https://factoryboy.readthedocs.io/en/stable/) for more examples. You could also use [Faker](https://pypi.org/project/Faker/) to set more relevant default values to your instances attributes.
 
 ## Populating the database with data
 
-Creating instances is nice, but they are not magically inserted in the database for us.
-Since instances are Ormar model instances, we could technically use the `save()` method
-on the instances we create to save them in the database, however I did not try that
-and cannot guarantee it will work for multiple instances linked together at once.
+Creating instances is nice, but they are not magically inserted in the database for us. Since instances are Ormar model instances, we could technically use the `save()` method on the instances we create to save them in the database, however I did not try that and cannot guarantee it will work for multiple instances linked together at once.
 
-Instead, and only if you have added
-[CRUD operations](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
-to your API, you can call your API routes to create the instances in the database.
+Instead, and only if you have added [CRUD operations](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) to your API, you can call your API routes to create the instances in the database.
 
-For this, I chose to create a new helper module,
-but that's probably not the best design you can come up with,
-so feel free to discard the next suggestions and follow your instincts.
+For this, I chose to create a new helper module, but that's probably not the best design you can come up with, so feel free to discard the next suggestions and follow your instincts.
 
 ```tree hl_lines="14"
 ./
@@ -533,8 +489,7 @@ async def create_track(client) -> Track:
 
 ## Example tests
 
-Now you can easily populate the database in tests,
-and call other API routes to test their behavior and output.
+Now you can easily populate the database in tests, and call other API routes to test their behavior and output.
 
 ```.tree hl_lines="15"
 ./
@@ -568,6 +523,4 @@ async def test_tracks_create(async_client):
     # ...then test other API routes
 ```
 
-Note how we use the previously defined fixture `async_client`.
-Just adding that fixture as a parameter to our test function
-ensures we have a temporary, dedicated database for this test.
+Note how we use the previously defined fixture `async_client`. Just adding that fixture as a parameter to our test function ensures we have a temporary, dedicated database for this test.

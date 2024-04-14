@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "Migrate Disqus comments to Utterances (in GitHub issues) with Python"
+title: Migrate Disqus comments to Utterances (in GitHub issues) with Python
 date: 2020-09-13
 authors:
   - Timothée Mazzucotelli
@@ -10,51 +10,28 @@ image:
   class: crop-excerpt
 ---
 
-When I replaced [Jekyll](https://jekyllrb.com/)
-and my [Jekyll-ReadTheDocs theme](https://github.com/pawamoy/jekyll-readthedocs/)
-with [MkDocs](https://www.mkdocs.org/)
-and a [blog-customised version](https://github.com/pawamoy/website) of
-the [Material for MkDocs theme](https://squidfunk.github.io/mkdocs-material/),
-the URLs of my posts changed.
+When I replaced [Jekyll](https://jekyllrb.com/) and my [Jekyll-ReadTheDocs theme](https://github.com/pawamoy/jekyll-readthedocs/) with [MkDocs](https://www.mkdocs.org/) and a [blog-customised version](https://github.com/pawamoy/website) of the [Material for MkDocs theme](https://squidfunk.github.io/mkdocs-material/), the URLs of my posts changed.
 
-I was using [Disqus](https://disqus.com) for comments,
-and they provide a way to migrate threads from old URLs to new URLs.
-Unfortunately, this time it didn't work for some reason
-(I had already done it once in the past and it worked fine).
+I was using [Disqus](https://disqus.com) for comments, and they provide a way to migrate threads from old URLs to new URLs. Unfortunately, this time it didn't work for some reason (I had already done it once in the past and it worked fine).
 
-I've read more and more criticism about Disqus related to privacy,
-so I looked at a replacement.
-The Disqus thread migration was not working so it was the perfect occasion!
+I've read more and more criticism about Disqus related to privacy, so I looked at a replacement. The Disqus thread migration was not working so it was the perfect occasion!
 
-I've read a few webpages and got interested in [Isso](https://posativ.org/isso/).
-Unfortunately again, I [did not manage](https://github.com/posativ/isso/issues/671)
-to install it on my Raspberry Pi.
+I've read a few webpages and got interested in [Isso](https://posativ.org/isso/). Unfortunately again, I [did not manage](https://github.com/posativ/isso/issues/671) to install it on my Raspberry Pi.
 
-So I went with a much simpler solution: [Utterances](https://utteranc.es/).
-You basically enable a GitHub app on your repository,
-add a script in your posts pages, and voilà: your new comment section
-powered by GitHub issues.
+So I went with a much simpler solution: [Utterances](https://utteranc.es/). You basically enable a GitHub app on your repository, add a script in your posts pages, and voilà: your new comment section powered by GitHub issues.
 
 <!--more-->
 
-I'm not completely satisfied because readers will need to log in
-with their GitHub account to comment (no anonymous comments),
-and you can't have nested discussions (well, just like in GitHub issues).
+I'm not completely satisfied because readers will need to log in with their GitHub account to comment (no anonymous comments), and you can't have nested discussions (well, just like in GitHub issues).
 
 But this was really easy to setup :smile:!
 
-Now I just needed to migrate the Disqus comments into GitHub issues.
-To do this semi-automatically, I wrote the following script.
-"Semi-automatically" because I still had to write a "test" comment
-in each one of my posts so Utterances would initiate/create the issues.
-I guess it could be implemented in the script directly,
-but since I just had a dozen of posts, I took the easy/repetitive way.
+Now I just needed to migrate the Disqus comments into GitHub issues. To do this semi-automatically, I wrote the following script. "Semi-automatically" because I still had to write a "test" comment in each one of my posts so Utterances would initiate/create the issues. I guess it could be implemented in the script directly, but since I just had a dozen of posts, I took the easy/repetitive way.
 
 ## The script
 
 !!! warning
-    You'll have to create the initial issues before running the script!
-    Serve your blog locally, and write a "test" comment in every post that has comments.
+    You'll have to create the initial issues before running the script! Serve your blog locally, and write a "test" comment in every post that has comments.
 
 First, [export your Disqus comments](https://help.disqus.com/en/articles/1717164-comments-export).
 
@@ -63,11 +40,9 @@ Then you'll need two Python libraries:
 - [`pygithub`](https://pypi.org/project/PyGithub/)
 - [`xmltodict`](https://pypi.org/project/xmltodict/)
 
-You'll also need to create a token on GitHub,
-with just the `public repos` access.
+You'll also need to create a token on GitHub, with just the `public repos` access.
 
-Write the following environment variables in a file,
-and source it.
+Write the following environment variables in a file, and source it.
 
 ```bash
 export FILEPATH="comments.xml"
@@ -134,7 +109,7 @@ def disqus_to_github():
         body = f"*Original date: {date}*\n\n{message}"
         # don't add original author when it's you
         if user != USERNAME:
-            body = f"*Original author:* **{name}{mention}**  \n{body}" 
+            body = f"*Original author:* **{name}{mention}**  \n{body}"
         print(f"Posting {i}/{len(posts)} to issue {issue.number}    \r", end="")
         issue.create_comment(body)
         # prevent hitting rate limits!
@@ -147,6 +122,4 @@ if __name__ == "__main__":
     disqus_to_github()
 ```
 
-I wrote this for a one-time, personal use only,
-so it could easily crash when you try it!
-Just use your Python skills and adapt it :wink:
+I wrote this for a one-time, personal use only, so it could easily crash when you try it! Just use your Python skills and adapt it :wink:

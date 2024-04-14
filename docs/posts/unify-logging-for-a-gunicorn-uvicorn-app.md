@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "Unify Python logging for a Gunicorn/Uvicorn/FastAPI application"
+title: Unify Python logging for a Gunicorn/Uvicorn/FastAPI application
 date: 2020-06-02
 authors:
   - Timothée Mazzucotelli
@@ -11,26 +11,15 @@ image:
   add_to_post: yes
 ---
 
-I recently started playing with [FastAPI](https://fastapi.tiangolo.com/)
-and [HTTPX](https://www.python-httpx.org/),
-and I am deploying my app with [Gunicorn](https://gunicorn.org/) and
-[Uvicorn](https://www.uvicorn.org/) workers.
+I recently started playing with [FastAPI](https://fastapi.tiangolo.com/) and [HTTPX](https://www.python-httpx.org/), and I am deploying my app with [Gunicorn](https://gunicorn.org/) and [Uvicorn](https://www.uvicorn.org/) workers.
 
-But when serving, the logs from each component looks quite different
-from the others. I want them to all look the same, so I can easily read them
-or exploit them in something like [Kibana](https://www.elastic.co/kibana).
+But when serving, the logs from each component looks quite different from the others. I want them to all look the same, so I can easily read them or exploit them in something like [Kibana](https://www.elastic.co/kibana).
 
-After a lot of hours trying to understand
-how [Python logging](https://docs.python.org/3/library/logging.html) works,
-and how to override libraries' logging settings,
-here is what I have...
+After a lot of hours trying to understand how [Python logging](https://docs.python.org/3/library/logging.html) works, and how to override libraries' logging settings, here is what I have...
 
 <!--more-->
 
-A single `run.py` file!
-I didn't want to split logging configuration, Gunicorn configuration,
-and the rest of the code into multiple files, as it was harder to wrap
-my head around it.
+A single `run.py` file! I didn't want to split logging configuration, Gunicorn configuration, and the rest of the code into multiple files, as it was harder to wrap my head around it.
 
 ## Gunicorn + Uvicorn version
 
@@ -67,7 +56,9 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage()
+        )
 
 
 class StubbedGunicornLogger(Logger):
@@ -91,7 +82,8 @@ class StandaloneApplication(BaseApplication):
 
     def load_config(self):
         config = {
-            key: value for key, value in self.options.items()
+            key: value
+            for key, value in self.options.items()
             if key in self.cfg.settings and value is not None
         }
         for key, value in config.items():
@@ -101,7 +93,7 @@ class StandaloneApplication(BaseApplication):
         return self.application
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     intercept_handler = InterceptHandler()
     # logging.basicConfig(handlers=[intercept_handler], level=LOG_LEVEL)
     # logging.root.handlers = [intercept_handler]
@@ -129,14 +121,13 @@ if __name__ == '__main__':
         "accesslog": "-",
         "errorlog": "-",
         "worker_class": "uvicorn.workers.UvicornWorker",
-        "logger_class": StubbedGunicornLogger
+        "logger_class": StubbedGunicornLogger,
     }
 
     StandaloneApplication(app, options).run()
 ```
 
-If you are in a hurry, copy-paste it, change the Gunicorn options at the end,
-and try it!
+If you are in a hurry, copy-paste it, change the Gunicorn options at the end, and try it!
 
 If you're not, I will explain each part below.
 
@@ -152,11 +143,7 @@ from gunicorn.glogging import Logger
 from loguru import logger
 ```
 
-This part is easy, we simply import the things we need.
-The Gunicorn `BaseApplication` so we can run Gunicorn directly from this script,
-and its `Logger` that we will override a bit.
-We are using [Loguru](https://github.com/Delgan/loguru) later in the code,
-to have a pretty log format, or to serialize them.
+This part is easy, we simply import the things we need. The Gunicorn `BaseApplication` so we can run Gunicorn directly from this script, and its `Logger` that we will override a bit. We are using [Loguru](https://github.com/Delgan/loguru) later in the code, to have a pretty log format, or to serialize them.
 
 ---
 
@@ -164,9 +151,7 @@ to have a pretty log format, or to serialize them.
 from my_app.app import app
 ```
 
-In my project, I have a `my_app` package with an `app` module.
-My FastAPI application is declared in this module, something like
-`app = FastAPI()`.
+In my project, I have a `my_app` package with an `app` module. My FastAPI application is declared in this module, something like `app = FastAPI()`.
 
 ---
 
@@ -176,9 +161,7 @@ JSON_LOGS = True if os.environ.get("JSON_LOGS", "0") == "1" else False
 WORKERS = int(os.environ.get("GUNICORN_WORKERS", "5"))
 ```
 
-We setup some values from environment variables, useful for development vs.
-production setups. `JSON_LOGS` tells if we should serialize the logs to JSON,
-and `WORKERS` tells how many workers we want to have.
+We setup some values from environment variables, useful for development vs. production setups. `JSON_LOGS` tells if we should serialize the logs to JSON, and `WORKERS` tells how many workers we want to have.
 
 ---
 
@@ -197,12 +180,12 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage()
+        )
 ```
 
-This code is copy-pasted from Loguru's documentation!
-This handler will be used to intercept the logs emitted by libraries
-and re-emit them through Loguru.
+This code is copy-pasted from Loguru's documentation! This handler will be used to intercept the logs emitted by libraries and re-emit them through Loguru.
 
 ---
 
@@ -218,11 +201,7 @@ class StubbedGunicornLogger(Logger):
         self.access_logger.setLevel(LOG_LEVEL)
 ```
 
-This code was copied from this
-[GitHub comment](https://github.com/benoitc/gunicorn/issues/1572#issuecomment-430747811)
-by [@dcosson](https://github.com/dcosson). Thanks!
-It will allow us to override Gunicorn's own logging configuration
-so its logs can be formatted like the rest.
+This code was copied from this [GitHub comment](https://github.com/benoitc/gunicorn/issues/1572#issuecomment-430747811) by [@dcosson](https://github.com/dcosson). Thanks! It will allow us to override Gunicorn's own logging configuration so its logs can be formatted like the rest.
 
 ---
 
@@ -237,7 +216,8 @@ class StandaloneApplication(BaseApplication):
 
     def load_config(self):
         config = {
-            key: value for key, value in self.options.items()
+            key: value
+            for key, value in self.options.items()
             if key in self.cfg.settings and value is not None
         }
         for key, value in config.items():
@@ -247,90 +227,72 @@ class StandaloneApplication(BaseApplication):
         return self.application
 ```
 
-This code is taken from
-[Gunicorn's documentation](https://docs.gunicorn.org/en/stable/custom.html).
-We declare a simple Gunicorn application that we will be able to run.
-It accepts all Gunicorn's options.
+This code is taken from [Gunicorn's documentation](https://docs.gunicorn.org/en/stable/custom.html). We declare a simple Gunicorn application that we will be able to run. It accepts all Gunicorn's options.
 
 ---
 
 ```python
-if __name__ == '__main__':
+if __name__ == "__main__":
     intercept_handler = InterceptHandler()
     # logging.basicConfig(handlers=[intercept_handler], level=LOG_LEVEL)
     # logging.root.handlers = [intercept_handler]
     logging.root.setLevel(LOG_LEVEL)
 ```
 
-We simply instantiate our interception handler,
-and set the log level on the root logger.
+We simply instantiate our interception handler, and set the log level on the root logger.
 
-Once again, I fail to understand how this works exactly, as the two commented
-lines have no impact on the result. I did a lot of trial and error and ended
-up with something working, but I cannot entirely explain why.
-The idea here was to set the handler on the root logger so it intercepts
-everything, but it was not enough (logs were not all intercepted).
+Once again, I fail to understand how this works exactly, as the two commented lines have no impact on the result. I did a lot of trial and error and ended up with something working, but I cannot entirely explain why. The idea here was to set the handler on the root logger so it intercepts everything, but it was not enough (logs were not all intercepted).
 
 ---
 
 ```python
-    seen = set()
-    for name in [
-        *logging.root.manager.loggerDict.keys(),
-        "gunicorn",
-        "gunicorn.access",
-        "gunicorn.error",
-        "uvicorn",
-        "uvicorn.access",
-        "uvicorn.error",
-    ]:
-        if name not in seen:
-            seen.add(name.split(".")[0])
-            logging.getLogger(name).handlers = [intercept_handler]
+seen = set()
+for name in [
+    *logging.root.manager.loggerDict.keys(),
+    "gunicorn",
+    "gunicorn.access",
+    "gunicorn.error",
+    "uvicorn",
+    "uvicorn.access",
+    "uvicorn.error",
+]:
+    if name not in seen:
+        seen.add(name.split(".")[0])
+        logging.getLogger(name).handlers = [intercept_handler]
 ```
 
-Here we iterate on all the possible loggers declared by libraries
-to override their handlers with our interception handler.
-This is where we actually configure every logger to behave the same.
+Here we iterate on all the possible loggers declared by libraries to override their handlers with our interception handler. This is where we actually configure every logger to behave the same.
 
-For a reason that I fail to understand, Gunicorn and Uvicorn do not appear
-in the root logger manager, so we have to hardcode them in the list.
+For a reason that I fail to understand, Gunicorn and Uvicorn do not appear in the root logger manager, so we have to hardcode them in the list.
 
-We also use a set to avoid setting the interception handler on the parent
-of a logger that is already configured, because otherwise logs would be
-emitted twice or more. I'm not sure this code can handle levels of
-nested loggers deeper than two.
+We also use a set to avoid setting the interception handler on the parent of a logger that is already configured, because otherwise logs would be emitted twice or more. I'm not sure this code can handle levels of nested loggers deeper than two.
 
 ---
 
 ```python
-    logger.configure(handlers=[{"sink": sys.stdout, "serialize": JSON_LOGS}])
+logger.configure(handlers=[{"sink": sys.stdout, "serialize": JSON_LOGS}])
 ```
 
-Here we configure Loguru to write on the standard output,
-and to serialize logs if needed.
+Here we configure Loguru to write on the standard output, and to serialize logs if needed.
 
-At some point I was also using `activation=[("", True)]`
-([see Loguru's docs](https://loguru.readthedocs.io/en/stable/api/logger.html#loguru._logger.Logger.configure)),
-but it seems it's not required either.
+At some point I was also using `activation=[("", True)]` ([see Loguru's docs](https://loguru.readthedocs.io/en/stable/api/logger.html#loguru._logger.Logger.configure)), but it seems it's not required either.
 
 ---
 
 ```python
-    options = {
-        "bind": "0.0.0.0",
-        "workers": WORKERS,
-        "accesslog": "-",
-        "errorlog": "-",
-        "worker_class": "uvicorn.workers.UvicornWorker",
-        "logger_class": StubbedGunicornLogger
-    }
+options = {
+    "bind": "0.0.0.0",
+    "workers": WORKERS,
+    "accesslog": "-",
+    "errorlog": "-",
+    "worker_class": "uvicorn.workers.UvicornWorker",
+    "logger_class": StubbedGunicornLogger,
+}
 
-    StandaloneApplication(app, options).run()
+StandaloneApplication(app, options).run()
 ```
 
-Finally, we set our Gunicorn options, wiring things up,
-and run our application!
+Finally, we set our Gunicorn options, wiring things up, and run our application!
 
 ---
 
@@ -344,17 +306,9 @@ Well, I'm not really proud of this code, but it works!
 
 <small><em>Added Nov 11, 2020.</em></small>
 
-The Uvicorn-only version is way more simple.
-Note that since this post was published the first time,
-a new Uvicorn version was released, which contained a fix
-for its logging configuration:
-could be in [0.11.6](https://github.com/encode/uvicorn/compare/0.11.5...0.11.6)
-([*Don't override the root logger*](https://github.com/encode/uvicorn/commit/e382440aa6b604ecdd323288279876767ab36443))
-or [0.12.0](https://github.com/encode/uvicorn/releases/tag/0.12.0)
-([*Dont set log level for root logger*](https://github.com/encode/uvicorn/commit/df81b1684493ad97e8ba3fa323cc329089880a7c)).
+The Uvicorn-only version is way more simple. Note that since this post was published the first time, a new Uvicorn version was released, which contained a fix for its logging configuration: could be in [0.11.6](https://github.com/encode/uvicorn/compare/0.11.5...0.11.6) ([*Don't override the root logger*](https://github.com/encode/uvicorn/commit/e382440aa6b604ecdd323288279876767ab36443)) or [0.12.0](https://github.com/encode/uvicorn/releases/tag/0.12.0) ([*Dont set log level for root logger*](https://github.com/encode/uvicorn/commit/df81b1684493ad97e8ba3fa323cc329089880a7c)).
 
-This simplifies a lot the `setup_logging` function,
-which now makes more sense and is easier to understand:
+This simplifies a lot the `setup_logging` function, which now makes more sense and is easier to understand:
 
 ```python
 import os
@@ -382,7 +336,9 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage()
+        )
 
 
 def setup_logging():
@@ -400,7 +356,7 @@ def setup_logging():
     logger.configure(handlers=[{"sink": sys.stdout, "serialize": JSON_LOGS}])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     server = Server(
         Config(
             "my_app.app:app",

@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "How to add Alembic migrations to an existing FastAPI + Ormar project"
+title: How to add Alembic migrations to an existing FastAPI + Ormar project
 date: 2022-02-13
 authors:
   - Timothée Mazzucotelli
@@ -43,6 +43,7 @@ sqlalchemy.url = sqlite:///db.sqlite
 
 ```python
 from my_app.db import metadata
+
 target_metadata = metadata
 ```
 
@@ -56,6 +57,7 @@ The first issue I had was that Alembic was generating a migration that would *dr
 
 ```python
 from my_app.models import metadata
+
 target_metadata = metadata
 ```
 
@@ -90,7 +92,7 @@ Oh no. Thankfully, a quick search on the internet got me to this [SO post and an
 context.configure(
     connection=connection,
     target_metadata=target_metadata,
-    render_as_batch=True
+    render_as_batch=True,
 )
 
 # in both run_migrations_offline() and run_migrations_online()!
@@ -106,14 +108,16 @@ First, I need to support local *and* production environments. The way to do it i
 def get_url():
     return os.getenv("SQLITE_DB", config.get_main_option("sqlalchemy.url"))
 
-# in run_migrations_offline:
+    # in run_migrations_offline:
     url = get_url()
 
-# in run_migrations_online:
+    # in run_migrations_online:
     configuration = config.get_section(config.config_ini_section)
     configuration["sqlalchemy.url"] = get_url()
     connectable = engine_from_config(
-        configuration, prefix="sqlalchemy.", poolclass=pool.NullPool,
+        configuration,
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
     )
 ```
 
@@ -144,6 +148,7 @@ from my_app.db import metadata, database
 app = FastAPI()
 app.state.database = database
 
+
 @app.on_event("startup")
 async def startup() -> None:
     """Startup application."""
@@ -161,6 +166,4 @@ async def startup() -> None:
         await database.connect()
 ```
 
-In my [next post](add-alembic-migrations-to-existing-fastapi-ormar-project.md),
-you will see how to write tests for such setups,
-but also how to configure all this in a more robust and elegant way.
+In my [next post](add-alembic-migrations-to-existing-fastapi-ormar-project.md), you will see how to write tests for such setups, but also how to configure all this in a more robust and elegant way.

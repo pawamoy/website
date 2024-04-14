@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "How to edit the contents of a git commit"
+title: How to edit the contents of a git commit
 date: 2020-10-04
 authors:
   - Timothée Mazzucotelli
@@ -11,9 +11,7 @@ image:
 hide: [toc]
 ---
 
-When you type `change git commit` or similar keywords in a search engine,
-you find many answers explaning how to rewrite a commit *message*,
-but not how to actually modify the *contents* of the commit.
+When you type `change git commit` or similar keywords in a search engine, you find many answers explaning how to rewrite a commit *message*, but not how to actually modify the *contents* of the commit.
 
 This post quickly explains how to do that.
 
@@ -32,13 +30,9 @@ git log --pretty=format:'%C(yellow)%h %Cgreen%ad %Cblue%an%Cgreen%d %Creset%s' -
 
 </small>
 
-Here I want to modify the contents of the third commit,
-`feat: Refactor and add features`, because I mistakenly
-committed modifications to the changelog
-which I didn't want.
+Here I want to modify the contents of the third commit, `feat: Refactor and add features`, because I mistakenly committed modifications to the changelog which I didn't want.
 
-So I run an interactive git rebase down to this commit
-by running:
+So I run an interactive git rebase down to this commit by running:
 
 ```bash
 git rebase -i HEAD~3
@@ -46,14 +40,11 @@ git rebase -i HEAD~3
 
 ![edit-commit-2](../assets/edit-commit2.png)
 
-This command launches your git editor (vim here)
-to tell git what to do. Here we tell git to stop
-right after the commit we want to modify:
+This command launches your git editor (vim here) to tell git what to do. Here we tell git to stop right after the commit we want to modify:
 
 ![edit-commit-3](../assets/edit-commit3.png)
 
-We save and quit this temporary file (with `:wq`),
-and git tells us that it stopped at the desired commit:
+We save and quit this temporary file (with `:wq`), and git tells us that it stopped at the desired commit:
 
 ![edit-commit-4](../assets/edit-commit4.png)
 
@@ -64,8 +55,7 @@ I took the screenshot afterwards so they don't match :smile:
 
 Now you can start modifying, adding or deleting files!
 
-In my case I wanted to remove wrong sections in `CHANGELOG.md`,
-as well as remove conflict-resolution lines in `pyproject.toml`.
+In my case I wanted to remove wrong sections in `CHANGELOG.md`, as well as remove conflict-resolution lines in `pyproject.toml`.
 
 ![edit-commit-5](../assets/edit-commit5.png)
 
@@ -74,8 +64,7 @@ In this screenshot I use my `gs` alias
 which expands to `git status -sb`.
 </small> 
 
-All you have to do now is to amend the current commit
-(the one at which we stopped, the one we wanted to modify):
+All you have to do now is to amend the current commit (the one at which we stopped, the one we wanted to modify):
 
 ```bash
 git commit -a --amend --no-edit

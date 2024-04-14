@@ -1,6 +1,6 @@
 ---
 template: post.html
-title: "How to deal with spacing in Jinja2 templates"
+title: How to deal with spacing in Jinja2 templates
 date: 2020-09-01
 authors:
   - Timothée Mazzucotelli
@@ -8,17 +8,11 @@ tags: templates jinja2 jinja templating spacing howto
 # image: /assets/fill-space-drawing.jpg
 ---
 
-It started with
-[a comment in a GitHub issue](https://github.com/triaxtec/openapi-python-client/issues/138#issuecomment-670053183).
+It started with [a comment in a GitHub issue](https://github.com/triaxtec/openapi-python-client/issues/138#issuecomment-670053183).
 
 > I often find it difficult to wrangle spacing jinja2 templates especially around optional clauses.
 
-I couldn't wrap my head either about this.
-So I decided to write a script and test every combination
-of newlines, indentation and dashes or no dashes in `{%-`,
-with the goal being to find combinations
-that will not have an extra middle line
-when an optional Jinja clause is false.
+I couldn't wrap my head either about this. So I decided to write a script and test every combination of newlines, indentation and dashes or no dashes in `{%-`, with the goal being to find combinations that will not have an extra middle line when an optional Jinja clause is false.
 
 <!--more-->
 
@@ -86,7 +80,7 @@ if __name__ == "__main__":
 
 Only 19 different combinations are valid on the 448 tested ones:
 
-```
+```jinja
   a
   {% if x -%}
   b
@@ -219,7 +213,7 @@ tested: 448
 valid: 19
 ```
 
-Each one of these will render as 
+Each one of these will render as
 
 ```
   a
@@ -238,9 +232,9 @@ Each one of these will render as
 
 Now you just have to pick the style you prefer!
 
-I find these three particularly readable (the first two are better when `b`  spans on multiple lines):
+I find these three particularly readable (the first two are better when `b` spans on multiple lines):
 
-```
+```jinja
   a
   {%- if x %}
   b
@@ -248,7 +242,7 @@ I find these three particularly readable (the first two are better when `b`  spa
   c
 ```
 
-```
+```jinja
   a
   {% if x -%}
   b
@@ -256,7 +250,7 @@ I find these three particularly readable (the first two are better when `b`  spa
   c
 ```
 
-```
+```jinja
   a{% if x %}
   b{% endif %}
   c
@@ -264,16 +258,15 @@ I find these three particularly readable (the first two are better when `b`  spa
 
 The third example readability can also be improved:
 
-```
+```jinja
   a   {%- if x %}
   b   {%- endif %}
   c
 ```
 
-Here is an example with blank lines in `b`'s contents.
-The first one collapses contents up, while the second collapses content down.
+Here is an example with blank lines in `b`'s contents. The first one collapses contents up, while the second collapses content down.
 
-```python
+```jinja
 class Run:
     def pause(self):
         print("pausing")
@@ -289,7 +282,7 @@ class Run:
       print("resuming")
 ```
 
-```python
+```jinja
 class Run:
     def pause(self):
         print("pausing")
