@@ -10,4 +10,7 @@ deploy:
 	@bash scripts/deploy.sh
 
 format:
-	@mdformat docs/posts --ignore-missing-references
+	@bash scripts/format.sh
+
+linkcheck:
+	@bash scripts/linkcheck.sh
