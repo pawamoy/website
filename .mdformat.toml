@@ -1,0 +1,4 @@
+wrap = "no"
+number = true
+end_of_line = "lf"
+ignore_missing_references = true
