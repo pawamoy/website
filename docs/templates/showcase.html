@@ -11,9 +11,9 @@
 <tr>
   {% for project in row %}
   <td>
-    <p><strong><a href="/showcase/{{ project.name }}">{{ project.name }}</a></strong></p>
+    <p><strong><a href="/showcase/{{ project.name }}/">{{ project.name }}</a></strong></p>
     <p>{{ project.description }}</p>
-    <a href="/showcase/{{ project.name }}"><img class="hover-grow" src="/assets/{{ project.image }}"/></a>
+    <a href="/showcase/{{ project.name }}/"><img class="hover-grow" src="/assets/{{ project.image }}"/></a>
   </td>
   {% endfor %}
 </tr>
