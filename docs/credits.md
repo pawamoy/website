@@ -2,15 +2,11 @@
 title: Credits
 permalink: /credits/
 hide:
-- navigation
-- toc
+  - navigation
+  - toc
 ---
 
-I want to say **thank you** to all these projects, companies, foundations,
-consortiums and alliances on which I stood to create things!
-And another gigantic **THANK YOU** to the Open Source community:
-authors, contributors, maintainers, sustainers, bloggers, writers, testers,
-backers, and the rest!
+I want to say **thank you** to all these projects, companies, foundations, consortiums and alliances on which I stood to create things! And another gigantic **THANK YOU** to the Open Source community: authors, contributors, maintainers, sustainers, bloggers, writers, testers, backers, and the rest!
 
 <!--
 [![coveralls]()](https://coveralls.io/)
@@ -119,6 +115,4 @@ backers, and the rest!
 [![yaml](https://www.vectorlogo.zone/logos/yaml/yaml-ar21.svg)](http://yaml.org/?utm_source=vectorlogozone&utm_medium=referrer)
 [![yarn](https://www.vectorlogo.zone/logos/yarnpkg/yarnpkg-ar21.svg)](https://yarnpkg.com/en/?utm_source=vectorlogozone&utm_medium=referrer)
 
-*This blog is graciously hosted by [GitHub](https://github.com),
-and is built with [MkDocs](https://mkdocs.org)
-and the [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/) theme.*
+*This blog is graciously hosted by [GitHub](https://github.com), and is built with [MkDocs](https://mkdocs.org) and the [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/) theme.*

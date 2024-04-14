@@ -1,7 +1,7 @@
 ---
 hide:
-- navigation
-- toc
+  - navigation
+  - toc
 template: showcase.html
 projects:
   - name: aria2p

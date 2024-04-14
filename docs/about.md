@@ -48,18 +48,13 @@ ul {
 
 #### **DESCRIPTION**
 
-`pawamoy` lets you take control over the person identified by the name
-*Timothée Mazzucotelli*.
+`pawamoy` lets you take control over the person identified by the name *Timothée Mazzucotelli*.
 
-Timothée Mazzucotelli was born in France and still lives there.
-He received education in Computer Science and obtained
-his Masters in C.S. in Université de Strasbourg.
-He is therefore able to write code, amongst other things (see [COMMANDS](#commands)).
+Timothée Mazzucotelli was born in France and still lives there. He received education in Computer Science and obtained his Masters in C.S. in Université de Strasbourg. He is therefore able to write code, amongst other things (see [COMMANDS](#commands)).
 
 #### **GLOBAL OPTIONS**
 
-These options influence how the command will be run.
-Please note that some switches may not apply to some commands.
+These options influence how the command will be run. Please note that some switches may not apply to some commands.
 
 `--chatty`
 
@@ -140,8 +135,8 @@ used at night, to avoid waking up the significant other.
 Side-effect of `--reluctant`, also triggered when tired. Everyone needs a bit
 of slowness from time to time right?
 
-
 #### **COMMANDS**
+
 `code`
 
 <p class="i2"></p>
@@ -251,47 +246,31 @@ You should write more fiction.
 
 #### **BUGS**
 
-`pawamoy` has an extra pair of ribs.
-This bug does not come from the two engineers that designed `pawamoy`.
-It is due to some binary data corruption during replication over network.
-It can't be fixed.
+`pawamoy` has an extra pair of ribs. This bug does not come from the two engineers that designed `pawamoy`. It is due to some binary data corruption during replication over network. It can't be fixed.
 
 #### **COPYRIGHT**
 
 Copyright 1991-2009 Mazzucotelli Foundation, Inc.
 
-This is proprietary software; see the source for copying conditions.
-There is **NO** warranty; not even for MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.
+This is proprietary software; see the source for copying conditions. There is **NO** warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 #### **ENVIRONMENT VARIABLES**
 
-`HOME` - Define the home `pawamoy` will use.
-"Moon", "Area 51", or "Public bathrooms" are not valid values.
+`HOME` - Define the home `pawamoy` will use. "Moon", "Area 51", or "Public bathrooms" are not valid values.
 
-`ENERGY` - An integer between 1 and 100.
-Using 0 will cause `pawamoy` to self-destruct.
-Use with caution.
-Use commands `eat` then `sleep` when `ENERGY` is low to increase it again.
+`ENERGY` - An integer between 1 and 100. Using 0 will cause `pawamoy` to self-destruct. Use with caution. Use commands `eat` then `sleep` when `ENERGY` is low to increase it again.
 
-`HEALTH` - An integer between 1 and 100.
-Using 0 is reserved for the end-of-life date of `pawamoy`.
-Don't use it before.
+`HEALTH` - An integer between 1 and 100. Using 0 is reserved for the end-of-life date of `pawamoy`. Don't use it before.
 
-`HUNGER` - An integer between 1 and 100. 0 means extra-full, 100 means starving.
-Use command `eat` to decrease `HUNGER`.
+`HUNGER` - An integer between 1 and 100. 0 means extra-full, 100 means starving. Use command `eat` to decrease `HUNGER`.
 
-`TEMPERATURE` - In degree Celsius.
-Try to increase it just a bit when `HEALTH` is lowering.
-This is experimental. Use it at my own risk.
+`TEMPERATURE` - In degree Celsius. Try to increase it just a bit when `HEALTH` is lowering. This is experimental. Use it at my own risk.
 
 #### **FILES**
 
-`/boot/config` - This file was useful only once, because `pawamoy` can never
-reboot. Once shut down, it stays shut down.
+`/boot/config` - This file was useful only once, because `pawamoy` can never reboot. Once shut down, it stays shut down.
 
-`/sys/cpu` - This file was auto-generated, and is self-mutating. Please
-don't mess too much with this file.
+`/sys/cpu` - This file was auto-generated, and is self-mutating. Please don't mess too much with this file.
 
 `/etc/pawamoy/principles` - You can modify principles here. Don't add too many.
 
@@ -299,18 +278,12 @@ don't mess too much with this file.
 
 #### **LICENSE**
 
-`pawamoy` is released under the terms of the `Human Decency` license.
-Please use it accordingly.
-You cannot duplicate `pawamoy`. At least for now.
+`pawamoy` is released under the terms of the `Human Decency` license. Please use it accordingly. You cannot duplicate `pawamoy`. At least for now.
 
 #### **SEE ALSO**
 
-[`@pawamoy(github)`](https://github.com/pawamoy/),
-[`@pawamoy(fosstodon)`](https://fosstodon.org/@pawamoy)
-[`@pawamoy(stackoverflow)`](https://stackoverflow.com/users/3451029/pawamoy),
-[`@pawamoy(twitter)`](https://twitter.com/pawamoy)
+[`@pawamoy(github)`](https://github.com/pawamoy/), [`@pawamoy(fosstodon)`](https://fosstodon.org/@pawamoy) [`@pawamoy(stackoverflow)`](https://stackoverflow.com/users/3451029/pawamoy), [`@pawamoy(twitter)`](https://twitter.com/pawamoy)
 
 #### **NOTES**
 
-This man page is a perpetual work in progress. Expect some delays between
-`pawamoy` releases and its documentation updates.
+This man page is a perpetual work in progress. Expect some delays between `pawamoy` releases and its documentation updates.
