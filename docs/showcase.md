@@ -24,8 +24,8 @@ projects:
     description: Automatically generate your changelog from your Git commits!
     image: git-changelog.png
 
-  - name: failprint
-    description: A pumped-up <code>output="$(cmd args 2>&1)" || echo "$output"</code>
+  - name: duty
+    description: A simple task runner.
     image: failprint.svg
 
   - name: dependenpy
