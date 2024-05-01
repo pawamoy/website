@@ -1,7 +1,7 @@
 ---
 template: post.html
 title: "Same Pytest fixtures with different scopes"
-date: 2023-03-19
+date: 2024-05-01
 authors:
   - Timothée Mazzucotelli
 tags: python pytest tests fixtures scope
