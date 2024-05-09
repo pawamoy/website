@@ -399,6 +399,9 @@ Now, what happens to a project when Insiders features are merged back into its p
 
 To simplify removing and adding back Insiders-related documentation to my projects when they go back and forth between these different states, my project template has a question "Is it an Insiders project?" that handles creation/removal of related files when updating a project. Then I just have to stage or discard changes with Git.
 
+WARNING: **Only merge upstream into Insiders main branch when you're ready to release!**
+Since users likely install the Insiders version from the main branch (using a Git + HTTPS/SSH URL), you must make sure to merge upstream changes into the main Insiders branch **only** when you are also ready to publish a new Insiders release. Otherwise users will get changes that could break their project. And if you have to quickly cut out a bugfix release, you won't be able to because these changes from upstream are blocking the way. It is still useful to merge upstream changes early, especially when they are complex and you don't want to deal with hard conflicts, but in that case you should merge in a secondary branch.
+
 ## Communication
 
 I am definitely not an expert in comms/marketing, but here are some obvious tips on how to advertise your work.
