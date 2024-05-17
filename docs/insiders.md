@@ -82,6 +82,11 @@ data_source = [
         "insiders/goals.yml",
     ),
     (
+        "pawamoy/mkdocs-pygments",
+        "https://pawamoy.github.io/mkdocs-pygments/",
+        "insiders/goals.yml",
+    ),
+    (
         "pawamoy/pypi-insiders",
         "https://pawamoy.github.io/pypi-insiders/",
         "insiders/goals.yml",
@@ -102,6 +107,7 @@ descriptions = {
     "pawamoy/markdown-exec": "Utilities to execute code blocks in Markdown files.",
     "pawamoy/markdown-pycon": "Markdown extension to parse `pycon` code blocks without indentation.",
     "pawamoy/mkdocs-manpage": "MkDocs plugin to generate a manpage from the documentation site.",
+    "pawamoy/mkdocs-pygments": "Highlighting themes for code blocks.",
     "pawamoy/pypi-insiders": "Self-hosted PyPI server with automatic updates for Insiders versions.",
 }
 public = {
@@ -119,6 +125,7 @@ public = {
     "pawamoy/markdown-exec": True,
     "pawamoy/markdown-pycon": False,
     "pawamoy/mkdocs-manpage": True,
+    "pawamoy/mkdocs-pygments": False,
     "pawamoy/pypi-insiders": False,
 }
 ```
