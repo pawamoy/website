@@ -224,7 +224,7 @@ features = feature_list(goals.values())
 projects = set(feature.project for feature in features)
 incoming_features = sorted(
     (ft for ft in feature_list(goals.values()) if not ft.since),
-    key=lambda ft: ft.project,  # type: ignore[return-value]
+    key=lambda ft: getattr(ft.project, "name", None),  # type: ignore[return-value]
 )
 released_features = sorted(
     (ft for ft in feature_list(completed_goals) if ft.since),
