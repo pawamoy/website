@@ -181,6 +181,8 @@ print(project_cards("pawamoy/"))
 
 Thanks for your interest in sponsoring! In order to become an eligible sponsor with your GitHub account, visit [pawamoy's sponsor profile][github sponsor profile], and complete a sponsorship of **$10 a month or more**. You can use your individual or organization GitHub account for sponsoring.
 
+Sponsorships lower than $10 a month are also very much appreciated! They won't grant you access to Insiders, but they will be counted towards reaching sponsorship goals. *Every* sponsor helps us implementing new features and releasing them to the public.
+
 **Important**: If you're sponsoring **[@pawamoy][github sponsor profile]** through a GitHub organization, please send a short email to insiders@pawamoy.fr with the name of your organization and the GitHub account of the individual that should be added as a collaborator.[^4]
 
 You can cancel your sponsorship anytime.[^5]
