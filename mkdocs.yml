@@ -14,11 +14,11 @@ nav:
   - Credits: credits.md
   - Posts:
     - 2024:
+      # - posts/tips-for-writing-good-python-cli-libraries.md
       - posts/same-pytest-fixtures-with-different-scopes.md
       - posts/tingling-sensation-witnessing-existence.md
       - posts/steam-linux-alvr-quest2.md
     - 2023:
-      # - posts/tips-for-writing-good-python-cli-libraries.md
       - posts/the-insiders-journey.md
       - posts/adding-links-to-formatted-and-syntax-highlighted-code.md
     - 2022:
