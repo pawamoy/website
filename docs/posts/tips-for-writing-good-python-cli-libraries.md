@@ -57,3 +57,10 @@ Toot on Mastodon, quote from docs "call to developers".
 
 - providing a callable means it will work for every version of your project
     (impossible otherwise)
+
+
+
+## Bad examples
+
+- Twine adds logic to its `__main__.main` function which does not accept arguments.
+- pyproject-build defines its main method in `__main__`.
