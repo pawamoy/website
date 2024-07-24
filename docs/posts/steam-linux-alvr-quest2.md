@@ -19,6 +19,9 @@ Even though the process was painful for me at times, I would like to make it cle
 
 ---
 
+INFO: **Update 2024-07-24**
+Thanks to [@patrickpluto](https://github.com/patrickpluto) who commented below, I was made aware that ALVR doesn't need to be compiled from sources and can instead be downloaded from [GitHub releases](https://github.com/alvr-org/ALVR/releases), or installed from AUR as `alvr-bin`. Also, ALVR now provides an official app on the Meta Quest Store, so SideQuest is not needed anymore!
+
 ## Preparation
 
 - I recommend doing this with a friend: you'll probably have to put the Quest 2 headset back and forth many times. It's easier if there's one person on the computer and another one wearing the headset. It's definitely doable alone though, just a bit more annoying.
@@ -60,6 +63,9 @@ yay -S adb
 
 ## Install a Rust toolchain
 
+INFO: **Update 2024-07-24**
+ALVR doesn't need to be compiled from sources and can instead be downloaded from [GitHub releases](https://github.com/alvr-org/ALVR/releases), or installed from AUR as `alvr-bin`.
+
 ALVR will be installed from sources, and it's written in Rust, so you'll need a Rust toolchain. Official guides recommend `rustup`:
 
 ```bash
@@ -70,6 +76,9 @@ rustup update
 Make sure to run `rustup update` if you already had `rustup` installed: compiling ALVR will require recent versions of `rustc`.
 
 ## Install ALVR
+
+INFO: **Update 2024-07-24**
+ALVR doesn't need to be compiled from sources and can instead be downloaded from [GitHub releases](https://github.com/alvr-org/ALVR/releases), or installed from AUR as `alvr-bin`.
 
 Now you can install ALVR:
 
@@ -112,6 +121,9 @@ Once SteamVR is running, you should see a small window and icons telling you tha
 
 ## Install SideQuest
 
+INFO: **Update 2024-07-24**
+ALVR now provides an official app on the Meta Quest Store, so SideQuest is not needed anymore.
+
 SideQuest will allow you to "sideload" (upload) files onto your Quest 2. We will use it to sideload the SideQuest app on the headset. Why isn't there a SideQuest app installable in the Meta Quest Store? I don't know. Probably because the devs didn't have time or capacity to do that yet, or because of policy reasons, like Meta not allowing it :shrug:
 
 - Download the SideQuest "easy installer" here: https://sidequestvr.com/setup-howto.
@@ -135,6 +147,9 @@ Once you have completed the setup, the home tab of SideQuest should display an "
 Leave SideQuest opened on your compute, and head into the headset (pun intended).
 
 ## Install ALVR app in headset
+
+INFO: **Update 2024-07-24**
+ALVR now provides an official app on the Meta Quest Store, so SideQuest is not needed anymore.
 
 In the headset, go to Applications, and filter with "unknown sources". You should see the SideQuest app. If you don't, go back to SideQuest on the computer and click on "Reinstall" or "Update". Do that until the app shows up in the headset.
 
