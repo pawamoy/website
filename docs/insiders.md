@@ -37,8 +37,18 @@ data_source = [
         "insiders/goals.yml",
     ),
     (
+        "mkdocstrings/griffe-typedoc",
+        "https://mkdocstrings.github.io/griffe-typedoc/",
+        "insiders/goals.yml",
+    ),
+    (
         "mkdocstrings/griffe-warnings-deprecated",
         "https://mkdocstrings.github.io/griffe-warnings-deprecated/",
+        "insiders/goals.yml",
+    ),
+    (
+        "mkdocstrings/c",
+        "https://mkdocstrings.github.io/c/",
         "insiders/goals.yml",
     ),
     (
@@ -98,7 +108,9 @@ descriptions = {
     "mkdocstrings/griffe-inherited-docstrings": "Griffe extension for inheriting docstrings.",
     "mkdocstrings/griffe-pydantic": "Griffe extension for Pydantic.",
     "mkdocstrings/griffe-tui": "A textual user interface for Griffe.",
+    "mkdocstrings/griffe-typedoc": "Signatures for entire TypeScript programs using TypeDoc.",
     "mkdocstrings/griffe-warnings-deprecated": "Griffe extension for `@warnings.deprecated` (PEP 702).",
+    "mkdocstrings/c": "A C handler for mkdocstrings.",
     "mkdocstrings/python": "A Python handler for mkdocstrings.",
     "mkdocstrings/shell": "A shell scripts/libraries handler for mkdocstrings.",
     "mkdocstrings/typescript": "A TypeScript handler for mkdocstrings.",
@@ -116,7 +128,9 @@ public = {
     "mkdocstrings/griffe-inherited-docstrings": True,
     "mkdocstrings/griffe-pydantic": False,
     "mkdocstrings/griffe-tui": False,
+    "mkdocstrings/griffe-typedoc": False,
     "mkdocstrings/griffe-warnings-deprecated": False,
+    "mkdocstrings/c": False,
     "mkdocstrings/python": True,
     "mkdocstrings/shell": False,
     "mkdocstrings/typescript": False,
