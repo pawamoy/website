@@ -22,7 +22,6 @@ One day my boss said "I want to see some statistical data about the users". I im
 - [Step 3: Highcharts!](#step-3-highcharts)
 - [More customization](#more-customization)
 - [The app I wrote using this](#django-suit-dashboard)
-- [Comments](#__comments)
 
 ## Step 1: set up the files
 
@@ -126,7 +125,7 @@ admin.autodiscover()
 ```
 
 **EDIT:** with Django 1.9.5, you will need one more line:\
-(See [Gustavo's comment](#comment-2643754439) at the bottom.)
+(See Gustavo's comment in the comments section.)
 
 ```python
 admin.site = DashboardSite()

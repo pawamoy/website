@@ -25,7 +25,6 @@ The code used in this post is also available as a [repository on GitHub]. It con
 - [Proxying Shiny requests to the Shiny app][proxying]
 - [Adding an authentication step for every Shiny request][authstep]
 - [Try it with a Dockerized project][trywithdocker]
-- [Comments](#__comments)
 
 What most of you will be interested in is starting at section 2: [Proxying], though [Wrapping] is interesting as well if you want to create an interface to access multiple Shiny apps.
 

@@ -13,7 +13,7 @@ So let's say you wrote a program that is using tox and you want to add some opti
 
 It can be done in three very simple steps.
 
-- [Add a tox_module in your package](#add-a-tox-module-in-your-package)
+- [Add a tox_module in your package](#add-a-tox_module-in-your-package)
 - [Setup the entry points](#setup-the-entry-points)
 - [Update your code](#update-your-code)
 
