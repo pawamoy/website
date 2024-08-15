@@ -32,6 +32,11 @@ data_source = [
         "insiders/goals.yml",
     ),
     (
+        "mkdocstrings/griffe-sphinx",
+        "https://mkdocstrings.github.io/griffe-sphinx/",
+        "insiders/goals.yml",
+    ),
+    (
         "mkdocstrings/griffe-tui",
         "https://mkdocstrings.github.io/griffe-tui/",
         "insiders/goals.yml",
@@ -107,6 +112,7 @@ descriptions = {
     "mkdocstrings/griffe2md": "Output API docs to Markdown using Griffe.",
     "mkdocstrings/griffe-inherited-docstrings": "Griffe extension for inheriting docstrings.",
     "mkdocstrings/griffe-pydantic": "Griffe extension for Pydantic.",
+    "mkdocstrings/griffe-sphinx": "Parse Sphinx-comments above attributes as docstrings.",
     "mkdocstrings/griffe-tui": "A textual user interface for Griffe.",
     "mkdocstrings/griffe-typedoc": "Signatures for entire TypeScript programs using TypeDoc.",
     "mkdocstrings/griffe-warnings-deprecated": "Griffe extension for `@warnings.deprecated` (PEP 702).",
@@ -127,6 +133,7 @@ public = {
     "mkdocstrings/griffe2md": True,
     "mkdocstrings/griffe-inherited-docstrings": True,
     "mkdocstrings/griffe-pydantic": False,
+    "mkdocstrings/griffe-sphinx": False,
     "mkdocstrings/griffe-tui": False,
     "mkdocstrings/griffe-typedoc": False,
     "mkdocstrings/griffe-warnings-deprecated": False,
