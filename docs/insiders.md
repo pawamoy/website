@@ -22,6 +22,11 @@ data_source = [
         "insiders/goals.yml",
     ),
     (
+        "mkdocstrings/griffe-autodocstringstyle",
+        "https://mkdocstrings.github.io/griffe-autodocstringstyle/",
+        "insiders/goals.yml",
+    ),
+    (
         "mkdocstrings/griffe-inherited-docstrings",
         "https://mkdocstrings.github.io/griffe-inherited-docstrings/",
         "insiders/goals.yml",
@@ -110,6 +115,7 @@ data_source = [
 descriptions = {
     "mkdocstrings/griffe": "Signatures for entire Python programs. Generate API documentation or find breaking changes in your API.",
     "mkdocstrings/griffe2md": "Output API docs to Markdown using Griffe.",
+    "mkdocstrings/griffe-autodocstringstyle": "Set docstring style to `auto` for external packages.",
     "mkdocstrings/griffe-inherited-docstrings": "Griffe extension for inheriting docstrings.",
     "mkdocstrings/griffe-pydantic": "Griffe extension for Pydantic.",
     "mkdocstrings/griffe-sphinx": "Parse Sphinx-comments above attributes as docstrings.",
@@ -131,6 +137,7 @@ descriptions = {
 public = {
     "mkdocstrings/griffe": True,
     "mkdocstrings/griffe2md": True,
+    "mkdocstrings/griffe-autodocstringstyle": False,
     "mkdocstrings/griffe-inherited-docstrings": True,
     "mkdocstrings/griffe-pydantic": False,
     "mkdocstrings/griffe-sphinx": False,
