@@ -37,6 +37,11 @@ data_source = [
         "insiders/goals.yml",
     ),
     (
+        "mkdocstrings/griffe-runtime-objects",
+        "https://mkdocstrings.github.io/griffe-runtime-objects/",
+        "insiders/goals.yml",
+    ),
+    (
         "mkdocstrings/griffe-sphinx",
         "https://mkdocstrings.github.io/griffe-sphinx/",
         "insiders/goals.yml",
@@ -118,6 +123,7 @@ descriptions = {
     "mkdocstrings/griffe-autodocstringstyle": "Set docstring style to `auto` for external packages.",
     "mkdocstrings/griffe-inherited-docstrings": "Griffe extension for inheriting docstrings.",
     "mkdocstrings/griffe-pydantic": "Griffe extension for Pydantic.",
+    "mkdocstrings/griffe-runtime-objects": "Make runtime objects available through `extra`.",
     "mkdocstrings/griffe-sphinx": "Parse Sphinx-comments above attributes as docstrings.",
     "mkdocstrings/griffe-tui": "A textual user interface for Griffe.",
     "mkdocstrings/griffe-typedoc": "Signatures for entire TypeScript programs using TypeDoc.",
@@ -140,6 +146,7 @@ public = {
     "mkdocstrings/griffe-autodocstringstyle": False,
     "mkdocstrings/griffe-inherited-docstrings": True,
     "mkdocstrings/griffe-pydantic": False,
+    "mkdocstrings/griffe-runtime-objects": False,
     "mkdocstrings/griffe-sphinx": False,
     "mkdocstrings/griffe-tui": False,
     "mkdocstrings/griffe-typedoc": False,
