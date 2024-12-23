@@ -68,6 +68,7 @@ nav:
     # - showcase/privibot.md
     # - showcase/pawabot.md
   - Insiders: insiders.md
+  - Backlog: backlog.md
 
 theme:
   name: material
