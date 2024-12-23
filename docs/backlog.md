@@ -49,11 +49,17 @@ I have allowed some users sponsoring for $50 or more, **using their own account*
 
 ## Boosts
 
-In 2024, I introduced the opportunity for users to "boost" issues, by making pledges via [Polar]. Pledges start at a minimum of $5, and the sum of pledges must rise up to $30 for an issue to be boosted. It means that issues can be boosted by single individuals pledging $30 or more, or by 6 individuals pledging each $5. I figured $30 was a good balance given the variability in issues' difficulty of resolution, and that $5 was low enough to be affordable, and high enough to not require dozens of participants.
+In 2024, I introduced the opportunity for users to "boost" issues, by making pledges via [Polar]. Pledges start at a minimum of $5, and the sum of pledges must rise up to $30 for an issue to be boosted. It means that issues can be boosted by single individuals/organizations pledging $30 or more, or by 6 individuals/organizations pledging each $5. I figured $30 was a good balance given the variability in issues' difficulty of resolution, and that $5 was low enough to be affordable, and high enough to not require dozens of participants.
 
-Boosted issues will be prioritized over non-boosted ones, but not over "funded" ones (issues created or upvoted by users benefitting from monthly sponsorships). If you already fund my projects through a monthly sponsorship of $50, you don't need to boost issues. The reason is that monthly sponsorships are much more reliable as income, and in a society where reliable income is extremely important, I want to encourage monthly sponsorships over one-time donations or payments. Boosts were initially setup because some organizations can only make one-time payments (for various reasons), and they still wanted to have the ability to accelerate resolution of issues in exchange for financial compensation. Who am I to say no to their dollars? :smile: More seriously, even if monthly sponsorships are preferred, one-time payments are still very much appreciated.
+[View all issues with pledges](https://polar.sh/pawamoy/issues?sort=most_funded&badged=1){ .md-button .md-button--primary }
 
-The boost system is still in experimental phase and might be re-configured differently in the future. Your feedback is welcome!
+Boosted issues will be prioritized over non-boosted ones, but not over "funded" ones (issues created or upvoted by users benefitting from monthly sponsorships). **If you already fund my projects through a monthly sponsorship of $50, you don't need to boost issues.** The reason is that monthly sponsorships are much more reliable as income, and in a society where reliable, monthly income is extremely important, I want to encourage monthly sponsorships over one-time donations or payments. Boosts were initially setup because some organizations can only make one-time payments (for various reasons), and they still wanted to have the ability to accelerate resolution of issues in exchange for financial compensation. Who am I to say no to their dollars? :smile: More seriously, even if monthly sponsorships are preferred, one-time payments are still very much appreciated.
+
+Issues with an `insiders` label will still be released as [Insiders](insiders.md) features first, whether they are boosted or not.
+
+We receive the pledges only once the issue is completed, and confirmed by you (within a period of 7 days).
+
+The boost system is still in experimental phase and might be re-configured differently in the future. Your feedback is welcome! You can send it at <insiders@pawamoy.fr>.
 
 ## Sorting criteria
 
