@@ -53,6 +53,15 @@ Toot on Mastodon, quote from docs "call to developers".
 - (tyro) https://brentyi.github.io/tyro/examples/01_basics/01_functions/ not good,
   hides actual CLI args
 
+## splitting projects
+
+- `project-lib`
+- `project-cli`, depends on lib
+- `project`, depends on cli + interactive deps (auto-completion, shell detection)
+- `project-gui`, depends on project
+- `project-tui`, depends on project
+- `project` declares following extras: `gui`, `tui`, `all`
+
 ## Benefits
 
 - providing a callable means it will work for every version of your project
@@ -64,3 +73,22 @@ Toot on Mastodon, quote from docs "call to developers".
 
 - Twine adds logic to its `__main__.main` function which does not accept arguments.
 - pyproject-build defines its main method in `__main__`.
+- iterate on all duty tools to see which ones are painful to deal with (mypy? black?)
+- safety, debugging the issue I had between v2 and v3
+
+
+# Cappa
+
+- declare the final state of data (dataclasses)
+- annotate how Cappa transforms command line args into it
+
+- tempted for maximizing reusability: don't, it's rare that options keep same help/desc across different commands, or commands across CLIs
+- if you have to, you can use composition, by destructuring args, instead of using inheritance (better?)
+- in the end, your dataclasses are still for a CLI, not for programmatic usage
+
+- global arguments: propagate=True
+- setup: global dependency
+
+- no subcommand default: each command *requires* the subcommand, otherwise why even provide it? and you'd need to propagate args downwards (`prog command --opt` -> `prog command --opt subcommand` not working)
+
+# final data from CLI, env, config
