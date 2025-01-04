@@ -27,7 +27,7 @@ The columns show:
 - the issue identifier (account/repository#number)
 - the author of the issue
 - the labels (as emojis)
-- the funding amount (more on this below), hidden for privacy reasons
+- the funding amount (more on this below, hidden here for privacy reasons)
 - the boost amount (more on this below)
 - the number of upvotes
 - the title of the issue
