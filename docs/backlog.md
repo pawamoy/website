@@ -44,8 +44,8 @@ For a given issue, I therefore build the set of distinct sponsorships (literally
 
 **Sponsors, use your voting power!** :smile:
 
-NOTE: **Organization members vs. users and their plus-one**
-I have allowed some users sponsoring for $50 or more, **using their own account**, to provide additional usernames who are granted access to the private projects. While this seems only fair to me, please note that this has the disadvantage that these additional users cannot be listed as part of an organization, and therefore won't benefit from the same voting power as the sponsoring user. This limitation will be lifted in the future. See [Reviewing beneficiaries](#reviewing-beneficiaries).
+TIP: **List your organization members publicly, if possible.**
+By having your organization members visible through GitHub's API, you enable automatic voting power matching your sponsorship amount for all your organization members.
 
 ## Boosts
 
@@ -65,41 +65,24 @@ The boost system is still in experimental phase and might be re-configured diffe
 
 As of writing, here is the list of criteria used to sort the backlog, applied in order:
 
-1. **Issues labeled as `bug` (🐞).** Bugs are given the highest priority. I don't think I need to elaborate why.
-2. **Issues labeled as `unconfirmed` (❔).** It's important to triage issues quickly to identify bugs and documentation issues.
-3. **Issues labeled as `docs` (📘).** Incorrect documentation is worse than no documentation.
+1. **Issues labeled as `top-priority` (🚨).** Super urgent issues, whether they are bugs or something else.
+2. **Issues labeled as `bug` (🐞).** Bugs are given the highest priority. I don't think I need to elaborate why.
+3. **Issues labeled as `unconfirmed` (❔).** It's important to triage issues quickly to identify bugs and documentation issues.
 4. **Issues with a minimum total sponsorship amount of 50 (💖).** Issue priorization is a benefit of sponsorship tiers starting at $50 per month. Sponsors with lower tiers will have to combine their effort to reach 50 together. Both the author and the upvoters' sponsorships are taken into account, see [Sponsorship amount](#sponsorship-amount).
 5. **Issues with a minimum boost pledge of $30 (💲).** The boost system, see [Boosts](#boosts).
-6. **Issues with a minimum of 2 upvotes (👍).** Since one can upvote their own issue, we raise the bar to 2 upvotes.
-7. **Issues labeled as `insiders` (🔒).** These issues are candidate for [Insiders](insiders.md) features (✨=feature). Insiders is generally what gives incentive to users to sponsor me, so it's only natural that I prioritize these features. Non-insiders features come after Insiders ones.
-8. **Issues from the @mkdocstrings namespace.** Most of my sponsors are mainly interested in my work within mkdocstrings and its ecosystem, so I prioritize these over issues within my own namespace (@pawamoy).
-9. **Oldest issues first.** First in, first out. It's ticketing system after all.
+6. **Issues labeled as `docs` (📘).** Incorrect documentation is worse than no documentation.
+7. **Issues labeled as `refactor` (🔨).** To reduce technical debt as early as possible.
+8. **Sponsored and pledged issues** These issues are not prioritized over `docs` and `refactor`-labeled issues, but still get a small boost over other features.
+9. **Issues with a minimum of 2 upvotes (👍).** Since one can upvote their own issue, we raise the bar to 2 upvotes.
+10. **Issues labeled as `insiders` (🔒).** These issues are candidate for [Insiders](insiders.md) features (✨=feature). Insiders is generally what gives incentive to users to sponsor me, so it's only natural that I prioritize these features. Non-insiders features come after Insiders ones.
+11. **Issues from the @mkdocstrings namespace.** Most of my sponsors are mainly interested in my work within mkdocstrings and its ecosystem, so I prioritize these over issues within my own namespace (@pawamoy).
+12. **Oldest issues first.** First in, first out. It's ticketing system after all.
 
 Although I generally follow this ordering, **I reserve the right to diverge from it**. This goes both ways. An issue with 0 funding and 0 upvotes could become top-priority if it will facilitate maintenance or prevent regressions. A bug I noticed could be skipped if nobody experiences it or if it happens in an old, unused project. A docs-related issue could be skipped if it's about adding (not fixing) non-critical information.
 
 ## Privacy
 
 Since sponsors on [GitHub Sponsors] can create **private** sponsorships, there is a privacy concern with sharing the actual backlog, as it would indicate that users are sponsoring me, and for how much. **It means that I cannot share the real backlog publicly.** The backlog samples I share are always built **using public data only**, which means you shouldn't rely on them.
-
-## Reviewing beneficiaries
-
-When an individual sponsors me, things are easy: if they selected a tier equal to or higher than $10 per month, they get access to Insiders. In any case, they get the voting power matching the tier they selected.
-
-When an organization sponsors me, things get a bit more complex. If they selected a tier equal to or higher than $10 per month, the organization members must get access to Insiders. **But I cannot automate that.**
-
-First, because it's not possible to add organizations to other organizations or teams. Second, because users could easily "game the system": sponsor as an organization for $10, and invite all you friends as members so they enjoy it too. Even if I set limits, like one user per $10 ($50, 5 users), what if an organization has more users than its accepted limit? Should I sort them alphabetically? That seems rather arbitrary and not very safe: if a user changes their name, they could take the place of a fellow member, whose access would then be revoked. Third, because users are not always listed as organization members. And when they are, the information is not always public.
-
-So instead of fetching organization members automatically, organizations must provide a list of users that will get access to Insiders. I feed that list to my automated system, and it handles granting/revoking accesses. But... what about voting power? Shouldn't we give the voting power to *all* the members of an organization, not just the ones who get access to the private projects? The organization might even just grant access to a bot account. Yet the actual members should be able to vote with the weight of their organization sponsorship. Also, what happens if a user leaves an organization? Their access should be revoked, and their voting power reset. But surely, organizations won't remember to send me an email to let me know a user has left. How do I help myself tracking this? 
-
-So I do fetch organization members automatically! But I only *aggregate* this data to the explicit lists of users sent by organizations, for two purposes:
-
-1. Verify organization membership. If an organization asks me to grant access to a user, I grant them access, but I verify whether they're actually listed as an organization member. With this information, I can periodically review whether they're still part of the organization or not. If not, I can reach out and ask if their Insiders access should be revoked.
-2. Give voting power to verified members.
-
-For now, my system only allows explicit lists of beneficiaries *for organization accounts*. That's the reason why beneficiaries of individual accounts cannot be granted voting power matching their linked sponsorship. I will lift this limitation in the future. The organization/individual distinction is just an artifact of GitHub's architecture, so it must not affect other sponsorship platforms.
-
-TIP: **List your organization members publicly, if possible.**
-By having your organization members visible through GitHub's API, you facilitate my ability to review beneficiaries, and you enable automatic voting power matching your sponsorship amount for all your organization members.
 
 [GitHub Sponsors]: https://github.com/sponsors/
 [Polar]: https://polar.sh
