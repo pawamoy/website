@@ -163,7 +163,7 @@ public = {
     "mkdocstrings/griffe-runtime-objects": False,
     "mkdocstrings/griffe-sphinx": False,
     "mkdocstrings/griffe-tui": True,
-    "mkdocstrings/griffe-typedoc": False,
+    "mkdocstrings/griffe-typedoc": True,
     "mkdocstrings/griffe-warnings-deprecated": True,
     "mkdocstrings/c": False,
     "mkdocstrings/python": True,
