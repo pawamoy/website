@@ -180,7 +180,7 @@ def load_json(url: str) -> str | list | dict:  # noqa: D103
 
 
 def project_card(repository: str, url: str, description: str, public: bool) -> str:
-    rel, unrel, inc = per_project_features[repository]
+    rel, unrel, inc = per_project_features.get(repository) or ([], [], [])
     if public and not unrel:
         heart = ""
     elif public:
