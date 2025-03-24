@@ -168,7 +168,7 @@ public = {
     "mkdocstrings/c": False,
     "mkdocstrings/python": True,
     "mkdocstrings/shell": True,
-    "mkdocstrings/typescript": False,
+    "mkdocstrings/typescript": True,
     "pawamoy/devboard": False,
     "pawamoy/insiders-project": True,
     "pawamoy/markdown-exec": True,
