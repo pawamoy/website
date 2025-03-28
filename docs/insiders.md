@@ -165,7 +165,7 @@ public = {
     "mkdocstrings/griffe-tui": True,
     "mkdocstrings/griffe-typedoc": True,
     "mkdocstrings/griffe-warnings-deprecated": True,
-    "mkdocstrings/c": False,
+    "mkdocstrings/c": True,
     "mkdocstrings/python": True,
     "mkdocstrings/shell": True,
     "mkdocstrings/typescript": True,
