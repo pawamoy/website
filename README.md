@@ -17,3 +17,6 @@ Serve locally with `./scripts/serve.sh`.
 
 Deploy to [pawamoy.github.io](https://github.com/pawamoy/pawamoy.github.io)'s
 GitHub pages with `./scripts/deploy.sh`.
+
+
+![sponsors](https://raw.githubusercontent.com/pawamoy/website/main/docs/assets/sponsors.svg)
