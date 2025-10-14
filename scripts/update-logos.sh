@@ -36,7 +36,7 @@ main() {
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+     width="400" height="1000" viewBox="0 0 400 1000" role="img" aria-labelledby="title desc">
 
   <title id="title">Sponsors</title>
   <desc id="desc">Logos of our sponsors with links to their websites</desc>
