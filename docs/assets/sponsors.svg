@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="800" height="10000" viewBox="0 0 800 10000" role="img" aria-labelledby="title desc">
+
+  <title id="title">Sponsors</title>
+  <desc id="desc">Logos of our sponsors with links to their websites</desc>
+
+  <style>
+    /* Default (light mode) */
+    .img-dark { display: none; }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      .img-light { display: none; }
+      .img-dark { display: inline; }
+    }
+  </style>
+
+  <!-- Gold sponsors. -->
+
+  <!-- Silver sponsors. -->
+  <a xlink:href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener" aria-label="FastAPI">
+    <image xlink:href="https://raw.githubusercontent.com/tiangolo/fastapi/master/docs/en/docs/img/logo-margin/logo-teal.png" x="10" y="0" width="240" height="120" />
+  </a>
+
+  <a xlink:href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener" aria-label="Material for MkDocs">
+    <image xlink:href="https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.svg" x="10" y="130" width="240" height="240" />
+  </a>
+
+  <a xlink:href="https://docs.pydantic.dev/latest/" target="_blank" rel="noopener" aria-label="Pydantic">
+    <image xlink:href="https://pydantic.dev/assets/for-external/pydantic_logfire_logo_endorsed_lithium_rgb.svg" x="10" y="380" width="240" height="120" />
+  </a>
+
+  <!-- Bronze sponsors. -->
+  <a xlink:href="https://www.nixtla.io/" target="_blank" rel="noopener" aria-label="Nixtla">
+    <image xlink:href="https://www.nixtla.io/img/logo/full-white.svg" class="img-dark" x="10" y="510" width="120" height="60" />
+    <image xlink:href="https://www.nixtla.io/img/logo/full-black.svg" class="img-light" x="10" y="510" width="120" height="60" />
+  </a>
+
+</svg>
