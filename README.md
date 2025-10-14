@@ -18,5 +18,26 @@ Serve locally with `./scripts/serve.sh`.
 Deploy to [pawamoy.github.io](https://github.com/pawamoy/pawamoy.github.io)'s
 GitHub pages with `./scripts/deploy.sh`.
 
+---
+
+Markdown, absolute URL:
 
 ![sponsors](https://raw.githubusercontent.com/pawamoy/website/main/docs/assets/sponsors.svg)
+
+---
+
+Markdown, relative URL:
+
+![sponsors](docs/assets/sponsors.svg)
+
+---
+
+HTML, absolute URL:
+
+<img src="https://raw.githubusercontent.com/pawamoy/website/main/docs/assets/sponsors.svg">
+
+---
+
+HTML, relative URL:
+
+<img src="docs/assets/sponsors.svg">
