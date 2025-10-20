@@ -18,7 +18,5 @@ jobs:
 
     - name: Update README and create PR
       uses: pawamoy/readme-sponsors@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.gh_token }}
       with:
-        logo-data-source: https://pawamoy.github.io/sponsors-logo.json
+        sponsors-url: https://pawamoy.github.io/sponsors.txt
