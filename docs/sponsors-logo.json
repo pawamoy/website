@@ -1,0 +1,26 @@
+{
+    "squidfunk": {
+        "name": "Material for MkDocs",
+        "url": "https://squidfunk.github.io/mkdocs-material/",
+        "logo": "https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.svg",
+        "height": 320
+    },
+    "tiangolo": {
+        "name": "FastAPI",
+        "url": "https://fastapi.tiangolo.com/",
+        "logo": "https://raw.githubusercontent.com/tiangolo/fastapi/master/docs/en/docs/img/logo-margin/logo-teal.png",
+        "height": 200
+    },
+    "logfire": {
+        "name": "Pydantic",
+        "url": "https://docs.pydantic.dev/latest/",
+        "logo": "https://pydantic.dev/assets/for-external/pydantic_logfire_logo_endorsed_lithium_rgb.svg",
+        "height": 180
+    },
+    "Nixtla": {
+        "name": "Nixtla",
+        "url": "https://www.nixtla.io/",
+        "logo": ["https://www.nixtla.io/img/logo/full-black.svg", "https://www.nixtla.io/img/logo/full-white.svg"],
+        "height": 60
+    }
+}
