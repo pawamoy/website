@@ -19,4 +19,4 @@ jobs:
     - name: Update README and create PR
       uses: pawamoy/readme-sponsors@main
       with:
-        sponsors-url: https://pawamoy.github.io/sponsors.txt
+        markup-url: https://pawamoy.github.io/sponsors.txt
