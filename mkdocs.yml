@@ -13,6 +13,8 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+    - 2025:
+      - posts/sunsetting-the-sponsorware-strategy.md
     - 2024:
       # - posts/tips-for-writing-good-python-cli-libraries.md
       - posts/same-pytest-fixtures-with-different-scopes.md
