@@ -69,8 +69,6 @@ nav:
     # - showcase/shellm/loop.md
     # - showcase/privibot.md
     # - showcase/pawabot.md
-  - Insiders: insiders.md
-  - Backlog: backlog.md
 
 theme:
   name: material
@@ -115,7 +113,6 @@ theme:
 
 extra_css:
 - css/custom.css
-- css/insiders.css
 
 markdown_extensions:
 - admonition
@@ -163,6 +160,9 @@ plugins:
         paths: [examples]
 - redirects:
     redirect_maps:
+      # insiders
+      insiders.md: posts/sunsetting-the-sponsorware-strategy.md
+
       # mkdocstrings
       mkdocstrings.md: https://mkdocstrings.github.io/
       mkdocstrings/usage.md: https://mkdocstrings.github.io/usage/
