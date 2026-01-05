@@ -35,11 +35,8 @@
 <a href="https://github.com/NemetschekAllplan"><img alt="NemetschekAllplan" src="https://avatars.githubusercontent.com/u/912034?v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/EricJayHartman"><img alt="EricJayHartman" src="https://avatars.githubusercontent.com/u/9259499?u=7e58cc7ec0cd3e85b27aec33656aa0f6612706dd&v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/15r10nk"><img alt="15r10nk" src="https://avatars.githubusercontent.com/u/44680962?u=f04826446ff165742efa81e314bd03bf1724d50e&v=4" style="height: 32px; border-radius: 100%;"></a>
-<a href="https://github.com/cdwilson"><img alt="cdwilson" src="https://avatars.githubusercontent.com/u/14631?v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/activeloopai"><img alt="activeloopai" src="https://avatars.githubusercontent.com/u/34816118?v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/roboflow"><img alt="roboflow" src="https://avatars.githubusercontent.com/u/53104118?v=4" style="height: 32px; border-radius: 100%;"></a>
-<a href="https://github.com/wrath-codes"><img alt="wrath-codes" src="https://avatars.githubusercontent.com/u/90050913?u=bef82e844613b6ccb314960aea632482e7726e80&v=4" style="height: 32px; border-radius: 100%;"></a>
-<a href="https://github.com/leodevian"><img alt="leodevian" src="https://avatars.githubusercontent.com/u/167141781?v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/cmclaughlin"><img alt="cmclaughlin" src="https://avatars.githubusercontent.com/u/1061109?u=ddf6eec0edd2d11c980f8c3aa96e3d044d4e0468&v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/blaisep"><img alt="blaisep" src="https://avatars.githubusercontent.com/u/254456?u=97d584b7c0a6faf583aa59975df4f993f671d121&v=4" style="height: 32px; border-radius: 100%;"></a>
 <a href="https://github.com/RapidataAI"><img alt="RapidataAI" src="https://avatars.githubusercontent.com/u/104209891?v=4" style="height: 32px; border-radius: 100%;"></a>
@@ -52,4 +49,4 @@
 </p></div>
 
 
-*And 8 more private sponsor(s).*
+*And 7 more private sponsor(s).*
