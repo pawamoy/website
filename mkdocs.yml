@@ -13,6 +13,8 @@ nav:
   - About: about.md
   - Credits: credits.md
   - Posts:
+    - 2026:
+      - posts/survey-of-deprecation-libraries.md
     - 2025:
       - posts/sunsetting-the-sponsorware-strategy.md
     - 2024:
