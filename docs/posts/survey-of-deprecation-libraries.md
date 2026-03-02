@@ -596,10 +596,13 @@ As a general rule of thumb, my recommandation is to only make parameters positio
 
 ```python
 def function(a: int, b: int, /, name: str, *, z: int = 0, show: bool = True):
+    # `a` and `b` are interchangeable
+    # passing `name` as positional is tolerated/encouraged
+    # the rest of the arguments must be passed as keyword arguments
     ...
 ```
 
-We saw that deprecating the position of positional parameter is a bit contrived, but lets consider it possible.
+We saw that deprecating the position of positional parameters is a bit contrived, but lets consider it possible.
 
 - [x] parameter position
 
@@ -649,6 +652,10 @@ def function(param: A | B):
         # unless both types are compatible
     ...
 ```
+
+With [protocols](https://typing.python.org/en/latest/spec/protocol.html#protocols) as accepted types, the `isinstance` check will only work with protocols decorated with the [`typing.runtime_checkable`]() decorator. Even then, only the presence of methods will be checked, not the types in their signatures. I wish Python's standard library, official tools like [Mypy](https://www.mypy-lang.org/) or third-party tools like `ty` would provide utilities to type-check such things at runtime (`matches_protocol(value, protocol)`, `compatible(TypeA, TypeB)`, etc.)
+
+Lets consider the standard library provides basic support for deprecating parameter types.
 
 - [x] parameter type
 
