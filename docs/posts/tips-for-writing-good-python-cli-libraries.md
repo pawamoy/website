@@ -1,13 +1,14 @@
 ---
-template: post.html
 title: "Tips for writing good Python CLI/libraries"
 date: 2023-03-19
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python tips cli library api
 # image:
   # src: /assets/client-server-architecture.png
   # class: crop-excerpt
+comments: true
+draft: true
 ---
 
 This post shows a few things that I consider best-practices,

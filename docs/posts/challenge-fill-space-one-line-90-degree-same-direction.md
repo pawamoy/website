@@ -1,19 +1,22 @@
 ---
-template: post.html
 title: 'Challenge: fill a 2D space with one continuous line doing 90° angle turns in the same direction (left/right)'
 date: 2019-02-01
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: draw drawing challenge art fun games
-image:
-  src: /assets/fill-space-drawing.jpg
-  class: crop-excerpt
 hide: [toc]
+comments: true
 ---
 
 Last night I was doing that in my head: filling a 2D space with one continuous line doing turns at a 90° angle, always in the same direction. Other people do this as well, right?
 
 Well, today I actually drawn it:
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![challenge fill space one line 90 degree same direction](../assets/fill-space-drawing.jpg)
+
+</div>
 
 <!--more-->
 

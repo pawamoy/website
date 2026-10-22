@@ -1,13 +1,10 @@
 ---
-template: post.html
 title: Local HTTP server sending fake files for testing purposes
 date: 2020-11-15
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: localhost local http server fake virtual files testing python
-image:
-  src: /assets/local-http-server.png
-  class: crop-excerpt
+comments: true
 ---
 
 I have developed a Python client/library for [`aria2`](https://aria2.github.io/) called [`aria2p`](https://github.com/pawamoy/aria2p).
@@ -17,6 +14,12 @@ To test my code, I spawn `aria2c` processes to interact with them and see if eve
 Until recently the test suite fed actual downloads to `aria2c` (like Linux distributions ISOs, metalinks, magnets, or torrents), but of course the inevitable happened: some URLs broke.
 
 So I decided to go full local. This post describes my attempt at spawning local HTTP servers to serve fake/virtual files efficiently, files that are then fed to `aria2c`.
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![local http server fake files testing purposes](../assets/local-http-server.png)
+
+</div>
 
 <!--more-->
 

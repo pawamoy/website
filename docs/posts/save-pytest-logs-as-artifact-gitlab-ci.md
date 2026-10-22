@@ -1,19 +1,21 @@
 ---
-template: post.html
 title: Save the logs generated during a pytest run as a job artifact on GitLab/GitHub CI
 date: 2019-10-17
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: pytest loguru logs gitlab ci artifact github
-image:
-  src: /assets/loguru.png
-  class: crop-excerpt
-  add_to_post: yes
+comments: true
 ---
 
 While I was writing tests for one of my latest project, [`aria2p`](https://github.com/pawamoy/aria2p), I noticed that some tests that were passing on my local machine were now failing on the GitLab CI runner.
 
 I decided I needed to write all exceptions to log files so I could inspect what happened on GitLab.
+
+<div class="post-image" markdown>
+
+![save pytest logs as artifact gitlab ci](../assets/loguru.png)
+
+</div>
 
 <!--more-->
 

@@ -1,17 +1,19 @@
 ---
-template: post.html
 title: Docker Compose with NginX, Django, Gunicorn and multiple Postgres databases
 date: 2018-02-01
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: docker example compose nginx django gunicorn pipenv postgres
-image:
-  src: /assets/docker4.png
-  class: crop-excerpt
-  add_to_post: yes
+comments: true
 ---
 
 This post explains how to setup your Docker configuration for a web application based on the Django framework. I got a lot of inspiration from other tutorials and Docker examples: you can check these resources with the links at the bottom of the post. You can also directly check the [repository](https://github.com/Pawamoy/docker-nginx-postgres-django-example) that reflects this tutorial.
+
+<div class="post-image" markdown>
+
+![docker compose django postgres nginx](../assets/docker4.png)
+
+</div>
 
 <!--more-->
 

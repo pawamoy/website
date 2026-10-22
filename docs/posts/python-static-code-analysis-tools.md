@@ -1,18 +1,21 @@
 ---
-template: post.html
 title: Python static code analysis tools
 date: 2017-05-31
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python static code analysis tools
-image:
-  src: /assets/python-static-code-analysis-tools.png
-  class: crop-excerpt
+comments: true
 ---
 
 Python static code analysis is often used in Continuous Integration. I use it in every Python or Django package I develop, into a [Tox] configuration. The difficult part is to choose the right tools, because there are many, and to configure them correctly.
 
 Thankfully, there also are tools using other tools to reduce the amount of configuration we have to do. This ends up in a big mix of tools, which is represented in the following chart.
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![python static code analysis tools](../assets/python-static-code-analysis-tools.png)
+
+</div>
 
 <!--more-->
 

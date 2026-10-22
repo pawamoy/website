@@ -1,7 +1,7 @@
 
 <!-- Giscus -->
 <!-- https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/#giscus-integration -->
-{% if not page.meta.comments is false %}
+{% if page.meta.comments %}
     <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
     <script src="https://giscus.app/client.js"
         data-repo="pawamoy/pawamoy.github.io"

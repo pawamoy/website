@@ -1,17 +1,19 @@
 ---
-template: post.html
 title: Django admin dashboard with Suit and Highcharts
 date: 2016-04-06
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: django admin dashboard suit highcharts
-image:
-  src: /assets/pie-chart.png
-  class: crop-excerpt
-  add_to_post: yes
+comments: true
 ---
 
 One day my boss said "I want to see some statistical data about the users". I immediately thought about adding a custom page in the admin panel instead of creating a new view with admin restriction. I was already using [django-suit] which is a great theme (and more) for the Django admin panel, so I searched for a way to add a custom view within Suit. Looking at the [issue] from [brunocascio] on the repo, I found the [comment] written by [rouxxx] and linking to this [post about django dashboard]. I had then all I needed to start a proof of concept.
+
+<div class="post-image" markdown>
+
+![django dashboard with suit and highcharts](../assets/pie-chart.png)
+
+</div>
 
 <!--more-->
 

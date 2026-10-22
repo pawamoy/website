@@ -2,21 +2,20 @@
 
 {% block styles %}
   {{ super() }}
-  <link rel="stylesheet" type="text/css" href="/css/showcase.css" media="screen"/>
+  <link rel="stylesheet" href="{{ 'css/showcase.css' | url }}" media="screen">
 {% endblock %}
 
 {% block content %}
-<table class="showcase-table">
-{% for row in page.meta.projects|batch(3) %}
-<tr>
-  {% for project in row %}
-  <td>
-    <p><strong><a href="/showcase/{{ project.name }}/">{{ project.name }}</a></strong></p>
+<h1>{{ page.title }}</h1>
+<div class="showcase-grid">
+  {% for project in page.meta.projects %}
+  {% set project_url = 'showcase/' ~ project.name ~ '/' %}
+  {% set image_url = 'assets/' ~ project.image %}
+  <article>
+    <h2><a href="{{ project_url | url }}">{{ project.name }}</a></h2>
     <p>{{ project.description }}</p>
-    <a href="/showcase/{{ project.name }}/"><img class="hover-grow" src="/assets/{{ project.image }}"/></a>
-  </td>
+    <a href="{{ project_url | url }}"><img class="hover-grow" src="{{ image_url | url }}" alt="{{ project.name }}" loading="lazy"></a>
+  </article>
   {% endfor %}
-</tr>
-{% endfor %}
-</table>
+</div>
 {% endblock %}

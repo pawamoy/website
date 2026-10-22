@@ -1,19 +1,22 @@
 ---
-template: post.html
 title: How to edit the contents of a git commit
 date: 2020-10-04
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: git commit edit howto shell rebase amend
-image:
-  src: /assets/edit-commit3.png
-  class: crop-excerpt
 hide: [toc]
+comments: true
 ---
 
 When you type `change git commit` or similar keywords in a search engine, you find many answers explaning how to rewrite a commit *message*, but not how to actually modify the *contents* of the commit.
 
 This post quickly explains how to do that.
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![howto edit git commit contents](../assets/edit-commit3.png)
+
+</div>
 
 <!--more-->
 

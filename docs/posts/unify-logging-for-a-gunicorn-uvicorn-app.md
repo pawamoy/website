@@ -1,14 +1,10 @@
 ---
-template: post.html
 title: Unify Python logging for a Gunicorn/Uvicorn/FastAPI application
 date: 2020-06-02
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: gunicorn uvicorn fastapi loguru logs logging unified unify httpx kibana
-image:
-  src: /assets/gunicorn_logs.png
-  class: crop-excerpt
-  add_to_post: yes
+comments: true
 ---
 
 I recently started playing with [FastAPI](https://fastapi.tiangolo.com/) and [HTTPX](https://www.python-httpx.org/), and I am deploying my app with [Gunicorn](https://gunicorn.org/) and [Uvicorn](https://www.uvicorn.org/) workers.
@@ -16,6 +12,12 @@ I recently started playing with [FastAPI](https://fastapi.tiangolo.com/) and [HT
 But when serving, the logs from each component looks quite different from the others. I want them to all look the same, so I can easily read them or exploit them in something like [Kibana](https://www.elastic.co/kibana).
 
 After a lot of hours trying to understand how [Python logging](https://docs.python.org/3/library/logging.html) works, and how to override libraries' logging settings, here is what I have...
+
+<div class="post-image" markdown>
+
+![unify logging for a gunicorn uvicorn app](../assets/gunicorn_logs.png)
+
+</div>
 
 <!--more-->
 

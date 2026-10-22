@@ -1,16 +1,19 @@
 ---
-template: post.html
 title: Django application as an authentication / authorization server for Shiny
 date: 2018-03-15
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: django shiny server nginx auth request security reverse proxy app
-image:
-  src: /assets/client-server-architecture.png
-  class: crop-excerpt
+comments: true
 ---
 
 As you may know, [Shiny Server] comes in two versions: open-source and professional. The professional adds security and authentication features like *password protected applications*, and *controlled access via SSL and LDAP, Active Directory, Google OAuth, PAM, proxied authentication, or passwords*. If you need these authentication features but don't want or can't spend [$9,995 per year] for the professional edition, then I got a solution for you!
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![django auth server for shiny](../assets/client-server-architecture.png)
+
+</div>
 
 <!--more-->
 

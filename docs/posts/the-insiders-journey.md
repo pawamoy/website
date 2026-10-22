@@ -1,19 +1,21 @@
 ---
-template: post.html
 title: The Insiders journey
 date: 2023-11-07
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: journal insiders sponsoring sponshorship opensource entrepreneurship
-image:
-  src: /assets/insiders-journey.png
-  add_to_post: yes
-  class: crop-excerpt
+comments: true
 ---
 
 This post will embark you on my journey about making a living off my open source projects. I'm still at the beginning of the journey, but there is already a lot to say and I wanted to share my experience. I like the idea of keeping a journal of what I go through, and who knows, maybe it will help or inspire others.
 
 In this post I write a bit about me, but I also provide technical instructions on how to set things up.
+
+<div class="post-image" markdown>
+
+![the insiders journey](../assets/insiders-journey.png)
+
+</div>
 
 <!--more-->
 

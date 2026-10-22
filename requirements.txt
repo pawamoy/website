@@ -1,7 +1,6 @@
 linkchecker
-mkdocs
-mkdocs-material
-mkdocs-redirects
+zensical>=0.0.65,<0.1
+ghp-import
 mkdocstrings-python
 markdown-exec
 markdown-callouts

@@ -1,10 +1,10 @@
 ---
-template: post.html
 title: Sunsetting the Insiders program
 date: 2025-10-24
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: funding sponsors sponsorships sponsorware strategy
+comments: true
 ---
 
 In April 2023 I announced the launch of a sponsorware program called Insiders, for mkdocstrings and other projects of mine. After two years and a half, I reached a bit more than a thousand dollar in monthly sponsorships, meaning two goals were completed, the $500 and $1000 goals, and their 20 associated features and projects released to the public. Today I'm sunsetting the Insiders program, for a few reasons listed below.

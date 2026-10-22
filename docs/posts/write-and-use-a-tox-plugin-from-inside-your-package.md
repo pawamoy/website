@@ -1,10 +1,10 @@
 ---
-template: post.html
 title: Write and use a tox plugin from inside your package
 date: 2016-12-07
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python package tox plugin
+comments: true
 ---
 
 So let's say you wrote a program that is using tox and you want to add some options to tox's command-line. Reading at [tox's documentation] about plugins, you see that you have to make a pip installable plugin and setup some entry point. In fact, you can skip the pip installable side and integrate the plugin directly within your code.

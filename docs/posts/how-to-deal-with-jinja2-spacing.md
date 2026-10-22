@@ -1,11 +1,11 @@
 ---
-template: post.html
 title: How to deal with spacing in Jinja2 templates
 date: 2020-09-01
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: templates jinja2 jinja templating spacing howto
 # image: /assets/fill-space-drawing.jpg
+comments: true
 ---
 
 It started with [a comment in a GitHub issue](https://github.com/triaxtec/openapi-python-client/issues/138#issuecomment-670053183).

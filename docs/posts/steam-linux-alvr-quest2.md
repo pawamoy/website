@@ -1,19 +1,21 @@
 ---
-template: post.html
 title: Playing Steam VR games running on Linux in the Oculus Quest 2 through ALVR (wireless)
 date: 2024-03-08
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: steam gaming vr alvr oculus quest quest2 meta linux arch
-image:
-  src: /assets/quest2.png
-  add_to_post: yes
-  class: crop-excerpt
+comments: true
 ---
 
 A few days ago I was finally able to setup my Linux computer and Oculus Quest 2 to play some Steam VR games wirelessly. It tooks me several attempts over many months, and it was one of the most complicated process I had to discover and follow. So I figured I would share a small step-by-step guide to help others.
 
 Even though the process was painful for me at times, I would like to make it clear that the ALVR and SideQuest teams and their community have nothing to do with that: they are doing an *amazing job* and I'm very thankful for that.
+
+<div class="post-image" markdown>
+
+![steam linux alvr quest2](../assets/quest2.png)
+
+</div>
 
 <!--more-->
 

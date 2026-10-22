@@ -1,10 +1,10 @@
 ---
-template: post.html
 title: The tingling sensation of witnessing your own existence
 date: 2024-03-14
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: non-technical tingling sensation existence existential feeling
+comments: true
 ---
 
 I sometimes have a tingling sensation, a soft and warm chill flowing from the top of my spine up to my skull, when looking at someone using something that belongs to me (a physical object or something I created, like code).

@@ -1,15 +1,11 @@
 ---
-template: post.html
 title: Adding links to a Black formatted, Pygments syntax highlighted Python code block
 date: 2023-08-09
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python cross-references html black pygments
-image:
-  src: /assets/codeblock.png
-  add_to_post: no
-  class: crop-excerpt
 hide: [toc]
+comments: true
 ---
 
 <style>
@@ -23,6 +19,12 @@ hide: [toc]
 One of the features of [mkdocstrings-python] is its ability to automatically render cross-references to objects of the documented package in code block signatures.
 
 Adding links to code blocks is possible in HTML, but doing so while preserving Pygments syntax highlighting *and* Black formatting was not an easy task. This post explains how it works.
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![adding links to formatted and syntax highlighted code](../assets/codeblock.png)
+
+</div>
 
 <!--more-->
 

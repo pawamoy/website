@@ -1,13 +1,10 @@
 ---
-template: post.html
 title: Migrate Disqus comments to Utterances (in GitHub issues) with Python
 date: 2020-09-13
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: howto migrate disqus comments utterances github python xml
-image:
-  src: /assets/comments.png
-  class: crop-excerpt
+comments: true
 ---
 
 When I replaced [Jekyll](https://jekyllrb.com/) and my [Jekyll-ReadTheDocs theme](https://github.com/pawamoy/jekyll-readthedocs/) with [MkDocs](https://www.mkdocs.org/) and a [blog-customised version](https://github.com/pawamoy/website) of the [Material for MkDocs theme](https://squidfunk.github.io/mkdocs-material/), the URLs of my posts changed.
@@ -19,6 +16,12 @@ I've read more and more criticism about Disqus related to privacy, so I looked a
 I've read a few webpages and got interested in [Isso](https://posativ.org/isso/). Unfortunately again, I [did not manage](https://github.com/posativ/isso/issues/671) to install it on my Raspberry Pi.
 
 So I went with a much simpler solution: [Utterances](https://utteranc.es/). You basically enable a GitHub app on your repository, add a script in your posts pages, and voilà: your new comment section powered by GitHub issues.
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![migrate disqus comments to utterances github](../assets/comments.png)
+
+</div>
 
 <!--more-->
 

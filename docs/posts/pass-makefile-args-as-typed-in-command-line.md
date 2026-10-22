@@ -1,11 +1,11 @@
 ---
-template: post.html
 title: Passing Makefile arguments to a command, as they are typed in the command line.
 date: 2020-10-17
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: make makefile args arguments command
 #image: /assets/make-args.png
+comments: true
 ---
 
 In my Python projects, I use a combination of [Duty](https://github.com/pawamoy/duty) (my task runner) and `make`.

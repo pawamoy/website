@@ -1,10 +1,11 @@
 ---
-template: post.html
 title: A survey of deprecation-related Python libraries
 date: 2026-02-15
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: deprecation python library survey
+comments: true
+draft: true
 ---
 
 In this post I try to explain what is a code deprecation, why we deprecate code, and how we do it. Then I survey existing Python libraries that make it easer to deprecate code, make a comparative table of their features, and then expand on what I think we could do better. This post will touch to static analysis, runtime warnings, type-checkers, editors, public APIs, code maintenance and how deprecations fit into all that.

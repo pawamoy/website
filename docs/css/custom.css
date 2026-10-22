@@ -1,33 +1,15 @@
-.post-excerpt-image.crop-excerpt {
-  width: 100%;
+.md-post--excerpt .post-image {
   max-height: 200px;
   overflow: hidden;
   mask-image: linear-gradient(to bottom, #000, transparent);
 }
 
-.post-excerpt-image img {
+.post-image img {
   width: 100%;
-  max-width: 100%;
   vertical-align: middle;
 }
 
-.post-date {
-  font-size: 0.8em;
-  text-decoration: underline;
-}
-
-.post-title {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-.post-meta {
-  font-size: 0.8em;
-  text-decoration: underline;
-  text-align: right;
-}
-
-/* More space at the bottom of the page */
-.md-main__inner {
-  margin-bottom: 1.5rem;
+/* Keep preview-only cover images out of the full post. */
+.md-content--post .post-image--excerpt-only {
+  display: none;
 }

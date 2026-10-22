@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <link rel="alternate" type="application/rss+xml" title="{{ config.site_name }}" href="{{ 'feed_rss_created.xml' | url }}">
+  <link rel="alternate" type="application/feed+json" title="{{ config.site_name }}" href="{{ 'feed_json_created.json' | url }}">
+{% endblock %}

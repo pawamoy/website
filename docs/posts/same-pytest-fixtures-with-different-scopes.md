@@ -1,16 +1,19 @@
 ---
-template: post.html
 title: "Same Pytest fixtures with different scopes"
 date: 2024-05-01
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python pytest tests fixtures scope
-image:
-  src: /assets/pytest-fixtures.png
-  class: crop-excerpt
+comments: true
 ---
 
 How to use the same Pytest fixtures with different scopes, to prevent slowing down your test suite?
+
+<div class="post-image post-image--excerpt-only" markdown>
+
+![same pytest fixtures with different scopes](../assets/pytest-fixtures.png)
+
+</div>
 
 <!--more-->
 

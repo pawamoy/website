@@ -1,4 +1,5 @@
 ---
+title: Showcase
 hide:
   - navigation
   - toc

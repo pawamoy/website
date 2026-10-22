@@ -1,17 +1,19 @@
 ---
-template: post.html
 title: Testing a FastAPI application using Ormar models and Alembic migrations
 date: 2022-08-28
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python alembic database migration fastapi ormar testing pytest factory-boy
-image:
-  src: /assets/alembic_post.png
-  add_to_post: yes
-  class: crop-excerpt
+comments: true
 ---
 
 In the [previous post](add-alembic-migrations-to-existing-fastapi-ormar-project.md) I showed how to add Alembic migrations to an existing FastAPI + Ormar project. In this post we will see how to write unit tests for such applications.
+
+<div class="post-image" markdown>
+
+![testing fastapi ormar alembic apps](../assets/alembic_post.png)
+
+</div>
 
 <!--more-->
 

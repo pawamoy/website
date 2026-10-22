@@ -1,56 +1,42 @@
-h1 {
-  display: none;
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  text-align: center;
 }
 
-/* big screens */
-@media only screen and (min-width: 76.25em) {
-  .md-main__inner {
-    max-width: none;
-  }
-  .md-sidebar--primary {
-    left: 0;
-    display: none;
-  }
-  .md-sidebar--secondary {
-    right: 0;
-    margin-left: 0;
-    -webkit-transform: none;
-    transform: none;
-  }
-  .md-content {
-    max-width: none;
-  }
+.showcase-grid article {
+  min-width: 0;
+}
 
-  .showcase-table table {
-    table-layout: fixed;
-    width: 100px;
-  }
+.showcase-grid h2 {
+  margin-top: 0;
+}
 
-  .showcase-table tr td {
-    padding: 0 40px 10px !important;
-    width: 33% !important;
-  }
+.showcase-grid img {
+  max-width: 100%;
+  transition: transform 0.3s;
+}
 
-  tr {
-    text-align: center;
-  }
+.showcase-grid a:hover img,
+.showcase-grid a:focus img {
+  transform: scale(1.05);
+}
 
-  /* Credits to https://github.com/IanLunn/Hover */
-  .hover-grow {
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-  }
-  .hover-grow:hover, .hover-grow:focus, .hover-grow:active {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
+@media (max-width: 60em) {
+  .showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* small screens */
-@media only screen and (max-width: 76.25em) {
-  .showcase-table tr td {
-    display: block;
+@media (max-width: 40em) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-grid img {
+    transition: none;
   }
 }

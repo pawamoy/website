@@ -1,10 +1,10 @@
 ---
-template: post.html
 title: Somewhat-modern Python
 date: 2022-09-22
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: dev development python modern project template
+comments: true
 ---
 
 In this post I present my latest project template for Python projects, [copier-pdm](https://github.com/pawamoy/copier-pdm), based on the great [Copier](https://github.com/copier-org/copier).
@@ -122,7 +122,7 @@ For more information on the update process, see [how the update works](https://c
 
 ## Project management: PDM
 
-<img src="../../assets/pdm-logo.png" style="max-width: 300px;" />
+<img src="../assets/pdm-logo.png" style="max-width: 300px;" />
 
 Now that we have templates and can generate projects, we must choose a project management tool. Traditional setups include `setuptools`' `setup.py` file, with some `MANIFEST.in` and `requirements.txt` files. We can spice things up with [pip-tools](https://github.com/jazzband/pip-tools/) or other alternatives. We can use modern, minimalist tools like [Flit](https://github.com/pypa/flit). Or we can use full-fledge, all-in-one managers like [Hatch](https://github.com/pypa/hatch), [Poetry](https://python-poetry.org/), or [PDM](https://pdm.fming.dev/).
 
@@ -364,7 +364,7 @@ I typically split quality analysis in two: code quality and type-checking.
 
 For static typing analysis, I use [mypy](http://mypy-lang.org/).
 
-<img src="../../assets/mypy-light.svg" style="max-width: 300px;" />
+<img src="../assets/mypy-light.svg" style="max-width: 300px;" />
 
 === "duty"
     ```python title="duties.py"
@@ -764,8 +764,8 @@ To write documentation for your project, I suggest using [MkDocs](https://www.mk
 
 Combined to the great [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme, it gives you a beautiful and responsive website for your documentation pages, or even for your blog. And combined to the [mkdocstrings](https://mkdocstrings.github.io/) plugin, you can auto-generate documentation for your Python API (modules, functions, classes, methods, attributes, etc.).
 
-<img src="../../assets/mkdocs-material.svg" style="max-width: 200px;"/>
-<img src="../../assets/mkdocstrings-logo.png" style="max-width: 300px;"/>
+<img src="../assets/mkdocs-material.svg" style="max-width: 200px;"/>
+<img src="../assets/mkdocstrings-logo.png" style="max-width: 300px;"/>
 
 ??? info "Story time: from Sphinx to MkDocs"
     A few years ago (around 2020), I bumped into the Pydantic project (again). I had already seen it before, mainly interested in its settings configuration ability that could replace most of the logic in my Django app [django-appsettings](https://github.com/pawamoy/django-appsettings). This time, when I landed on its docs pages, I thought: "wow, this looks nice". Then, a bit later, [FastAPI](https://fastapi.tiangolo.com/) exploded in our faces, and I thought again: "hey, looks familiar, and I love it!". So I looked around and saw that it used MkDocs and a theme called "Material for MkDocs".

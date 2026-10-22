@@ -1,10 +1,10 @@
 ---
-template: post.html
 title: Python packages and plugins as namespace packages
 date: 2020-10-11
 authors:
-  - Timothée Mazzucotelli
+  - pawamoy
 tags: python plugin package native namespace pkgutil
+comments: true
 ---
 
 A user of [`mkdocstrings`](https://github.com/pawamoy/mkdocstrings) wrote a Crystal handler for their own use-case. They asked on [the Gitter channel](https://gitter.im/mkdocstrings/community) if we could allow to load external handlers, so they don't have to fork the project and install the fork, but rather just install their lightweight package containing just the handler.
