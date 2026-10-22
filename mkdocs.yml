@@ -12,6 +12,7 @@ nav:
     - index.md
   - About: about.md
   - Credits: credits.md
+  - Posts: /#posts
   - Showcase:
     - Showcase: showcase.md
     - Projects:
@@ -79,6 +80,9 @@ theme:
 extra_css:
 - css/custom.css
 
+extra_javascript:
+- js/post-index.js
+
 markdown_extensions:
 - admonition
 - attr_list
@@ -119,6 +123,7 @@ plugins:
 - markdown-exec
 - blog:
     blog_dir: .
+    draft_on_serve: true
     # Keep published URLs and Giscus discussions tied to the original filenames.
     post_url_format: "posts/{file}"
     post_excerpt_separator: "<!--more-->"

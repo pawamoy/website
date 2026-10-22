@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
+{% set post_nav = namespace(items=[]) %}
+{% for nav_item in nav.items %}
+  {% if page.config and page.config.date %}
+    {% set nav_item = dict(nav_item, active=nav_item.url == "/#posts") %}
+  {% endif %}
+  {# Home already has the first post; other pages resolve it in post-index.js. #}
+  {% if nav_item.url == "/#posts" and page.url in ["", ".", "/"] and posts %}
+    {% set nav_item = dict(nav_item, url=posts[0].url) %}
+  {% endif %}
+  {% set post_nav.items = post_nav.items + [nav_item] %}
+{% endfor %}
+{% set nav = dict(nav, items=post_nav.items) %}
+
 {% block extrahead %}
   {{ super() }}
   <link rel="alternate" type="application/rss+xml" title="{{ config.site_name }}" href="{{ 'feed_rss_created.xml' | url }}">

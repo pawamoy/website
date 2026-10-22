@@ -1,0 +1,10 @@
+@media screen and (min-width: 76.25em) {
+  /* Match the theme's sidebar widths and article margins on desktop. */
+  .md-content {
+    margin-inline: 12.1rem;
+  }
+
+  .md-content__inner {
+    margin-inline: 1.2rem;
+  }
+}
